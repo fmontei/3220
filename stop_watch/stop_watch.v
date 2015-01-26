@@ -33,6 +33,8 @@ module stop_watch
 			running <= 1'b0;
 		end else if (start) begin 
 			running <= 1'b1;
+			/* The "running block" will only execute during the next clock cycle, 
+			 * so we need to increment seconds until then. */
 			sec_lsb <= sec_lsb + 1;	
 		end else if (running) begin 
 			if (clk) begin
@@ -43,23 +45,22 @@ module stop_watch
 					if (sec_msb == 5) begin
 						sec_msb <= 0;
 						min_lsb <= min_lsb + 1;
+						if (min_lsb == 9) begin
+							min_lsb <= 0;
+							min_msb <= min_msb + 1;
+							if (min_msb == 5) begin
+								min_msb <= 0;
+								hr_lsb <= hr_lsb + 1;
+								if (hr_lsb == 9) begin
+									hr_lsb <= 0;
+									hr_msb <= hr_msb + 1;
+								end else if (hr_msb == 2 && hr_lsb == 3) begin
+									hr_lsb <= 0;
+									hr_msb <= 0;
+								end
+							end
+						end
 					end
-				end
-				if (min_lsb == 9) begin
-					min_lsb <= 0;
-					min_msb <= min_msb + 1;
-					if (min_msb == 5) begin
-						min_msb <= 0;
-						hr_lsb <= hr_lsb + 1;
-					end
-				end
-				if (hr_lsb == 9) begin
-					hr_lsb <= 0;
-					hr_msb <= hr_msb + 1;
-				end
-				if (hr_msb == 2 && hr_lsb == 3) begin
-					hr_lsb <= 0;
-					hr_msb <= 0;
 				end
 			end
 		end
@@ -72,9 +73,6 @@ module stop_watch
 	assign hr_out_lsb = hr_lsb;
 	assign hr_out_msb = hr_msb;
 endmodule
-
-
-
 
 module bcd(number, hundreds, tens, ones);
    // I/O Signal Definitions
