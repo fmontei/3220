@@ -30,28 +30,26 @@ module watch
 			min_msb <= min_in_msb;
 			hr_lsb  <= hr_in_lsb;
 			hr_msb  <= hr_in_msb;
-		end else begin
-			if (clk) begin
-				sec_lsb <= sec_lsb + 1;	
-				if (sec_lsb == 9) begin
-					sec_lsb <= 0;
-					sec_msb <= sec_msb + 1;
-					if (sec_msb == 5) begin
-						sec_msb <= 0;
-						min_lsb <= min_lsb + 1;
-						if (min_lsb == 9) begin
-							min_lsb <= 0;
-							min_msb <= min_msb + 1;
-							if (min_msb == 5) begin
-								min_msb <= 0;
-								hr_lsb <= hr_lsb + 1;
-								if (hr_lsb == 9) begin
-									hr_lsb <= 0;
-									hr_msb <= hr_msb + 1;
-								end else if (hr_msb == 2 && hr_lsb == 3) begin
-									hr_lsb <= 0;
-									hr_msb <= 0;
-								end
+		end else if (clk) begin
+			sec_lsb <= sec_lsb + 1;	
+			if (sec_lsb == 9) begin
+				sec_lsb <= 0;
+				sec_msb <= sec_msb + 1;
+				if (sec_msb == 5) begin
+					sec_msb <= 0;
+					min_lsb <= min_lsb + 1;
+					if (min_lsb == 9) begin
+						min_lsb <= 0;
+						min_msb <= min_msb + 1;
+						if (min_msb == 5) begin
+							min_msb <= 0;
+							hr_lsb <= hr_lsb + 1;
+							if (hr_lsb == 9) begin
+								hr_lsb <= 0;
+								hr_msb <= hr_msb + 1;
+							end else if (hr_msb == 2 && hr_lsb == 3) begin
+								hr_lsb <= 0;
+								hr_msb <= 0;
 							end
 						end
 					end
@@ -65,13 +63,8 @@ module watch
 	assign min_out_lsb = min_lsb;
 	assign min_out_msb = min_msb;
 	assign hr_out_lsb = hr_lsb;
-	assign hr_out_msb = hr_msb;
-	
-	//bcd bcd1(.number(counter), .ones(sec_out_lsb), .tens(sec_out_msb));
-	
+	assign hr_out_msb = hr_msb;	
 endmodule
-
-
 
 module bcd(number, hundreds, tens, ones);
    // I/O Signal Definitions
