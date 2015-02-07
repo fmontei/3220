@@ -64,7 +64,7 @@ module Project2(CLOCK_50, LEDG, LEDR, KEY, HEX0, HEX1, HEX2, HEX3);
 			k1_clicked <= 0;
 			k1_unclicked <= 0;
 		/* We don't need to keep track of keys being pressed and released
-	    * for reset, since spamming reset does nothing to increment/decrement
+		 * for reset, since spamming reset does nothing to increment/decrement
 		 * CLOCK_MAX like crazy */	
 		end else if (KEY[2] == 0) begin
 			CLOCK_MAX <= HALF_SEC; // reset
@@ -111,7 +111,7 @@ module Project2(CLOCK_50, LEDG, LEDR, KEY, HEX0, HEX1, HEX2, HEX3);
 			(CLOCK_MAX == HALF_SEC + HALF_SEC + QUARTER_SEC) ? 5 :
 			(CLOCK_MAX == HALF_SEC + HALF_SEC + HALF_SEC) ? 6 : 
 			(CLOCK_MAX == HALF_SEC + HALF_SEC + HALF_SEC + QUARTER_SEC) ? 7 :
-			/*(CLOCK_MAX == HALF_SEC + HALF_SEC + HALF_SEC + HALF_SEC)*/ 8;
+			/*(CLOCK_MAX == TWO_SEC)*/ 8;
 			
 	end
 	
