@@ -6,7 +6,7 @@ module Project2(CLOCK_50, LEDG, LEDR, KEY);
 	reg [7:0] green;
 	reg [7:0] red;
 	reg [31:0] clock_count; // Counts clock ticks
-	reg [31:0] CLOCK_MAX; // Type between flashes
+	reg [31:0] CLOCK_MAX; // Time between flashes
 	reg [2:0] count; // Counts number of flashes
 	reg [2:0] state; // State 0 == Green, State 1 == Red, State 2 == Both
 	reg [0:0] k0_clicked; // Keeps track of when k0 is initially pressed
@@ -58,7 +58,8 @@ module Project2(CLOCK_50, LEDG, LEDR, KEY);
 			k1_clicked <= 0;
 			k1_unclicked <= 0;
 		/* We don't need to keep track of keys being pressed and released
-	    * for reset, since spamming reset does nothing to CLOCK_MAX */	
+	    * for reset, since spamming reset does nothing to increment/decrement
+		 * CLOCK_MAX like crazy */	
 		end else if (KEY[2] == 0) begin
 			CLOCK_MAX <= 32'd25000000; // reset
 			clock_count <= 0;
