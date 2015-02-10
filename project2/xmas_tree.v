@@ -14,7 +14,7 @@ module Project2(CLOCK_50, LEDG, LEDR, KEY, HEX0, HEX1, HEX2, HEX3);
 	reg [0:0] k0_unclicked; // Keeps track of when k0 is released
 	reg [0:0] k1_clicked; // Keeps track of when k1 is initially pressed
 	reg [0:0] k1_unclicked; // Keeps track of when k1 is released
-	reg [15:0] hex_timer; // Debugging hex output
+	reg [15:0] hex_output; // Debugging hex output
 	
 	parameter QUARTER_SEC = 32'd12500000;
 	parameter HALF_SEC = 32'd25000000;
@@ -53,14 +53,18 @@ module Project2(CLOCK_50, LEDG, LEDR, KEY, HEX0, HEX1, HEX2, HEX3);
 		/* Since we know that the button has been clicked and released,
 		 * NOW we want to change the value of CLOCK_MAX -- this happens
 		 * only once, since it's synched to the button being released */
-		if (k0_unclicked == 1 && CLOCK_MAX < TWO_SEC) begin
-			CLOCK_MAX <= CLOCK_MAX + QUARTER_SEC; // slow down
-			clock_count <= 0;
+		if (k0_unclicked == 1) begin
+			if (CLOCK_MAX < TWO_SEC) begin
+				CLOCK_MAX <= CLOCK_MAX + QUARTER_SEC; // slow down
+				clock_count <= 0;
+			end
 			k0_clicked <= 0;
 			k0_unclicked <= 0;
-		end else if (k1_unclicked == 1 && CLOCK_MAX > QUARTER_SEC) begin
-			CLOCK_MAX <= CLOCK_MAX - QUARTER_SEC; // speed up
-			clock_count <= 0;
+		end else if (k1_unclicked == 1) begin
+			if (CLOCK_MAX > QUARTER_SEC) begin
+				CLOCK_MAX <= CLOCK_MAX - QUARTER_SEC; // speed up
+				clock_count <= 0;
+			end
 			k1_clicked <= 0;
 			k1_unclicked <= 0;
 		/* We don't need to keep track of keys being pressed and released
@@ -103,7 +107,7 @@ module Project2(CLOCK_50, LEDG, LEDR, KEY, HEX0, HEX1, HEX2, HEX3);
 			clock_count <= 32'd0;
 		end
 		
-		hex_timer <=
+		hex_output <=
 			(CLOCK_MAX == QUARTER_SEC) ? 1 :
 			(CLOCK_MAX == HALF_SEC) ? 2 :
 			(CLOCK_MAX == HALF_SEC + QUARTER_SEC) ? 3 :
@@ -115,10 +119,10 @@ module Project2(CLOCK_50, LEDG, LEDR, KEY, HEX0, HEX1, HEX2, HEX3);
 			
 	end
 	
-	SevenSeg sseg0(.IN(hex_timer[ 3: 0]),.OUT(HEX0));
-	SevenSeg sseg1(.IN(hex_timer[ 7: 4]),.OUT(HEX1));
-	SevenSeg sseg2(.IN(hex_timer[11: 8]),.OUT(HEX2));
-	SevenSeg sseg3(.IN(hex_timer[15:12]),.OUT(HEX3));
+	SevenSeg sseg0(.IN(hex_output[ 3: 0]),.OUT(HEX0));
+	SevenSeg sseg1(.IN(hex_output[ 7: 4]),.OUT(HEX1));
+	SevenSeg sseg2(.IN(hex_output[11: 8]),.OUT(HEX2));
+	SevenSeg sseg3(.IN(hex_output[15:12]),.OUT(HEX3));
 	
 	assign LEDG = green;
 	assign LEDR = red;
