@@ -26,7 +26,7 @@ int main(void)
   
   x1 = 21; y1=30 ; x2 = 11; y2= 6; 
 
-  printf("draw a line between (%d, %d) to (%d, %d)\n", x1,y1, x2,y2); 
+  fprintf(stderr, "draw a line between (%d, %d) to (%d, %d)\n", x1,y1, x2,y2); 
 
    /* Basic Incremental Algorithm */ 
 

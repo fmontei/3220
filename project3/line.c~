@@ -21,7 +21,7 @@ int main(void)
 {
   XInitThreads();
   int gd,gm;
-  int x1, x2, y1, y2, d; 
+  int x1, x2, y1, y2; 
   float dy, dx, m; 
   
   x1 = 21; y1=30 ; x2 = 11; y2= 6; 
@@ -32,7 +32,6 @@ int main(void)
 
   dy = y2 - y1; 
   dx = x2 - x1; 
-  //d = dy * 2 - dx;
   m = dy / dx;
   int adjust = (m >= 0) ? 1 : -1;
   long offset = 0; 
