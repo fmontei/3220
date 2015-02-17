@@ -1,0 +1,20 @@
+
+State Machine - |Project2|k1_unclicked
+Name k1_unclicked.1 
+k1_unclicked.0 0 
+k1_unclicked.1 1 
+
+State Machine - |Project2|k0_unclicked
+Name k0_unclicked.1 
+k0_unclicked.0 0 
+k0_unclicked.1 1 
+
+State Machine - |Project2|k1_clicked
+Name k1_clicked.1 
+k1_clicked.0 0 
+k1_clicked.1 1 
+
+State Machine - |Project2|k0_clicked
+Name k0_clicked.1 
+k0_clicked.0 0 
+k0_clicked.1 1 
