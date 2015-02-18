@@ -152,13 +152,13 @@ begin
 			end 
 			/* reset the screen */ 		
 			else if (count[26] == 1) begin 	
-				O_GPU_ADDR <= x * 640 + y;
+				O_GPU_ADDR <= rowInd * 640 + colInd;
 				O_GPU_WRITE <= 1'b1;
 				O_GPU_READ <= 1'b0;
-				if (in_triangle == 1 && rowInd == x && colInd == y)
+				if (in_triangle == 1)
 					O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};	
-				else 
-					O_GPU_DATA <= {4'h0, 4'h4, 4'h3, 4'h0};
+				//else 
+					//O_GPU_DATA <= {4'h0, 4'h4, 4'h3, 4'h0};
 			end 	
 		end 
 	end
