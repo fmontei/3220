@@ -43,7 +43,6 @@ output [6:0] O_HEX0, O_HEX1, O_HEX2, O_HEX3;
 reg [26:0] count;
 reg [9:0]  rowInd;
 reg [9:0]  colInd;
-reg [9:0] p0x, p0y, p1x, p1y;
 reg init_phase; 
 
 /* Our registers */
@@ -54,12 +53,21 @@ reg signed [31:0] dy, dx, m;
 reg signed [2:0] adjust;
 reg [0:0] in_triangle;
 
-parameter x1 = 50;
-parameter x2 = 200;
-parameter y1 = 50;
-parameter y2 = 200;
+reg [15:0] pixels[9:0][9:0];
+reg [9:0] i, j;
+
+parameter x1 = 0;
+parameter x2 = 10;
+parameter y1 = 0;
+parameter y2 = 10;
 
 initial begin
+	for (i = 0; i < 10; i = i + 1) begin
+		for (j = 0; j < 10; j = j + 1) begin
+			pixels[i][j] <= {4'h0, 4'h0, 4'h3, 4'hf};
+		end
+	end
+
 	in_triangle <= 0;
 	
 	dy <= y2 - y1;
@@ -113,6 +121,8 @@ begin
 			/* In Triangle Logic */
 			if (m <= 1 && m >= -1) begin
 				if (x < x2) begin
+					pixels[x][y] <= {4'hf, 4'hf, 4'hf, 4'hf};
+					
 					in_triangle <= 1;
 					offset <= offset + delta;
 					if (offset >= threshold) begin
@@ -122,7 +132,7 @@ begin
 					x <= x + 1;
 				end else begin
 					in_triangle <= 0;
-					delta <= (dy > 0) ? dy * 2 : dy * -2;
+					/*delta <= (dy > 0) ? dy * 2 : dy * -2;
 					threshold <= (dx > 0) ? dx : -dx;
 					threshold_inc <= threshold * 2;
 					x1_new <= x1;
@@ -133,29 +143,37 @@ begin
 						x2_new <= x1;
 						y <= y2;
 					end
-					x <= x1_new;
+					x <= x1_new;*/
 				end
 			end 
 		
 		  	count <= count + 1;
 			if (count[26] == 0) begin			
-				O_GPU_ADDR <= rowInd * 620 + colInd;
+				O_GPU_ADDR <= rowInd * 640 + colInd;
 				O_GPU_WRITE <= 1'b1;
 				O_GPU_READ <= 1'b0;
-				if (/*rowInd == x && colInd == y &&*/ in_triangle == 1)
-					O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};	
-				else 
-					O_GPU_DATA <= {4'h0, 4'h0, 4'h3, 4'hf};	
+				//if (/*rowInd == x && colInd == y &&*/ in_triangle == 1)
+					//O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};	
+				//else 
+					//O_GPU_DATA <= {4'h0, 4'h0, 4'h3, 4'hf};
+				if (rowInd < x2 && rowInd >= x1 && colInd < y2 && colInd >= y1)
+					O_GPU_DATA <= pixels[colInd][rowInd];	
+				else
+					O_GPU_DATA <= {4'h0, 4'h0, 4'h3, 4'hf};
 			end 
 			/* reset the screen */ 		
 			else if (count[26] == 1) begin 	
 				O_GPU_ADDR <= rowInd * 640 + colInd;
 				O_GPU_WRITE <= 1'b1;
 				O_GPU_READ <= 1'b0;
-				if (rowInd == x && colInd == y && in_triangle == 1)
-					O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};
-				else 
-					O_GPU_DATA <= {4'h0, 4'h4, 4'h3, 4'h0};
+				//if (/*rowInd == x && colInd == y &&*/ in_triangle == 1)
+					//O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};
+				//else 
+					//O_GPU_DATA <= {4'h0, 4'h4, 4'h3, 4'h0};
+				if (rowInd < x2 && colInd < y2)
+					O_GPU_DATA <= pixels[rowInd][colInd];	
+				else
+					O_GPU_DATA <= {4'h0, 4'h0, 4'h3, 4'hf};
 			end 	
 		end 
 	end
