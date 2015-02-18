@@ -46,30 +46,21 @@ reg [9:0]  colInd;
 reg init_phase; 
 
 /* Our registers */
-//reg [31:0] x1, x2, y1, y2;
+parameter x1 = 1;
+parameter x2 = 30;
+parameter y1 = 1;
+parameter y2 = 30;
+
 reg [31:0] x, y, x1_new, x2_new, y1_new, y2_new;
 reg [31:0] delta, offset, threshold, threshold_inc;
-reg signed [31:0] dy, dx, m;
+reg signed [31:0] dy = y2 - y1, dx = x2 - x1, m;
 reg signed [2:0] adjust;
 reg [0:0] in_triangle;
 
-reg [15:0] pixels[9:0][9:0];
+reg [0:0] pixels[y2 - y1 - 1:0][x2 - x1 - 1:0];
 reg [9:0] i, j;
 
-parameter x1 = 0;
-parameter x2 = 10;
-parameter y1 = 0;
-parameter y2 = 10;
-
 initial begin	
-	for (i = 0; i < 10; i = i + 1) begin
-		for (j = 0; j < 10; j = j + 1) begin
-			pixels[i][j] <= {4'h0, 4'h0, 4'h3, 4'hf};
-		end
-	end
-
-	dy = y2 - y1;
-	dx = x2 - x1;
 	//m  <= dy / dx;
 	m = 1;
 	
@@ -104,7 +95,11 @@ initial begin
 		y = y1_new;
 	end
 	
-	
+	for (i = 0; i < y2 - y1; i = i + 1) begin
+		for (j = 0; j < x2 - x1; j = j + 1) begin
+			pixels[i][j] <= 0;
+		end
+	end
 end
 				
 always @(posedge I_CLK or negedge I_RST_N)
@@ -121,7 +116,7 @@ begin
 			/* In Triangle Logic */
 			if (m <= 1 && m >= -1) begin
 				if (x <= x2_new) begin
-					pixels[x][y] <= {4'hf, 4'hf, 4'hf, 4'hf};
+					pixels[y][x] <= 1;
 					offset <= offset + delta;
 					if (offset >= threshold) begin
 						y <= y + adjust;
@@ -154,8 +149,9 @@ begin
 					//O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};	
 				//else 
 					//O_GPU_DATA <= {4'h0, 4'h0, 4'h3, 4'hf};
-				if (rowInd < x2 && rowInd >= x1 && colInd < y2 && colInd >= y1)
-					O_GPU_DATA <= pixels[colInd][rowInd];	
+				if (rowInd >= x1 && rowInd <= x2 && colInd >= y1 && colInd <= y2)
+					O_GPU_DATA <= (pixels[colInd][rowInd] == 1) ? 
+						{4'hf, 4'hf, 4'hf, 4'hf} : {4'h0, 4'h0, 4'h3, 4'hf};	
 				else
 					O_GPU_DATA <= {4'h0, 4'h0, 4'h3, 4'hf};
 			end 
@@ -168,10 +164,11 @@ begin
 					//O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};
 				//else 
 					//O_GPU_DATA <= {4'h0, 4'h4, 4'h3, 4'h0};
-				if (rowInd < x2 && colInd < y2)
-					O_GPU_DATA <= pixels[rowInd][colInd];	
+				if (rowInd >= x1 && rowInd <= x2 && colInd >= y1 && colInd <= y2)
+					O_GPU_DATA <= (pixels[colInd][rowInd] == 1) ? 
+						{4'hf, 4'hf, 4'hf, 4'hf} : {4'h3, 4'hf, 4'h0, 4'h0};
 				else
-					O_GPU_DATA <= {4'h0, 4'h0, 4'h3, 4'hf};
+					O_GPU_DATA <= {4'h3, 4'hf, 4'h0, 4'h0};
 			end 	
 		end 
 	end
