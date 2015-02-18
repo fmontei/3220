@@ -61,50 +61,50 @@ parameter x2 = 10;
 parameter y1 = 0;
 parameter y2 = 10;
 
-initial begin
+initial begin	
 	for (i = 0; i < 10; i = i + 1) begin
 		for (j = 0; j < 10; j = j + 1) begin
 			pixels[i][j] <= {4'h0, 4'h0, 4'h3, 4'hf};
 		end
 	end
 
-	in_triangle <= 0;
-	
-	dy <= y2 - y1;
-	dx <= x2 - x1;
+	dy = y2 - y1;
+	dx = x2 - x1;
 	//m  <= dy / dx;
-	m <= 1;
+	m = 1;
 	
-	adjust <= (m >= 0) ? 1 : -1;
-	offset <= 0;
+	adjust = (m >= 0) ? 1 : -1;
+	offset = 0;
 	
 	if (m <= 1 && m >= -1) begin
-		delta <= (dy > 0) ? dy * 2 : dy * -2;
-		threshold <= (dx > 0) ? dx : -dx;
-		threshold_inc <= threshold * 2;
-		x1_new <= x1;
-		x2_new <= x2;
-		y <= y1;
+		delta = (dy > 0) ? dy * 2 : dy * -2;
+		threshold = (dx > 0) ? dx : -dx;
+		threshold_inc = threshold * 2;
+		x1_new = x1;
+		x2_new = x2;
+		y = y1;
 		if (x2 < x1) begin
-			x1_new <= x2;
-			x2_new <= x1;
-			y <= y2;
+			x1_new = x2;
+			x2_new = x1;
+			y = y2;
 		end
-		x <= x1_new;
+		x = x1_new;
 	end else begin
-		delta <= (dx > 0) ? dx * 2 : dx * -2;
-		threshold <= (dy > 0) ? dy : -dy;
-		threshold_inc <= threshold * 2;
-		y1_new <= y1;
-		y2_new <= y2;
-		x <= x1;
+		delta = (dx > 0) ? dx * 2 : dx * -2;
+		threshold = (dy > 0) ? dy : -dy;
+		threshold_inc = threshold * 2;
+		y1_new = y1;
+		y2_new = y2;
+		x = x1;
 		if (y2 < y1) begin
-			y1_new <= y2;
-			y2_new <= y1;
-			x <= x2;
+			y1_new = y2;
+			y2_new = y1;
+			x = x2;
 		end
-		y <= y1_new;
+		y = y1_new;
 	end
+	
+	
 end
 				
 always @(posedge I_CLK or negedge I_RST_N)
@@ -120,10 +120,8 @@ begin
 		
 			/* In Triangle Logic */
 			if (m <= 1 && m >= -1) begin
-				if (x < x2) begin
+				if (x <= x2_new) begin
 					pixels[x][y] <= {4'hf, 4'hf, 4'hf, 4'hf};
-					
-					in_triangle <= 1;
 					offset <= offset + delta;
 					if (offset >= threshold) begin
 						y <= y + adjust;
