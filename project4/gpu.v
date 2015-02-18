@@ -122,7 +122,18 @@ begin
 					x <= x + 1;
 				end else begin
 					in_triangle <= 0;
-					x <= 0;
+					delta <= (dy > 0) ? dy * 2 : dy * -2;
+					threshold <= (dx > 0) ? dx : -dx;
+					threshold_inc <= threshold * 2;
+					x1_new <= x1;
+					x2_new <= x2;
+					y <= y1;
+					if (x2 < x1) begin
+						x1_new <= x2;
+						x2_new <= x1;
+						y <= y2;
+					end
+					x <= x1_new;
 				end
 			end 
 		
@@ -131,7 +142,7 @@ begin
 				O_GPU_ADDR <= rowInd * 620 + colInd;
 				O_GPU_WRITE <= 1'b1;
 				O_GPU_READ <= 1'b0;
-				if (in_triangle == 1)
+				if (/*rowInd == x && colInd == y &&*/ in_triangle == 1)
 					O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};	
 				else 
 					O_GPU_DATA <= {4'h0, 4'h0, 4'h3, 4'hf};	
