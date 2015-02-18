@@ -1,3 +1,4 @@
+
 module Gpu (
   I_CLK, 
   I_RST_N,
@@ -46,26 +47,25 @@ reg [9:0] p0x, p0y, p1x, p1y;
 reg init_phase; 
 
 /* Our registers */
-reg [31:0] x1, x2, y1, y2;
+//reg [31:0] x1, x2, y1, y2;
 reg [31:0] x, y, x1_new, x2_new, y1_new, y2_new;
 reg [31:0] delta, offset, threshold, threshold_inc;
-reg signed [31:0] dy, dx, m = 5;
+reg signed [31:0] dy, dx, m;
 reg signed [2:0] adjust;
 reg [0:0] in_triangle;
 
-reg [0:0] flag = 0;
+parameter x1 = 50;
+parameter x2 = 200;
+parameter y1 = 50;
+parameter y2 = 200;
 
 initial begin
 	in_triangle <= 0;
-
-	x1 <= 32'd21;
-	x2 <= 32'd150;
-	y1 <= 32'd11;
-	y2 <= 32'd100;
 	
 	dy <= y2 - y1;
 	dx <= x2 - x1;
-	m  <= dy / dx;
+	//m  <= dy / dx;
+	m <= 1;
 	
 	adjust <= (m >= 0) ? 1 : -1;
 	offset <= 0;
@@ -108,50 +108,52 @@ begin
 		O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};
 		count <= 0;
 	end else begin
-	
-		/* In Triangle Logic */
-		if (m <= 1 && m >= -1) begin
-			in_triangle <= 1;
-			
-			if (x < x2_new) begin
-				
-				offset <= offset + delta;
-				if (offset >= threshold) begin
-					y <= y + adjust;
-					threshold <= threshold + threshold_inc;
-				end
-				
-			end else begin
-				//in_triangle <= 0;
-			end
-			//x <= x + 1;
-		end else begin
-			
-		end
-	
 		if (!I_VIDEO_ON) begin
+		
+			/* In Triangle Logic */
+			if (m <= 1 && m >= -1) begin
+				if (x < x2) begin
+					in_triangle <= 1;
+					offset <= offset + delta;
+					if (offset >= threshold) begin
+						y <= y + adjust;
+						threshold <= threshold + threshold_inc;
+					end
+					x <= x + 1;
+				end else begin
+					in_triangle <= 0;
+					x <= 0;
+				end
+			end 
+		
 		  	count <= count + 1;
-				if (count[26] == 0) begin 	
+			if (count[26] == 0) begin			
 				O_GPU_ADDR <= rowInd * 620 + colInd;
 				O_GPU_WRITE <= 1'b1;
 				O_GPU_READ <= 1'b0;
 				if (in_triangle == 1)
-					O_GPU_DATA <= {4'h0, 4'h0, 4'h0, 4'h0};	
+					O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};	
 				else 
 					O_GPU_DATA <= {4'h0, 4'h0, 4'h3, 4'hf};	
 			end 
 			/* reset the screen */ 		
 			else if (count[26] == 1) begin 	
-				O_GPU_ADDR <= rowInd*640 + colInd;
+				O_GPU_ADDR <= rowInd * 640 + colInd;
 				O_GPU_WRITE <= 1'b1;
 				O_GPU_READ <= 1'b0;
-				O_GPU_DATA <= {4'h0, 4'h4, 4'h3, 4'h0};
+				if (rowInd == x && colInd == y && in_triangle == 1)
+					O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};
+				else 
+					O_GPU_DATA <= {4'h0, 4'h4, 4'h3, 4'h0};
 			end 	
 		end 
 	end
 end
 
-SevenSeg sseg0(.OUT(O_HEX3), .IN({3'b0, flag}));
+//SevenSeg sseg0(.IN(count[3:0]),.OUT(O_HEX0));
+//SevenSeg sseg1(.IN(count[7:4]),.OUT(O_HEX1));
+//SevenSeg sseg2(.IN(count[11:8]),.OUT(O_HEX2));
+//SevenSeg sseg3(.IN(count[15:12]),.OUT(O_HEX3));
 
 always @(posedge I_CLK or negedge I_RST_N)
 begin
