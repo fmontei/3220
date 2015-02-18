@@ -46,47 +46,56 @@ reg [9:0] p0x, p0y, p1x, p1y;
 reg init_phase; 
 
 /* Our registers */
-reg  [9:0] dy, dx, m, BEGIN, END, x, y;
-reg  [0:0] adjust;
-reg [15:0] offset, delta, threshold, threshold_inc;
+reg [31:0] x1, x2, y1, y2;
+reg [31:0] x, y, x1_new, x2_new, y1_new, y2_new;
+reg [31:0] delta, offset, threshold, threshold_inc;
+reg signed [31:0] dy, dx, m = 5;
+reg signed [2:0] adjust;
+reg [0:0] in_triangle;
+
+reg [0:0] flag = 0;
 
 initial begin
-	p0x = 1; 
-	p0y = 1; 
-	p1x = 200;
-	p1y = 100;
+	in_triangle <= 0;
 
-	dy <= p1y - p0y;
-	dx <= p1x - p0x;
+	x1 <= 32'd21;
+	x2 <= 32'd150;
+	y1 <= 32'd11;
+	y2 <= 32'd100;
+	
+	dy <= y2 - y1;
+	dx <= x2 - x1;
 	m  <= dy / dx;
-	adjust <= (m >= 0) ? 1 : 0;
+	
+	adjust <= (m >= 0) ? 1 : -1;
 	offset <= 0;
+	
 	if (m <= 1 && m >= -1) begin
-		delta <= (dy > 0) ? dy + dy : -dy + -dy;
+		delta <= (dy > 0) ? dy * 2 : dy * -2;
 		threshold <= (dx > 0) ? dx : -dx;
-		threshold_inc <= threshold + threshold;
-		BEGIN <= p0x;
-		END <= p1x;
-		y <= p0y;
-		if (p1x < p0x) begin
-			BEGIN <= p1x;
-			END <= p0x;
-			y <= p1y;
+		threshold_inc <= threshold * 2;
+		x1_new <= x1;
+		x2_new <= x2;
+		y <= y1;
+		if (x2 < x1) begin
+			x1_new <= x2;
+			x2_new <= x1;
+			y <= y2;
 		end
-		x <= BEGIN;
+		x <= x1_new;
 	end else begin
-		delta <= (dx > 0) ? dx + dx : -dx + -dx;
+		delta <= (dx > 0) ? dx * 2 : dx * -2;
 		threshold <= (dy > 0) ? dy : -dy;
-		threshold_inc <= threshold + threshold;
-		BEGIN <= p0y;
-		END <= p1y;
-		x <= p0x;
-		if (p1y < p0y) begin
-			BEGIN <= p1y;
-			END <= p0y;
-			x <= p1x;
+		threshold_inc <= threshold * 2;
+		y1_new <= y1;
+		y2_new <= y2;
+		x <= x1;
+		if (y2 < y1) begin
+			y1_new <= y2;
+			y2_new <= y1;
+			x <= x2;
 		end
-		y <= BEGIN;
+		y <= y1_new;
 	end
 end
 				
@@ -96,11 +105,29 @@ begin
 		O_GPU_ADDR <= 16'h0000;
 		O_GPU_WRITE <= 1'b1;
 		O_GPU_READ <= 1'b0;
-		O_GPU_DATA <= {4'h0, 4'hF, 4'h0, 4'h0};
+		O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};
 		count <= 0;
 	end else begin
 	
-		
+		/* In Triangle Logic */
+		if (m <= 1 && m >= -1) begin
+			in_triangle <= 1;
+			
+			if (x < x2_new) begin
+				
+				offset <= offset + delta;
+				if (offset >= threshold) begin
+					y <= y + adjust;
+					threshold <= threshold + threshold_inc;
+				end
+				
+			end else begin
+				//in_triangle <= 0;
+			end
+			//x <= x + 1;
+		end else begin
+			
+		end
 	
 		if (!I_VIDEO_ON) begin
 		  	count <= count + 1;
@@ -108,23 +135,23 @@ begin
 				O_GPU_ADDR <= rowInd * 620 + colInd;
 				O_GPU_WRITE <= 1'b1;
 				O_GPU_READ <= 1'b0;
-				O_GPU_DATA <= {4'h4, 4'h5, 4'hf, 4'hf};			
+				if (in_triangle == 1)
+					O_GPU_DATA <= {4'h0, 4'h0, 4'h0, 4'h0};	
+				else 
+					O_GPU_DATA <= {4'h0, 4'h0, 4'h3, 4'hf};	
 			end 
 			/* reset the screen */ 		
 			else if (count[26] == 1) begin 	
 				O_GPU_ADDR <= rowInd*640 + colInd;
 				O_GPU_WRITE <= 1'b1;
 				O_GPU_READ <= 1'b0;
-				O_GPU_DATA <= {4'h0, 4'h0, 4'h0, 4'h0};
+				O_GPU_DATA <= {4'h0, 4'h4, 4'h3, 4'h0};
 			end 	
 		end 
 	end
 end
 
-SevenSeg sseg0(.OUT(O_HEX3), .IN({3'b0, count[23]}));
-SevenSeg sseg1(.OUT(O_HEX2), .IN({3'b0, count[26]}));
-SevenSeg sseg2(.OUT(O_HEX1), .IN({3'b0, count[25]}));
-SevenSeg sseg3(.OUT(O_HEX0), .IN({3'b0, count[24]}));
+SevenSeg sseg0(.OUT(O_HEX3), .IN({3'b0, flag}));
 
 always @(posedge I_CLK or negedge I_RST_N)
 begin
