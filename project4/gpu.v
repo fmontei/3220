@@ -46,34 +46,55 @@ reg [9:0]  colInd;
 reg init_phase; 
 
 /* Our registers */
-parameter x1 = 0;
-parameter x2 = 200;
-parameter y1 = 0;
-parameter y2 = 200;
+reg [31:0] x1;
+reg [31:0] x2;
+reg [31:0] y1;
+reg [31:0] y2;
 
-wire dy, dx;
-reg [31:0] x, y, x1_new, x2_new, y1_new, y2_new;
-reg [31:0] delta, offset, threshold, threshold_inc;
-reg signed [31:0] m;
-reg [31:0] abs_dy, abs_dx;
+reg signed [31:0] dy, dx, m;
 reg signed [2:0] adjust;
 
+reg [31:0] x, y, x1_new, x2_new, y1_new, y2_new;
+reg [31:0] delta, offset, threshold, threshold_inc;
+reg [31:0] abs_dy, abs_dx;
 reg [0:0] in_triangle = 0;
-reg [31:0] i, j;
 
-assign dy = y2 - y1;
-assign dx = x2 - x1;
-
-initial begin	
+initial begin
+	/* test case 0 < m < 1 */
+	x1 = 1;
+	y1 = 1;
+	x2 = 200;
+	y2 = 100;
 	
-	//abs_dy = (dy >= 0) ? dy : -dy;
-	//abs_dx = (dx >= 0) ? dx : -dx;
-	//adjust = ((dy >= 0 && dx >= 0) || (dy < 0 && dx < 0)) ? 1 : -1;
-	m = 1;
+	/*	testcase	m > 1 */
+	/*
+	x1	=	1;	
+	y1	=	1;	
+	x2	=	100;
+	y2	=	200;
+	*/
+
+	/*	test case x2 < x1 */
+	/*
+	x1 = 200;
+	y1 = 100;
+	x2 = 1;
+	y2 = 1;
+	*/
+	
+	dy = y2 - y1;
+	dx = x2 - x1;
+	abs_dy = (dy >= 0) ? dy : -dy;
+	abs_dx = (dx >= 0) ? dx : -dx;
+	offset = 0;
+	
+	/* These slope values are artificial: they are merely used to determine which case to execute.
+	 * But if abs(dy) <= abs(dx), then m >= 1 and m <= -1, implying case 1, 
+	 * and if abs(dy) > abs(dx), then m > 1 or m < 1, implying case 2. */
+	m = (abs_dy > abs_dx) ? 2 : 1; 
 	adjust = (m >= 0) ? 1 : -1;
- 	offset = 0;
 	
-	if (/*abs_dy >= abs_dx*/ m >= -1 && m <= 1) begin
+	if (m >= -1 && m <= 1) begin
 		delta = (dy > 0) ? dy * 2 : dy * -2;
 		threshold = (dx > 0) ? dx : -dx;
 		threshold_inc = threshold * 2;
@@ -113,7 +134,7 @@ begin
 	end else begin
 		if (!I_VIDEO_ON) begin
 			/* In Triangle Logic */
-			if (/*abs_dy >= abs_dx*/ m >= -1 && m <= 1) begin
+			if (m >= -1 && m <= 1) begin
 				if (x < x2_new) begin
 					offset <= offset + delta;
 					if (offset >= threshold) begin
@@ -130,44 +151,43 @@ begin
 					in_triangle <= 0;
 				end
 			end else begin
-				if (y < y2_new) begin
+				if (y <= y2_new) begin
 					offset <= offset + delta;
 					if (offset >= threshold) begin
 						x <= x + adjust;
 						threshold <= threshold + threshold_inc;
 					end
 					y <= y + 1;
+					in_triangle <= 1;
+				end else begin
+					y <= y1_new;
+					x <= (y2 < y1) ? x2 : x1;
+					offset <= 0;
+					threshold = (dy > 0) ? dy : -dy;
+					in_triangle <= 0;
 				end
 			end
 		
 		  	count <= count + 1;
-			if (count[26] == 0) begin			
+			if (count[25] == 0) begin			
 				O_GPU_ADDR <= x * 640 + y;
 				O_GPU_WRITE <= 1'b1;
 				O_GPU_READ <= 1'b0;
 				if (in_triangle == 1 && rowInd == x && colInd == y)
-					O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};	
-				else 
-					O_GPU_DATA <= {4'h0, 4'h0, 4'hf, 4'hf};
-			end 
-			/* reset the screen */ 		
-			else if (count[26] == 1) begin 	
-				O_GPU_ADDR <= x * 640 + y;
-				O_GPU_WRITE <= 1'b1;
-				O_GPU_READ <= 1'b0;
-				if (in_triangle == 1 && rowInd == x && colInd == y)
-					O_GPU_DATA <= {4'h0, 4'h0, 4'hf, 4'hf};
+					O_GPU_DATA <= {4'h0, 4'h0, 4'h0, 4'h0};	
 				else 
 					O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};
-			end 	
+			end 
+			/* reset the screen */ 		
+			else if (count[25] == 1) begin 	
+				O_GPU_ADDR <= rowInd * 640 + colInd;
+				O_GPU_WRITE <= 1'b1;
+				O_GPU_READ <= 1'b0;
+				O_GPU_DATA <= {4'h0, 4'h0, 4'h0, 4'h0};
+			end 		
 		end 
 	end
 end
-
-//SevenSeg sseg0(.IN(count[3:0]),.OUT(O_HEX0));
-//SevenSeg sseg1(.IN(count[7:4]),.OUT(O_HEX1));
-//SevenSeg sseg2(.IN(count[11:8]),.OUT(O_HEX2));
-//SevenSeg sseg3(.IN(count[15:12]),.OUT(O_HEX3));
 
 always @(posedge I_CLK or negedge I_RST_N)
 begin
