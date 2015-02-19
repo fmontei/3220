@@ -57,7 +57,7 @@ reg signed [2:0] adjust;
 reg [31:0] x, y, x1_new, x2_new, y1_new, y2_new;
 reg [31:0] delta, offset, threshold, threshold_inc;
 reg [31:0] abs_dy, abs_dx;
-reg [0:0] in_triangle = 0;
+reg [0:0] in_line = 0;
 
 initial begin
 	/* test case 0 < m < 1 */
@@ -133,7 +133,7 @@ begin
 		count <= 0;
 	end else begin
 		if (!I_VIDEO_ON) begin
-			/* In Triangle Logic */
+			/* In Line Logic */
 			if (m >= -1 && m <= 1) begin
 				if (x < x2_new) begin
 					offset <= offset + delta;
@@ -142,13 +142,13 @@ begin
 						threshold <= threshold + threshold_inc;
 					end
 					x <= x + 1;
-					in_triangle <= 1;
+					in_line <= 1;
 				end else begin
 					x <= x1_new;
 					y <= (x2 < x1) ? y2 : y1;
 					offset <= 0;
 					threshold <= (dx > 0) ? dx : -dx;
-					in_triangle <= 0;
+					in_line <= 0;
 				end
 			end else begin
 				if (y <= y2_new) begin
@@ -158,13 +158,13 @@ begin
 						threshold <= threshold + threshold_inc;
 					end
 					y <= y + 1;
-					in_triangle <= 1;
+					in_line <= 1;
 				end else begin
 					y <= y1_new;
 					x <= (y2 < y1) ? x2 : x1;
 					offset <= 0;
 					threshold = (dy > 0) ? dy : -dy;
-					in_triangle <= 0;
+					in_line <= 0;
 				end
 			end
 		
@@ -173,7 +173,7 @@ begin
 				O_GPU_ADDR <= x * 640 + y;
 				O_GPU_WRITE <= 1'b1;
 				O_GPU_READ <= 1'b0;
-				if (in_triangle == 1 && rowInd == x && colInd == y)
+				if (in_line == 1 && rowInd == x && colInd == y)
 					O_GPU_DATA <= {4'h0, 4'h0, 4'h0, 4'h0};	
 				else 
 					O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};
