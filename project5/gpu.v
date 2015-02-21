@@ -45,30 +45,43 @@ reg [9:0]  rowInd;
 reg [9:0]  colInd;
 reg init_phase; 
 
-/* Our registers */
-reg [31:0] ax, ay, bx, by, cx, cy;
-reg [31:0] x, y, min_x, min_y, max_x, max_y;
-reg signed [31:0] e1, e2, e3;
+/* Our registers & wires */
+reg [10:0] ax, ay, bx, by, cx, cy;
+reg [10:0] x, y;
+reg [0:0] in_triangle, outside_triangle;
+reg signed [31:0] e1;
+reg signed [31:0] e2;
+reg signed [31:0] e3;
 
-reg [0:0] in_triangle;
+wire [31:0] min_x, min_y, max_x, max_y;
+assign min_x = (ax < bx && ax < cx) ? ax :
+					(bx < ax && bx < cx) ? bx :
+					/*(cx < ax && cx < bx)*/ cx;
+assign min_y = (ay < by && ay < cy) ? ay :
+				   (by < ay && by < cy) ? by :
+				   /*(cx > ax && cx > bx)*/ cy;		
+assign max_x = (ax > bx && ax > cx) ? ax :
+				   (bx > ax && bx > cx) ? bx :
+				   /*(cx < ax && cx < bx)*/ cx;
+assign max_y = (ay > by && ay > cy) ? ay :
+				   (by > ay && by > cy) ? by :
+				   /*(cx > ax && cx > bx)*/ cy;
 
 initial begin
 	/* test case triangle 1 */
-	ax = 1; ay = 1; bx = 200; by = 100; cx = 50; cy = 50;
-	min_x = (ax < bx && ax < cx) ? ax :
-			  (bx < ax && bx < cx) ? bx :
-			  /*(cx < ax && cx < bx)8?*/ cx;
-	min_y = (ay < by && ay < cy) ? ay :
-			  (by < ay && by < cy) ? by :
-			  /*(cx > ax && cx > bx)8?*/ cy;		
-	max_x = (ax > bx && ax > cx) ? ax :
-			  (bx > ax && bx > cx) ? bx :
-			  /*(cx < ax && cx < bx)8?*/ cx;
-	max_y = (ay > by && ay > cy) ? ay :
-			  (by > ay && by > cy) ? by :
-			  /*(cx > ax && cx > bx)8?*/ cy;	  
-	x = min_x;
-	y = min_y;
+	ax = 1; ay = 1; bx = 200; by = 100; cx = 50; cy = 50;	
+	/* test case triangle 2 */
+	//ax = 100; ay = 100; bx = 200; by = 100; cx = 200; cy = 200;	
+	/* test case triangle 3 */
+	//ax = 100; ay = 100; bx = 200; by = 100; cx = 200; cy = 1;	
+	/* test case triangle 4 */
+	//ax = 20; ay = 20; bx = 100; by = 1; cx = 1; cy = 1;	
+	/* test case triangle 5 */
+	//ax = 1; ay = 1; bx = 100; by = 90; cx = 20; cy = 100;	
+	x = 0;
+	y = 0;
+	in_triangle = 0;
+	outside_triangle = 1;
 end
 				
 always @(posedge I_CLK or negedge I_RST_N)
@@ -83,43 +96,45 @@ begin
 		if (!I_VIDEO_ON) begin
 		
 			/* In Triangle Logic */
-			if (y < max_y) begin
-				if (x < max_x) begin
-					
-					e1 <= -(cy - by) * (x - bx) + (cx - bx) * (y - by);
-					e2 <= -(ay - cy) * (x - cx) + (ax - cx) * (y - cy);
-					e3 <= -(by - ay) * (x - ax) + (bx - ax) * (y - ay);
-					if (e1 > 0 && e2 > 0 && e3 > 0) begin
-						in_triangle <= 1;
+			if (y <= 639) begin
+				if (x <= 399) begin
+					outside_triangle <= 0;
+					if (x >= min_x && x <= max_x && y >= min_y && y <= max_y) begin
+						e1 <= (-(cy - by) * (x - bx)) + ((cx - bx) * (y - by));
+						e2 <= (-(ay - cy) * (x - cx)) + ((ax - cx) * (y - cy));
+						e3 <= (-(by - ay) * (x - ax)) + ((bx - ax) * (y - ay));
 					end else begin
-						in_triangle <= 0;
+						outside_triangle <= 1;
 					end
-				
+					in_triangle <= (e1 > 0 && e2 > 0 && e3 > 0) ? 1 : 0;
 					x <= x + 1;
 				end else begin
-					x <= min_x;
+					x <= 0;
+					y <= y + 1;
 				end
-				y <= y + 1;
 			end else begin
-				y <= min_y;
+				y <= 0;
 			end
 		
 		  	count <= count + 1;
-			if (count[25] == 0) begin			
+			if (count[24] == 0) begin
 				O_GPU_ADDR <= x * 640 + y;
 				O_GPU_WRITE <= 1'b1;
 				O_GPU_READ <= 1'b0;
-				if (in_triangle == 1 && rowInd == x && colInd == y)
+				if (in_triangle == 1)
 					O_GPU_DATA <= {4'h0, 4'h0, 4'h0, 4'h0};	
-				else 
+				else if (in_triangle == 0 || outside_triangle == 1)
 					O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};
 			end 
 			/* reset the screen */ 		
-			else if (count[25] == 1) begin 	
-				O_GPU_ADDR <= rowInd * 640 + colInd;
+			else if (count[24] == 1) begin 	
+				O_GPU_ADDR <= x * 640 + y;
 				O_GPU_WRITE <= 1'b1;
 				O_GPU_READ <= 1'b0;
-				O_GPU_DATA <= {4'h0, 4'h0, 4'h0, 4'h0};
+				if (in_triangle == 1)
+					O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};
+				else 
+					O_GPU_DATA <= {4'h0, 4'h0, 4'h0, 4'h0};
 			end 		
 		end 
 	end
