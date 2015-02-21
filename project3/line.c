@@ -24,12 +24,11 @@ int main(void)
   int x1, x2, y1, y2; 
   float dy, dx, m; 
   
-  x1 = 21; y1=30 ; x2 = 11; y2= 6; 
+  x1 = 0; y1 = 0; x2 = 10; y2 = 10; 
 
   fprintf(stderr, "draw a line between (%d, %d) to (%d, %d)\n", x1,y1, x2,y2); 
 
-   /* Basic Incremental Algorithm */ 
-
+  /* Basic Incremental Algorithm */ 
   dy = y2 - y1; 
   dx = x2 - x1; 
   m = dy / dx;
