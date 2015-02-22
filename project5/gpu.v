@@ -48,24 +48,24 @@ reg init_phase;
 /* Our registers & wires */
 reg [10:0] ax, ay, bx, by, cx, cy;
 reg [10:0] x, y;
-reg [0:0] in_triangle, outside_triangle;
+reg [0:0] in_triangle;
 reg signed [31:0] e1;
 reg signed [31:0] e2;
 reg signed [31:0] e3;
 
 wire [31:0] min_x, min_y, max_x, max_y;
-assign min_x = (ax < bx && ax < cx) ? ax :
-					(bx < ax && bx < cx) ? bx :
-					/*(cx < ax && cx < bx)*/ cx;
-assign min_y = (ay < by && ay < cy) ? ay :
-				   (by < ay && by < cy) ? by :
-				   /*(cx > ax && cx > bx)*/ cy;		
-assign max_x = (ax > bx && ax > cx) ? ax :
-				   (bx > ax && bx > cx) ? bx :
-				   /*(cx < ax && cx < bx)*/ cx;
-assign max_y = (ay > by && ay > cy) ? ay :
-				   (by > ay && by > cy) ? by :
-				   /*(cx > ax && cx > bx)*/ cy;
+assign min_x = (ax <= bx && ax <= cx) ? ax :
+					(bx <= ax && bx <= cx) ? bx :
+					/*(cx <= ax && cx <= bx)*/ cx;
+assign min_y = (ay <= by && ay <= cy) ? ay :
+				   (by <= ay && by <= cy) ? by :
+				   /*(cy <= cx && cy <= by)*/ cy;		
+assign max_x = (ax >= bx && ax >= cx) ? ax :
+				   (bx >= ax && bx >= cx) ? bx :
+				   /*(cx >= ax && cx >= bx)*/ cx;
+assign max_y = (ay >= by && ay >= cy) ? ay :
+				   (by >= ay && by >= cy) ? by :
+				   /*(cy >= ay && cy >= by)*/ cy;
 
 initial begin
 	/* test case triangle 1 */
@@ -81,7 +81,6 @@ initial begin
 	x = 0;
 	y = 0;
 	in_triangle = 0;
-	outside_triangle = 1;
 end
 				
 always @(posedge I_CLK or negedge I_RST_N)
@@ -95,18 +94,21 @@ begin
 	end else begin
 		if (!I_VIDEO_ON) begin
 		
-			/* In Triangle Logic */
+			/* Iterate over the entire screen with x and y, to make computation
+			 * of O_GPU_ADDR more intuitive. However, only perform expensive
+			 * multiplication operations for e1 - e3 if x and y are inside
+			 * the box bounded by (min_x, max_x), (min_y, max_y) */
 			if (y <= 639) begin
 				if (x <= 399) begin
-					outside_triangle <= 0;
 					if (x >= min_x && x <= max_x && y >= min_y && y <= max_y) begin
 						e1 <= (-(cy - by) * (x - bx)) + ((cx - bx) * (y - by));
 						e2 <= (-(ay - cy) * (x - cx)) + ((ax - cx) * (y - cy));
 						e3 <= (-(by - ay) * (x - ax)) + ((bx - ax) * (y - ay));
-					end else begin
-						outside_triangle <= 1;
 					end
-					in_triangle <= (e1 > 0 && e2 > 0 && e3 > 0) ? 1 : 0;
+					/* After testing this in C code, it is necessary to check whether
+					 * all three edges are positive or all three are negative */
+					in_triangle <= ((e1 > 0 && e2 > 0 && e3 > 0) || 
+					                (e1 < 0 && e2 < 0 && e3 < 0)) ? 1 : 0;
 					x <= x + 1;
 				end else begin
 					x <= 0;
@@ -123,7 +125,7 @@ begin
 				O_GPU_READ <= 1'b0;
 				if (in_triangle == 1)
 					O_GPU_DATA <= {4'h0, 4'h0, 4'h0, 4'h0};	
-				else if (in_triangle == 0 || outside_triangle == 1)
+				else if (in_triangle == 0)
 					O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};
 			end 
 			/* reset the screen */ 		
@@ -139,6 +141,11 @@ begin
 		end 
 	end
 end
+
+SevenSeg sseg0(.IN(min_x[ 3: 0]),.OUT(O_HEX0));
+SevenSeg sseg1(.IN(min_x[ 7: 4]),.OUT(O_HEX1));
+SevenSeg sseg2(.IN(min_x[11: 8]),.OUT(O_HEX2));
+SevenSeg sseg3(.IN(min_x[15:12]),.OUT(O_HEX3));
 
 always @(posedge I_CLK or negedge I_RST_N)
 begin
