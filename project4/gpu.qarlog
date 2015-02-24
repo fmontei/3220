@@ -1,0 +1,39 @@
+Quartus II Archive log --	D:/CPSC/3220/git/project4/gpu.qarlog
+
+Archive:	D:/CPSC/3220/git/project4/gpu.qar
+Date:		Thu Feb 19 18:33:02 2015
+Quartus II 64-Bit		13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
+
+	=========== Files Selected: ===========
+D:/CPSC/3220/project4/assignment_defaults.qdf
+D:/CPSC/3220/project4/data.hex
+D:/CPSC/3220/project4/db/lg_highlevel.cmp.rdb
+D:/CPSC/3220/project4/decode.v
+D:/CPSC/3220/project4/execute.v
+D:/CPSC/3220/project4/fetch.v
+D:/CPSC/3220/project4/fp library/fixed_float_types_c.vhdl
+D:/CPSC/3220/project4/fp library/fixed_pkg_c.vhdl
+D:/CPSC/3220/project4/global_def.h
+D:/CPSC/3220/project4/gpu.v
+D:/CPSC/3220/project4/incremental_db/compiled_partitions/lg_highlevel.db_info
+D:/CPSC/3220/project4/lg_highlevel.qpf
+D:/CPSC/3220/project4/lg_highlevel.qsf
+D:/CPSC/3220/project4/lg_highlevel.v
+D:/CPSC/3220/project4/lg_highlevel_assignment_defaults.qdf
+D:/CPSC/3220/project4/memory.v
+D:/CPSC/3220/project4/multi_sram.v
+D:/CPSC/3220/project4/pixel_gen.v
+D:/CPSC/3220/project4/pll.ppf
+D:/CPSC/3220/project4/pll.qip
+D:/CPSC/3220/project4/pll.v
+D:/CPSC/3220/project4/pll_bb.v
+D:/CPSC/3220/project4/seven_segment.v
+D:/CPSC/3220/project4/sign_extension.v
+D:/CPSC/3220/project4/simulation/modelsim/my_custom_view.do
+D:/CPSC/3220/project4/test0.hex
+D:/CPSC/3220/project4/vga_controller.v
+D:/CPSC/3220/project4/writeback.v
+	======= Total: 28 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.
