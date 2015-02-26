@@ -113,18 +113,18 @@ begin
 				O_GPU_ADDR <= x * 640 + y;
 				O_GPU_WRITE <= 1'b1;
 				O_GPU_READ <= 1'b0;
-				if (in_triangle == 1)
-					O_GPU_DATA <= {4'h0, 4'h0, 4'h0, 4'h0};	
-				else if (in_triangle == 0)
-					O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};
+				O_GPU_DATA <= {4'h0, 4'h0, 4'h0, 4'h0};
+				i <= (i + 1) % 5;
 			end 
 			/* reset the screen */ 		
 			else if (count[24] == 1) begin 
 				O_GPU_ADDR <= x * 640 + y;
 				O_GPU_WRITE <= 1'b1;
 				O_GPU_READ <= 1'b0;
-				O_GPU_DATA <= {4'h0, 4'h0, 4'h0, 4'h0};	
-				i <= (i + 1) % 5;
+				if (in_triangle == 1)
+					O_GPU_DATA <= {4'h0, 4'h0, 4'h0, 4'h0};	
+				else
+					O_GPU_DATA <= {4'hf, 4'hf, 4'hf, 4'hf};
 			end 		
 		end 
 	end
