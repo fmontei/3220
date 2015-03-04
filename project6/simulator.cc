@@ -92,350 +92,350 @@ TraceOp DecodeInstruction(const uint32_t instruction)
 
   switch (opcode) {
    
-    case OP_ADD_D: 
-    {
-		int destination_register_idx = (instruction & 0x00F00000) >> 20;
-		int source_register_1_idx = (instruction & 0x000F0000) >> 16;
-		int source_register_2_idx = (instruction & 0x00000F00) >> 8;
-		ret_trace_op.scalar_registers[0] = destination_register_idx;
-		ret_trace_op.scalar_registers[1] = source_register_1_idx;
-		ret_trace_op.scalar_registers[2] = source_register_2_idx;
-    }
-    break;
-    
-    case OP_ADD_F: 
-    {
-		int destination_register_idx = (instruction & 0x00F00000) >> 20;
-		int source_register_1_idx = (instruction & 0x000F0000) >> 16;
-		int source_register_2_idx = (instruction & 0x00000F00) >> 8;
-		ret_trace_op.scalar_registers[0] = destination_register_idx;
-		ret_trace_op.scalar_registers[1] = source_register_1_idx;
-		ret_trace_op.scalar_registers[2] = source_register_2_idx;
-	}		 
-	break;
-	
-    case OP_ADDI_D:
-    {	
-		int destination_register_idx = (instruction & 0x00F00000) >> 20;
-		int source_register_idx = (instruction & 0x000F0000) >> 16;
-		int immediate_value = (instruction & 0x0000FFFF);
-		ret_trace_op.scalar_registers[0] = destination_register_idx;
-		ret_trace_op.scalar_registers[1] = source_register_idx;
-		ret_trace_op.int_value = immediate_value;
+		case OP_ADD_D: 
+		{
+			int destination_register_idx = (instruction & 0x00F00000) >> 20;
+			int source_register_1_idx = (instruction & 0x000F0000) >> 16;
+			int source_register_2_idx = (instruction & 0x00000F00) >> 8;
+			ret_trace_op.scalar_registers[0] = destination_register_idx;
+			ret_trace_op.scalar_registers[1] = source_register_1_idx;
+			ret_trace_op.scalar_registers[2] = source_register_2_idx;
+		}
+		break;
+
+		case OP_ADD_F: 
+		{
+			int destination_register_idx = (instruction & 0x00F00000) >> 20;
+			int source_register_1_idx = (instruction & 0x000F0000) >> 16;
+			int source_register_2_idx = (instruction & 0x00000F00) >> 8;
+			ret_trace_op.scalar_registers[0] = destination_register_idx;
+			ret_trace_op.scalar_registers[1] = source_register_1_idx;
+			ret_trace_op.scalar_registers[2] = source_register_2_idx;
+		}		 
+		break;
+
+		case OP_ADDI_D:
+		{	
+			int destination_register_idx = (instruction & 0x00F00000) >> 20;
+			int source_register_idx = (instruction & 0x000F0000) >> 16;
+			int immediate_value = (instruction & 0x0000FFFF);
+			ret_trace_op.scalar_registers[0] = destination_register_idx;
+			ret_trace_op.scalar_registers[1] = source_register_idx;
+			ret_trace_op.int_value = immediate_value;
+		}
+		break;
+
+		case OP_ADDI_F: 
+		{	
+			int destination_register_idx = (instruction & 0x00F00000) >> 20;
+			int source_register_idx = (instruction & 0x000F0000) >> 16;
+			int immediate_value = (instruction & 0x0000FFFF);
+			ret_trace_op.scalar_registers[0] = destination_register_idx;
+			ret_trace_op.scalar_registers[1] = source_register_idx;
+			ret_trace_op.int_value = immediate_value;
+		}
+		break;
+
+		case OP_VADD:
+		{
+			int destination_register_idx = (instruction & 0x003F0000) >> 16;
+			int source_register_1_idx = (instruction & 0x00003F00) >> 8;
+			int source_register_2_idx = (instruction & 0x0000003F);
+			ret_trace_op.scalar_registers[0] = destination_register_idx;
+			ret_trace_op.scalar_registers[1] = source_register_1_idx;
+			ret_trace_op.scalar_registers[2] = source_register_2_idx;
+		}
+		break;
+
+		case OP_AND_D:
+		{
+			int destination_register_idx = (instruction & 0x00F00000) >> 20;
+			int source_register_1_idx = (instruction & 0x000F0000) >> 16;
+			int source_register_2_idx = (instruction & 0x00000F00) >> 8;
+			ret_trace_op.scalar_registers[0] = destination_register_idx;
+			ret_trace_op.scalar_registers[1] = source_register_1_idx;
+			ret_trace_op.scalar_registers[2] = source_register_2_idx;
+		}		 
+		break;
+
+		case OP_ANDI_D:
+		{	
+			int destination_register_idx = (instruction & 0x00F00000) >> 20;
+			int source_register_idx = (instruction & 0x000F0000) >> 16;
+			int immediate_value = (instruction & 0x0000FFFF);
+			ret_trace_op.scalar_registers[0] = destination_register_idx;
+			ret_trace_op.scalar_registers[1] = source_register_idx;
+			ret_trace_op.int_value = immediate_value;
+		}
+		break;
+
+		case OP_MOV: 
+		{
+			int destination_register_idx = (instruction & 0x000F0000) >> 16;
+			int source_register_idx = (instruction & 0x00000F00) >> 8;
+			ret_trace_op.scalar_registers[0] = destination_register_idx;
+			ret_trace_op.scalar_registers[1] = source_register_idx;
+		}
+		break;
+
+		case OP_MOVI_D:
+		{
+			int destination_register_idx = (instruction & 0x000F0000) >> 16;
+			int immediate_value = (instruction & 0x0000FFFF);
+			ret_trace_op.scalar_registers[0] = destination_register_idx;
+			ret_trace_op.int_value = immediate_value;
+		}
+		break;
+
+		case OP_MOVI_F:
+		{
+			int destination_register_idx = (instruction & 0x000F0000) >> 16;
+			int immediate_value = (instruction & 0x0000FFFF);
+			ret_trace_op.scalar_registers[0] = destination_register_idx;
+			ret_trace_op.int_value = immediate_value;
+		}
+		break;
+
+		case OP_VMOV:  
+		{
+			int destination_register_idx = (instruction & 0x003F0000) >> 16;
+			int source_register_idx = (instruction & 0x00003F00) >> 8;
+			ret_trace_op.scalar_registers[0] = destination_register_idx;
+			ret_trace_op.scalar_registers[1] = source_register_idx;
+		}
+		break;
+
+		case OP_VMOVI: 
+		{
+			int destination_register_idx = (instruction & 0x003F0000) >> 16;
+			int immediate_value = (instruction & 0x0000FFFF);
+			ret_trace_op.scalar_registers[0] = destination_register_idx;
+			ret_trace_op.int_value = immediate_value;
+		}
+		break;
+
+		case OP_CMP: 
+		{
+			int source_register_1_idx = (instruction & 0x000F0000) >> 16;
+			int source_register_2_idx = (instruction & 0x00000F00) >> 8;
+			ret_trace_op.scalar_registers[0] = source_register_1_idx; 
+			ret_trace_op.scalar_registers[1] = source_register_2_idx;
+		}
+		break; 
+
+		case OP_CMPI:
+		{
+			int source_register_1_idx = (instruction & 0x000F0000) >> 16;
+			int immediate_value = (instruction & 0x0000FFFF);
+			ret_trace_op.scalar_registers[0] = source_register_1_idx; 
+			ret_trace_op.int_value = immediate_value;
+		}
+		break; 
+
+		case OP_VCOMPMOV: 
+		{
+			int index = (instruction & 0x00C00000) >> 22;
+			int destination_register_idx = (instruction & 0x003F0000) >> 16;
+			int source_register_idx = (instruction & 0x00000F00) >> 8;
+			ret_trace_op.vector_registers[0] = destination_register_idx; 
+			ret_trace_op.vector_registers[1] = source_register_idx;
+			ret_trace_op.idx = index;
+		}
+		break; 
+
+		case OP_VCOMPMOVI: 
+		{
+			int index = (instruction & 0x00C00000) >> 22;
+			int destination_register_idx = (instruction & 0x003F0000) >> 16;
+			int immediate_value = (instruction & 0x0000FFFF);
+			ret_trace_op.vector_registers[0] = destination_register_idx; 
+			ret_trace_op.int_value = immediate_value;
+			ret_trace_op.idx = index;
+		}
+		break; 
+
+		case OP_LDB: 
+		{
+			int destination_register_idx = (instruction & 0x00F00000) >> 20;
+			int base = (instruction & 0x000F0000) >> 16;
+			int offset = (instruction & 0x0000FFFF);
+			ret_trace_op.scalar_registers[0] = destination_register_idx; 
+			ret_trace_op.int_value = base + offset;
+		}
+		break;
+
+		/* The notes say "dest <- mem[base+offset+1: base+offset]". What
+		* exactly does that mean? */
+		case OP_LDW:
+		{
+			int destination_register_idx = (instruction & 0x00F00000) >> 20;
+			int base = (instruction & 0x000F0000) >> 16;
+			int offset = (instruction & 0x0000FFFF);
+			ret_trace_op.scalar_registers[0] = destination_register_idx; 
+			ret_trace_op.int_value = base + offset;
+		}
+		break;
+
+		case OP_STB:
+		{
+			int source_register_idx = (instruction & 0x00F00000) >> 20;
+			int base = (instruction & 0x000F0000) >> 16;
+			int offset = (instruction & 0x0000FFFF);
+			ret_trace_op.scalar_registers[0] = source_register_idx; 
+			ret_trace_op.int_value = base + offset;
+		}
+		break;
+
+		/* The notes say "dest <- mem[base+offset+1: base+offset]". What
+		* exactly does that mean? */
+		case OP_STW: 
+		{
+			int source_register_idx = (instruction & 0x00F00000) >> 20;
+			int base = (instruction & 0x000F0000) >> 16;
+			int offset = (instruction & 0x0000FFFF);
+			ret_trace_op.scalar_registers[0] = source_register_idx; 
+			ret_trace_op.int_value = base + offset;
+		}
+		break;
+
+		case OP_SETVERTEX: 
+		{
+			int vector_register_idx = (instruction & 0x003F0000) >> 16;
+			ret_trace_op.vector_registers[0] = vector_register_idx;
+		}
+		break; 
+
+		case OP_SETCOLOR:
+		{
+			int vector_register_idx = (instruction & 0x003F0000) >> 16;
+			ret_trace_op.vector_registers[0] = vector_register_idx;
+		}
+		break; 
+
+		case OP_ROTATE:  // optional
+		{
+			int vector_register_idx = (instruction & 0x003F0000) >> 16;
+			ret_trace_op.vector_registers[0] = vector_register_idx;
+		}
+		break; 
+
+		case OP_TRANSLATE: 
+		{
+			int vector_register_idx = (instruction & 0x003F0000) >> 16;
+			ret_trace_op.vector_registers[0] = vector_register_idx;
+		}
+		break; 
+
+		case OP_SCALE:  // optional 
+		{
+			int vector_register_idx = (instruction & 0x003F0000) >> 16;
+			ret_trace_op.vector_registers[0] = vector_register_idx;
+		}
+		break; 
+
+		case OP_PUSHMATRIX:       // deprecated 
+		break;
+
+		case OP_POPMATRIX:   // deprecated 
+		break; 
+
+		case OP_BEGINPRIMITIVE: 
+		{
+			int primitive_type = (instruction & 0x000F0000) >> 16;
+			ret_trace_op.primitive_type = primitive_type;
+		}
+		break;
+
+		case OP_ENDPRIMITIVE:
+		break;
+
+		case OP_LOADIDENTITY:  // deprecated 
+		break;
+
+		case OP_FLUSH: 
+		break;
+
+		case OP_DRAW: 
+		break;
+
+		case OP_BRN: 
+		{
+			int pc_offset = (instruction & 0x0000FFFF);
+			ret_trace_op.int_value = pc_offset;
+		}
+		break;
+
+		case OP_BRZ:
+		{
+			int pc_offset = (instruction & 0x0000FFFF);
+			ret_trace_op.int_value = pc_offset;
+		}
+		break;
+
+		case OP_BRP:
+		{
+			int pc_offset = (instruction & 0x0000FFFF);
+			ret_trace_op.int_value = pc_offset;
+		}
+		break;
+
+		case OP_BRNZ:
+		{
+			int pc_offset = (instruction & 0x0000FFFF);
+			ret_trace_op.int_value = pc_offset;
+		}
+		break;
+
+		case OP_BRNP:
+		{
+			int pc_offset = (instruction & 0x0000FFFF);
+			ret_trace_op.int_value = pc_offset;
+		}
+		break;
+
+		case OP_BRZP:
+		{
+			int pc_offset = (instruction & 0x0000FFFF);
+			ret_trace_op.int_value = pc_offset;
+		}
+		break;
+
+		case OP_BRNZP:
+		{
+			int pc_offset = (instruction & 0x0000FFFF);
+			ret_trace_op.int_value = pc_offset;
+		}
+		break;
+
+		/* This op code is equivalent to OP_RET, since OP_RET is a special 
+		* case of OP_JIMP, in which PC is loaded with the value in R7. */
+		case OP_JMP:
+		{
+			int baseR = (instruction & 0x000F0000) >> 16;
+			ret_trace_op.scalar_registers[0] = baseR;
+		}
+		break;
+
+		case OP_JSR: 
+		{
+			int pc_offset = (instruction & 0x0000FFFF);
+			ret_trace_op.int_value = pc_offset;
+		}
+		break;
+
+		case OP_JSRR: 
+		{ 
+			int baseR = (instruction & 0x000F0000) >> 16; 
+			ret_trace_op.scalar_registers[0] = baseR; 
+		} 
+		break;
+
+		case OP_HALT: 
+		break; 
+
+		default:
+		break;
 	}
-	break;
-	
-    case OP_ADDI_F: 
-    {	
-		int destination_register_idx = (instruction & 0x00F00000) >> 20;
-		int source_register_idx = (instruction & 0x000F0000) >> 16;
-		int immediate_value = (instruction & 0x0000FFFF);
-		ret_trace_op.scalar_registers[0] = destination_register_idx;
-		ret_trace_op.scalar_registers[1] = source_register_idx;
-		ret_trace_op.int_value = immediate_value;
-	}
-	break;
-	
-    case OP_VADD:
-    {
-		int destination_register_idx = (instruction & 0x003F0000) >> 16;
-		int source_register_1_idx = (instruction & 0x00003F00) >> 8;
-		int source_register_2_idx = (instruction & 0x0000003F);
-		ret_trace_op.scalar_registers[0] = destination_register_idx;
-		ret_trace_op.scalar_registers[1] = source_register_1_idx;
-		ret_trace_op.scalar_registers[2] = source_register_2_idx;
-	}
-	break;
-	
-    case OP_AND_D:
-    {
-		int destination_register_idx = (instruction & 0x00F00000) >> 20;
-		int source_register_1_idx = (instruction & 0x000F0000) >> 16;
-		int source_register_2_idx = (instruction & 0x00000F00) >> 8;
-		ret_trace_op.scalar_registers[0] = destination_register_idx;
-		ret_trace_op.scalar_registers[1] = source_register_1_idx;
-		ret_trace_op.scalar_registers[2] = source_register_2_idx;
-	}		 
-	break;
-	
-    case OP_ANDI_D:
-    {	
-		int destination_register_idx = (instruction & 0x00F00000) >> 20;
-		int source_register_idx = (instruction & 0x000F0000) >> 16;
-		int immediate_value = (instruction & 0x0000FFFF);
-		ret_trace_op.scalar_registers[0] = destination_register_idx;
-		ret_trace_op.scalar_registers[1] = source_register_idx;
-		ret_trace_op.int_value = immediate_value;
-	}
-	break;
-	
-    case OP_MOV: 
-    {
-		int destination_register_idx = (instruction & 0x000F0000) >> 16;
-		int source_register_idx = (instruction & 0x00000F00) >> 8;
-		ret_trace_op.scalar_registers[0] = destination_register_idx;
-		ret_trace_op.scalar_registers[1] = source_register_idx;
-	}
-	break;
-	
-    case OP_MOVI_D:
-    {
-		int destination_register_idx = (instruction & 0x000F0000) >> 16;
-		int immediate_value = (instruction & 0x0000FFFF);
-		ret_trace_op.scalar_registers[0] = destination_register_idx;
-		ret_trace_op.int_value = immediate_value;
-	}
-	break;
-	
-    case OP_MOVI_F:
-    {
-		int destination_register_idx = (instruction & 0x000F0000) >> 16;
-		int immediate_value = (instruction & 0x0000FFFF);
-		ret_trace_op.scalar_registers[0] = destination_register_idx;
-		ret_trace_op.int_value = immediate_value;
-	}
-	break;
-	 
-    case OP_VMOV:  
-    {
-		int destination_register_idx = (instruction & 0x003F0000) >> 16;
-		int source_register_idx = (instruction & 0x00003F00) >> 8;
-		ret_trace_op.scalar_registers[0] = destination_register_idx;
-		ret_trace_op.scalar_registers[1] = source_register_idx;
-	}
-	break;
-	
-    case OP_VMOVI: 
-    {
-		int destination_register_idx = (instruction & 0x003F0000) >> 16;
-		int immediate_value = (instruction & 0x0000FFFF);
-		ret_trace_op.scalar_registers[0] = destination_register_idx;
-		ret_trace_op.int_value = immediate_value;
-	}
-	break;
-	
-    case OP_CMP: 
-    {
-		int source_register_1_idx = (instruction & 0x000F0000) >> 16;
-		int source_register_2_idx = (instruction & 0x00000F00) >> 8;
-		ret_trace_op.scalar_registers[0] = source_register_1_idx; 
-		ret_trace_op.scalar_registers[1] = source_register_2_idx;
-	}
-	break; 
-	
-    case OP_CMPI:
-    {
-		int source_register_1_idx = (instruction & 0x000F0000) >> 16;
-		int immediate_value = (instruction & 0x0000FFFF);
-		ret_trace_op.scalar_registers[0] = source_register_1_idx; 
-		ret_trace_op.int_value = immediate_value;
-	}
-	break; 
-	
-    case OP_VCOMPMOV: 
-    {
-		int index = (instruction & 0x00C00000) >> 22;
-		int destination_register_idx = (instruction & 0x003F0000) >> 16;
-		int source_register_idx = (instruction & 0x00000F00) >> 8;
-		ret_trace_op.vector_registers[0] = destination_register_idx; 
-		ret_trace_op.vector_registers[1] = source_register_idx;
-		ret_trace_op.idx = index;
-	}
-	break; 
-	
-    case OP_VCOMPMOVI: 
-    {
-		int index = (instruction & 0x00C00000) >> 22;
-		int destination_register_idx = (instruction & 0x003F0000) >> 16;
-		int immediate_value = (instruction & 0x0000FFFF);
-		ret_trace_op.vector_registers[0] = destination_register_idx; 
-		ret_trace_op.int_value = immediate_value;
-		ret_trace_op.idx = index;
-	}
-	break; 
-	 
-    case OP_LDB: 
-    {
-		int destination_register_idx = (instruction & 0x00F00000) >> 20;
-		int base = (instruction & 0x000F0000) >> 16;
-		int offset = (instruction & 0x0000FFFF);
-		ret_trace_op.scalar_registers[0] = destination_register_idx; 
-		ret_trace_op.int_value = base + offset;
-	}
-	break;
-	
-	/* The notes say "dest <- mem[base+offset+1: base+offset]". What
-	 * exactly does that mean? */
-    case OP_LDW:
-    {
-		int destination_register_idx = (instruction & 0x00F00000) >> 20;
-		int base = (instruction & 0x000F0000) >> 16;
-		int offset = (instruction & 0x0000FFFF);
-		ret_trace_op.scalar_registers[0] = destination_register_idx; 
-		ret_trace_op.int_value = base + offset;
-	}
-	break;
-	
-    case OP_STB:
-    {
-		int source_register_idx = (instruction & 0x00F00000) >> 20;
-		int base = (instruction & 0x000F0000) >> 16;
-		int offset = (instruction & 0x0000FFFF);
-		ret_trace_op.scalar_registers[0] = source_register_idx; 
-		ret_trace_op.int_value = base + offset;
-	}
-	break;
-	  
-	 /* The notes say "dest <- mem[base+offset+1: base+offset]". What
-	 * exactly does that mean? */
-    case OP_STW: 
-    {
-		int source_register_idx = (instruction & 0x00F00000) >> 20;
-		int base = (instruction & 0x000F0000) >> 16;
-		int offset = (instruction & 0x0000FFFF);
-		ret_trace_op.scalar_registers[0] = source_register_idx; 
-		ret_trace_op.int_value = base + offset;
-	}
-	break;
-	
-    case OP_SETVERTEX: 
-    {
-		int vector_register_idx = (instruction & 0x003F0000) >> 16;
-		ret_trace_op.vector_registers[0] = vector_register_idx;
-	}
-	break; 
-	
-    case OP_SETCOLOR:
-    {
-		int vector_register_idx = (instruction & 0x003F0000) >> 16;
-		ret_trace_op.vector_registers[0] = vector_register_idx;
-	}
-	break; 
-	
-    case OP_ROTATE:  // optional
-    {
-		int vector_register_idx = (instruction & 0x003F0000) >> 16;
-		ret_trace_op.vector_registers[0] = vector_register_idx;
-	}
-	break; 
-	 
-    case OP_TRANSLATE: 
-    {
-		int vector_register_idx = (instruction & 0x003F0000) >> 16;
-		ret_trace_op.vector_registers[0] = vector_register_idx;
-	}
-	break; 
-	
-    case OP_SCALE:  // optional 
-    {
-		int vector_register_idx = (instruction & 0x003F0000) >> 16;
-		ret_trace_op.vector_registers[0] = vector_register_idx;
-	}
-	break; 
-	
-    case OP_PUSHMATRIX:       // deprecated 
-    break;
-    
-    case OP_POPMATRIX:   // deprecated 
-    break; 
-    
-    case OP_BEGINPRIMITIVE: 
-    {
-		int primitive_type = (instruction & 0x000F0000) >> 16;
-		ret_trace_op.primitive_type = primitive_type;
-	}
-    break;
-    
-    case OP_ENDPRIMITIVE:
-    break;
-    
-    case OP_LOADIDENTITY:  // deprecated 
-    break;
-    
-    case OP_FLUSH: 
-    break;
-    
-    case OP_DRAW: 
-    break;
-    
-    case OP_BRN: 
-    {
-		int pc_offset = (instruction & 0x0000FFFF);
-		ret_trace_op.int_value = pc_offset;
-	}
-	break;
-	
-    case OP_BRZ:
-    {
-		int pc_offset = (instruction & 0x0000FFFF);
-		ret_trace_op.int_value = pc_offset;
-	}
-	break;
-    
-    case OP_BRP:
-    {
-		int pc_offset = (instruction & 0x0000FFFF);
-		ret_trace_op.int_value = pc_offset;
-	}
-	break;
-	
-    case OP_BRNZ:
-    {
-		int pc_offset = (instruction & 0x0000FFFF);
-		ret_trace_op.int_value = pc_offset;
-	}
-	break;
-	
-    case OP_BRNP:
-    {
-		int pc_offset = (instruction & 0x0000FFFF);
-		ret_trace_op.int_value = pc_offset;
-	}
-	break;
-	
-    case OP_BRZP:
-    {
-		int pc_offset = (instruction & 0x0000FFFF);
-		ret_trace_op.int_value = pc_offset;
-	}
-	break;
-	
-    case OP_BRNZP:
-    {
-		int pc_offset = (instruction & 0x0000FFFF);
-		ret_trace_op.int_value = pc_offset;
-	}
-	break;
-	
-	/* This op code is equivalent to OP_RET, since OP_RET is a special 
-	 * case of OP_JIMP, in which PC is loaded with the value in R7. */
-    case OP_JMP:
-    {
-		int baseR = (instruction & 0x000F0000) >> 16;
-		ret_trace_op.scalar_registers[0] = baseR;
-	}
-    break;
-    
-    case OP_JSR: 
-    {
-		int pc_offset = (instruction & 0x0000FFFF);
-		ret_trace_op.int_value = pc_offset;
-	}
-	break;
-	
-    case OP_JSRR: 
-    {
-		int baseR = (instruction & 0x000F0000) >> 16;
-		ret_trace_op.scalar_registers[0] = baseR;
-	}
-    break;
-    
-    case OP_HALT: 
-	break; 
-      
-    default:
-    break;
-  }
 
   return ret_trace_op;
 }
