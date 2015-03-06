@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <assert.h>
 #include <vector>
 #include <bitset>
 #include <stdint.h>
@@ -9,7 +10,6 @@
 #include <limits.h> 
 // #include <cstdint> 
 #include "simulator.h"
-
 
 #define FLOAT_TO_FIXED1114(n) ((int)((n) * (float)(1<<(4)))) & 0xffff
 #define FIXED_TO_FLOAT1114(n) ((float)(-1*((n>>15)&0x1)*(1<<11)) + (float)((n&(0x7fff)) / (float)(1<<4)))
@@ -21,7 +21,6 @@ using namespace std;
 ///////////////////////////////////
 ///  architectural structures /// 
 ///////////////////////////////////
-
 
 ScalarRegister g_condition_code_register; // store conditional code 
 ScalarRegister g_scalar_registers[NUM_SCALAR_REGISTER];  
@@ -48,6 +47,14 @@ unsigned int g_program_halt = 0;
 // bit 1: zero
 // bit 0: positive 
 ////////////////////////////////////////////////////////////////////////
+int PrintSignedValue(const int16_t val)
+{
+	if (val > INT_MAX) 
+		return val - UINT_MAX - 1;
+	else 
+		return val;
+}
+
 void SetConditionCodeInt(const int16_t val1, const int16_t val2) 
 {
 	/* fill out the conditional code checking logic */ 
@@ -143,9 +150,9 @@ TraceOp DecodeInstruction(const uint32_t instruction)
 			int destination_register_idx = (instruction & 0x003F0000) >> 16;
 			int source_register_1_idx = (instruction & 0x00003F00) >> 8;
 			int source_register_2_idx = (instruction & 0x0000003F);
-			ret_trace_op.scalar_registers[0] = destination_register_idx;
-			ret_trace_op.scalar_registers[1] = source_register_1_idx;
-			ret_trace_op.scalar_registers[2] = source_register_2_idx;
+			ret_trace_op.vector_registers[0] = destination_register_idx;
+			ret_trace_op.vector_registers[1] = source_register_1_idx;
+			ret_trace_op.vector_registers[2] = source_register_2_idx;
 		}
 		break;
 
@@ -202,8 +209,8 @@ TraceOp DecodeInstruction(const uint32_t instruction)
 		{
 			int destination_register_idx = (instruction & 0x003F0000) >> 16;
 			int source_register_idx = (instruction & 0x00003F00) >> 8;
-			ret_trace_op.scalar_registers[0] = destination_register_idx;
-			ret_trace_op.scalar_registers[1] = source_register_idx;
+			ret_trace_op.vector_registers[0] = destination_register_idx;
+			ret_trace_op.vector_registers[1] = source_register_idx;
 		}
 		break;
 
@@ -211,7 +218,7 @@ TraceOp DecodeInstruction(const uint32_t instruction)
 		{
 			int destination_register_idx = (instruction & 0x003F0000) >> 16;
 			int immediate_value = (instruction & 0x0000FFFF);
-			ret_trace_op.scalar_registers[0] = destination_register_idx;
+			ret_trace_op.vector_registers[0] = destination_register_idx;
 			ret_trace_op.int_value = immediate_value;
 		}
 		break;
@@ -262,7 +269,8 @@ TraceOp DecodeInstruction(const uint32_t instruction)
 			int base = (instruction & 0x000F0000) >> 16;
 			int offset = (instruction & 0x0000FFFF);
 			ret_trace_op.scalar_registers[0] = destination_register_idx; 
-			ret_trace_op.int_value = base + offset;
+			ret_trace_op.scalar_registers[1] = base;
+			ret_trace_op.int_value = offset;
 		}
 		break;
 
@@ -274,7 +282,8 @@ TraceOp DecodeInstruction(const uint32_t instruction)
 			int base = (instruction & 0x000F0000) >> 16;
 			int offset = (instruction & 0x0000FFFF);
 			ret_trace_op.scalar_registers[0] = destination_register_idx; 
-			ret_trace_op.int_value = base + offset;
+			ret_trace_op.scalar_registers[1] = base;
+			ret_trace_op.int_value = offset;
 		}
 		break;
 
@@ -284,7 +293,8 @@ TraceOp DecodeInstruction(const uint32_t instruction)
 			int base = (instruction & 0x000F0000) >> 16;
 			int offset = (instruction & 0x0000FFFF);
 			ret_trace_op.scalar_registers[0] = source_register_idx; 
-			ret_trace_op.int_value = base + offset;
+			ret_trace_op.scalar_registers[1] = base;
+			ret_trace_op.int_value = offset;
 		}
 		break;
 
@@ -296,7 +306,8 @@ TraceOp DecodeInstruction(const uint32_t instruction)
 			int base = (instruction & 0x000F0000) >> 16;
 			int offset = (instruction & 0x0000FFFF);
 			ret_trace_op.scalar_registers[0] = source_register_idx; 
-			ret_trace_op.int_value = base + offset;
+			ret_trace_op.scalar_registers[1] = base;
+			ret_trace_op.int_value = offset;
 		}
 		break;
 
@@ -449,88 +460,261 @@ TraceOp DecodeInstruction(const uint32_t instruction)
 ////////////////////////////////////////////////////////////////////////
 int ExecuteInstruction(const TraceOp &trace_op) 
 {
-  int ret_next_instruction_idx = -1;
+	int ret_next_instruction_idx = -1;
 
-  uint8_t opcode = trace_op.opcode;
-  switch (opcode) {
-    case OP_ADD_D: 
-    {
-		int source_value_1 = g_scalar_registers[trace_op.scalar_registers[1]].int_value;
-		int source_value_2 = g_scalar_registers[trace_op.scalar_registers[2]].int_value;
-		g_scalar_registers[trace_op.scalar_registers[0]].int_value = source_value_1 + source_value_2;
-		SetConditionCodeInt(g_scalar_registers[trace_op.scalar_registers[0]].int_value, 0);
-    }
-    break;
+	uint8_t opcode = trace_op.opcode;
+	switch (opcode) {
+		case OP_ADD_D: 
+		{
+			int source_value_1 = g_scalar_registers[trace_op.scalar_registers[1]].int_value;
+			int source_value_2 = g_scalar_registers[trace_op.scalar_registers[2]].int_value;
+			g_scalar_registers[trace_op.scalar_registers[0]].int_value = source_value_1 + source_value_2;
+			SetConditionCodeInt(g_scalar_registers[trace_op.scalar_registers[0]].int_value, 0);
+		}
+		break;
 
-    case OP_ADD_F:  
-	{
-		int source_value_1 = g_scalar_registers[trace_op.scalar_registers[1]].int_value;
-		int source_value_2 = g_scalar_registers[trace_op.scalar_registers[2]].int_value;
-		g_scalar_registers[trace_op.scalar_registers[0]].int_value = source_value_1 + source_value_2;
-		SetConditionCodeInt(g_scalar_registers[trace_op.scalar_registers[0]].int_value, 0);
+		case OP_ADD_F:  
+		{
+			int source_value_1 = g_scalar_registers[trace_op.scalar_registers[1]].int_value;
+			int source_value_2 = g_scalar_registers[trace_op.scalar_registers[2]].int_value;
+			g_scalar_registers[trace_op.scalar_registers[0]].int_value = source_value_1 + source_value_2;
+			SetConditionCodeInt(g_scalar_registers[trace_op.scalar_registers[0]].int_value, 0);
+		}
+		break; 
+
+		case OP_ADDI_D:
+		{
+			int source_value_1 = g_scalar_registers[trace_op.scalar_registers[1]].int_value;
+			int immediate_value = trace_op.int_value;
+			g_scalar_registers[trace_op.scalar_registers[0]].int_value = source_value_1 + immediate_value;
+			SetConditionCodeInt(g_scalar_registers[trace_op.scalar_registers[0]].int_value, 0);
+		}
+		break;
+
+		case OP_ADDI_F: 
+		{
+			int source_value_1 = g_scalar_registers[trace_op.scalar_registers[1]].int_value;
+			int immediate_value = trace_op.int_value;
+			g_scalar_registers[trace_op.scalar_registers[0]].int_value = source_value_1 + immediate_value;
+			SetConditionCodeInt(g_scalar_registers[trace_op.scalar_registers[0]].int_value, 0);
+		}
+		break;
+
+		case OP_VADD:
+		
+		case OP_AND_D:
+		{
+			int source_value_1 = g_scalar_registers[trace_op.scalar_registers[1]].int_value;
+			int source_value_2 = g_scalar_registers[trace_op.scalar_registers[2]].int_value;  
+			int destination_idx = trace_op.scalar_registers[0];
+			int result = source_value_1 & source_value_2;
+			g_scalar_registers[destination_idx].int_value = result;
+			SetConditionCodeInt(result, 0);
+		}
+		break;
+		
+		case OP_ANDI_D:
+		{
+			int source_value_1 = g_scalar_registers[trace_op.scalar_registers[1]].int_value;
+			int immediate_value = trace_op.int_value;
+			g_scalar_registers[trace_op.scalar_registers[0]].int_value = source_value_1 + immediate_value;
+			SetConditionCodeInt(g_scalar_registers[trace_op.scalar_registers[0]].int_value, 0);
+		}
+		break; 
+		
+		case OP_MOV: 
+		{
+			int dest_idx = trace_op.scalar_registers[0];
+			int source_idx = trace_op.scalar_registers[1];
+			g_scalar_registers[dest_idx].int_value = g_scalar_registers[source_idx].int_value;
+			SetConditionCodeInt(g_scalar_registers[dest_idx].int_value, 0);
+		}
+		break;
+
+		case OP_MOVI_D:
+		{
+			int immediate_value = trace_op.int_value;
+			g_scalar_registers[trace_op.scalar_registers[0]].int_value = immediate_value;
+			SetConditionCodeInt(g_scalar_registers[trace_op.scalar_registers[0]].int_value, 0);
+		}
+		break;
+
+		case OP_MOVI_F: 
+		{
+			int immediate_value = trace_op.int_value;
+			int dest_idx = trace_op.scalar_registers[0];
+			g_scalar_registers[dest_idx].int_value = immediate_value;
+			SetConditionCodeInt(g_scalar_registers[dest_idx].int_value, 0);
+		}
+		break; 
+		
+		case OP_VMOV:  
+		{
+			VectorRegister *source = &g_vector_registers[trace_op.vector_registers[1]];
+			VectorRegister *destination = &g_vector_registers[trace_op.vector_registers[0]];
+			for (int idx = 0; idx < NUM_VECTOR_ELEMENTS; idx++) {
+				destination->element[idx] = source->element[idx];
+			}
+		}
+		break; 
+		
+		case OP_VMOVI: 
+		{ 
+			int immediate_value = trace_op.int_value;
+			int dest_vertex_idx = trace_op.vector_registers[0];
+			for (int i = 0; i < NUM_VECTOR_ELEMENTS; i++) {
+				g_vector_registers[dest_vertex_idx].element[i].int_value = immediate_value;
+			}
+		}
+		break;
+		
+		case OP_CMP: 
+		{
+			int source_value_1 = g_scalar_registers[trace_op.scalar_registers[0]].int_value;
+			int source_value_2 = g_scalar_registers[trace_op.scalar_registers[1]].int_value;
+			SetConditionCodeInt(source_value_1, source_value_2);
+		}
+		break;
+		
+		case OP_CMPI:
+		{
+			int source_idx = trace_op.scalar_registers[0];
+			int immediate_value = trace_op.int_value;
+			int source_value = g_scalar_registers[source_idx].int_value;
+			SetConditionCodeInt(source_value, immediate_value);
+		}
+		break;
+		
+		case OP_VCOMPMOV: 
+		{
+			VectorRegister *source = &g_vector_registers[trace_op.vector_registers[1]];
+			VectorRegister *destination = &g_vector_registers[trace_op.vector_registers[0]];
+			const int idx = trace_op.idx;
+			destination->element[idx] = source->element[idx];
+		}
+		break;
+		
+		case OP_VCOMPMOVI: 
+		{
+			VectorRegister *destination = &g_vector_registers[trace_op.vector_registers[0]];
+			const int immediate_value = trace_op.int_value;
+			const int idx = trace_op.idx;
+			destination->element[idx].int_value = immediate_value;
+		}
+		break;		
+		
+		case OP_LDB: 
+		{
+			ScalarRegister *base = &g_scalar_registers[trace_op.scalar_registers[1]];
+			ScalarRegister *destination = &g_scalar_registers[trace_op.scalar_registers[0]];
+			const int memory_address = base->int_value + trace_op.int_value;
+			assert(memory_address < MEMORY_SIZE);
+			destination->int_value = g_memory[memory_address];
+		}
+		break;
+		
+		case OP_LDW:
+		{
+			int dest_idx = trace_op.scalar_registers[0];
+			int base_reg_idx = trace_op.scalar_registers[1];
+			int offset = trace_op.int_value;
+			int address = g_scalar_registers[base_reg_idx].int_value + offset;
+			int toLoad = g_memory[address];
+			g_scalar_registers[dest_idx].int_value = toLoad;
+			SetConditionCodeInt(toLoad, 0);
+		}
+		break;
+		
+		case OP_STB:  
+		{
+			ScalarRegister *base = &g_scalar_registers[trace_op.scalar_registers[1]];
+			ScalarRegister *source = &g_scalar_registers[trace_op.scalar_registers[0]];
+			const int memory_address = base->int_value + trace_op.int_value;
+			assert(memory_address < MEMORY_SIZE);
+			g_memory[memory_address] = source->int_value;
+		}
+		break;
+		
+		case OP_STW: 
+		{
+			int source_idx = trace_op.scalar_registers[0];
+			int base_reg_idx = trace_op.scalar_registers[1];
+			int offset = trace_op.int_value;
+			int address = g_scalar_registers[base_reg_idx].int_value + offset;
+			g_memory[address] = g_scalar_registers[source_idx].int_value;
+		}
+		break;
+		
+		case OP_SETVERTEX: 
+		{
+			VectorRegister *vector = &g_vector_registers[trace_op.vector_registers[0]];
+			VertexRegister *current_vertex = &g_gpu_vertex_registers[g_vertex_id];
+			current_vertex->x_value = vector->element[1].int_value; 
+			current_vertex->y_value = vector->element[2].int_value; 
+			current_vertex->z_value = vector->element[3].int_value; 
+			g_vertex_id++;
+		}
+		break; 
+		
+		case OP_SETCOLOR:
+		{
+			VectorRegister *vector = &g_vector_registers[trace_op.vector_registers[0]];
+			int max_id = g_vertex_id;
+			for (int id = 0; id < max_id; id++) {
+				VertexRegister *current_vertex = &g_gpu_vertex_registers[id];
+				current_vertex->r_value = vector->element[1].int_value; 
+				current_vertex->g_value = vector->element[2].int_value; 
+				current_vertex->b_value = vector->element[3].int_value; 
+			}
+		}
+		break; 
+		
+		case OP_ROTATE:  // optional  
+		case OP_TRANSLATE: 
+		case OP_SCALE:  // optional 
+		case OP_PUSHMATRIX:       // deprecated 
+		case OP_POPMATRIX:   // deprecated 
+		
+		case OP_BEGINPRIMITIVE: 
+		{
+			const int primitive_type = trace_op.primitive_type;
+			g_gpu_status_register.int_value = primitive_type;
+		}
+		break; 
+		
+		case OP_ENDPRIMITIVE:
+		{
+			if (g_gpu_status_register.int_value == PRIM_TYPE0 && g_vertex_id == 2 || 
+				g_gpu_status_register.int_value == PRIM_TYPE1 && g_vertex_id == 3) {
+				g_vertex_id = 0;
+			}
+		}
+		break;
+		
+		case OP_LOADIDENTITY:  // deprecated 
+		case OP_FLUSH: 
+		case OP_DRAW: 
+		case OP_BRN: 
+		case OP_BRZ:
+		case OP_BRP:
+		case OP_BRNZ:
+		case OP_BRNP:
+		case OP_BRZP:
+		case OP_BRNZP:
+		case OP_JMP:
+		case OP_JSR: 
+		case OP_JSRR: 
+		break; 
+		  
+		case OP_HALT: 
+			g_program_halt = 1; 
+		break; 
+
+		default:
+		break;
 	}
-	break; 
-	
-    case OP_ADDI_D:
-	{
-		int source_value_1 = g_scalar_registers[trace_op.scalar_registers[1]].int_value;
-		int immediate_value = ret_trace_op.int_value;
-		g_scalar_registers[trace_op.scalar_registers[0]].int_value = source_value_1 + immediate_value;
-		SetConditionCodeInt(g_scalar_registers[trace_op.scalar_registers[0]].int_value, 0);
-	}
-	break;
-	
-    case OP_ADDI_F: 
-    case OP_VADD:
-    case OP_AND_D:
-    case OP_ANDI_D:
-    case OP_MOV: 
-    case OP_MOVI_D:
-    case OP_MOVI_F: 
-    case OP_VMOV:  
-    case OP_VMOVI: 
-    case OP_CMP: 
-    case OP_CMPI:
-    case OP_VCOMPMOV: 
-    case OP_VCOMPMOVI:  
-    case OP_LDB: 
-    case OP_LDW:
-    case OP_STB:  
-    case OP_STW: 
-    case OP_SETVERTEX: 
-    case OP_SETCOLOR:
-    case OP_ROTATE:  // optional 
-    case OP_TRANSLATE: 
-    case OP_SCALE:  // optional 
-    case OP_PUSHMATRIX:       // deprecated 
-    case OP_POPMATRIX:   // deprecated 
-    case OP_BEGINPRIMITIVE: 
-    case OP_ENDPRIMITIVE:
-    case OP_LOADIDENTITY:  // deprecated 
-    case OP_FLUSH: 
-    case OP_DRAW: 
-    case OP_BRN: 
-    case OP_BRZ:
-    case OP_BRP:
-    case OP_BRNZ:
-    case OP_BRNP:
-    case OP_BRZP:
-    case OP_BRNZP:
-    case OP_JMP:
-    case OP_JSR: 
-    case OP_JSRR: 
-      break; 
-      
 
-    case OP_HALT: 
-      g_program_halt = 1; 
-      break; 
-
-    default:
-    break;
-    }
-
-  return ret_next_instruction_idx;
+	return ret_next_instruction_idx;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -568,7 +752,7 @@ void PrintContext(const TraceOp &current_op)
        << endl;
   for (int srIdx = 0; srIdx < NUM_SCALAR_REGISTER; srIdx++) {
     cout << "R" << srIdx << ":" 
-         << ((srIdx < 8 || srIdx == 15) ? g_scalar_registers[srIdx].int_value : (float) FIXED_TO_FLOAT1114(g_scalar_registers[srIdx].int_value)) 
+         << ((srIdx < 8 || srIdx == 15) ? PrintSignedValue(g_scalar_registers[srIdx].int_value) : (float) FIXED_TO_FLOAT1114(g_scalar_registers[srIdx].int_value)) 
          << (srIdx == NUM_SCALAR_REGISTER-1 ? "" : ", ");
   }
   
