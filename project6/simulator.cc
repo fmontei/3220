@@ -50,8 +50,10 @@ unsigned int g_program_halt = 0;
 ////////////////////////////////////////////////////////////////////////
 void SetConditionCodeInt(const int16_t val1, const int16_t val2) 
 {
-  /* fill out the conditional code checking logic */ 
-
+	/* fill out the conditional code checking logic */ 
+	g_condition_code_register.int_value = (val1 < val2)  ? 0 :
+								          (val1 == val2) ? 1 :
+                                        /*(val1 > val2)*/  2;										  
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -452,20 +454,32 @@ int ExecuteInstruction(const TraceOp &trace_op)
   uint8_t opcode = trace_op.opcode;
   switch (opcode) {
     case OP_ADD_D: 
-      {
-      int source_value_1 = g_scalar_registers[trace_op.scalar_registers[1]].int_value;
-      int source_value_2 = g_scalar_registers[trace_op.scalar_registers[2]].int_value;
-      g_scalar_registers[trace_op.scalar_registers[0]].int_value = 
-        source_value_1 + source_value_2;
-      SetConditionCodeInt(g_scalar_registers[trace_op.scalar_registers[0]].int_value, 0);
+    {
+		int source_value_1 = g_scalar_registers[trace_op.scalar_registers[1]].int_value;
+		int source_value_2 = g_scalar_registers[trace_op.scalar_registers[2]].int_value;
+		g_scalar_registers[trace_op.scalar_registers[0]].int_value = source_value_1 + source_value_2;
+		SetConditionCodeInt(g_scalar_registers[trace_op.scalar_registers[0]].int_value, 0);
     }
     break;
 
-
-    /* fill out instruction behaviors */ 
-
     case OP_ADD_F:  
+	{
+		int source_value_1 = g_scalar_registers[trace_op.scalar_registers[1]].int_value;
+		int source_value_2 = g_scalar_registers[trace_op.scalar_registers[2]].int_value;
+		g_scalar_registers[trace_op.scalar_registers[0]].int_value = source_value_1 + source_value_2;
+		SetConditionCodeInt(g_scalar_registers[trace_op.scalar_registers[0]].int_value, 0);
+	}
+	break; 
+	
     case OP_ADDI_D:
+	{
+		int source_value_1 = g_scalar_registers[trace_op.scalar_registers[1]].int_value;
+		int immediate_value = ret_trace_op.int_value;
+		g_scalar_registers[trace_op.scalar_registers[0]].int_value = source_value_1 + immediate_value;
+		SetConditionCodeInt(g_scalar_registers[trace_op.scalar_registers[0]].int_value, 0);
+	}
+	break;
+	
     case OP_ADDI_F: 
     case OP_VADD:
     case OP_AND_D:
