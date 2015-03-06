@@ -84,11 +84,11 @@ typedef struct VectorRegister_ {
 ////////////////////////////////////////////////////////////////////////
 typedef struct VertexRegister_ {
 	int x_value; 
-        int y_value; 
-        int z_value; 
-        int r_value; 
-        int g_value; 
-        int b_value; 
+	int y_value; 
+	int z_value; 
+	int r_value; 
+	int g_value; 
+	int b_value; 
 } VertexRegister;
 
 
@@ -104,7 +104,7 @@ typedef struct VertexRegister_ {
 typedef struct TraceOp_ {
 	int16_t opcode;
 	int16_t scalar_registers[3];
-	int64_t vector_registers[2];
+	int64_t vector_registers[3];
 	int idx;
 	int primitive_type;
 	int int_value;
@@ -118,7 +118,7 @@ typedef struct TraceOp_ {
 // GSR[4]: Begin primitive 
 // GSR[5]: End Primitive 
 ////////////////////////////////////////////////////////////////////////
-enum GSR_BITS{
+enum GSR_BITS {
   DRAW_BIT = 0, 
   FLISH_BIT = 1, 
   PRIM_TYPE0 = 2, 
