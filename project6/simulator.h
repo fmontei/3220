@@ -120,7 +120,7 @@ typedef struct TraceOp_ {
 ////////////////////////////////////////////////////////////////////////
 enum GSR_BITS {
   DRAW_BIT = 0, 
-  FLISH_BIT = 1, 
+  FLASH_BIT = 1, 
   PRIM_TYPE0 = 2, 
   PRIM_TYPE1 = 3, 
 }; 

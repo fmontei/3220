@@ -424,8 +424,8 @@ TraceOp DecodeInstruction(const uint32_t instruction)
 		* case of OP_JIMP, in which PC is loaded with the value in R7. */
 		case OP_JMP:
 		{
-			int baseR = (instruction & 0x000F0000) >> 16;
-			ret_trace_op.scalar_registers[0] = baseR;
+			const int base_reg_idx = (instruction & 0x000F0000) >> 16;
+			ret_trace_op.scalar_registers[0] = base_reg_idx ;
 		}
 		break;
 
@@ -659,21 +659,33 @@ int ExecuteInstruction(const TraceOp &trace_op)
 		case OP_SETCOLOR:
 		{
 			VectorRegister *vector = &g_vector_registers[trace_op.vector_registers[0]];
-			int max_id = g_vertex_id;
-			for (int id = 0; id < max_id; id++) {
-				VertexRegister *current_vertex = &g_gpu_vertex_registers[id];
-				current_vertex->r_value = vector->element[1].int_value; 
-				current_vertex->g_value = vector->element[2].int_value; 
-				current_vertex->b_value = vector->element[3].int_value; 
-			}
+			VertexRegister *current_vertex = &g_gpu_vertex_registers[g_vertex_id];
+			current_vertex->r_value = vector->element[1].int_value; 
+			current_vertex->g_value = vector->element[2].int_value; 
+			current_vertex->b_value = vector->element[3].int_value; 
 		}
 		break; 
 		
 		case OP_ROTATE:  // optional  
-		case OP_TRANSLATE: 
+		break; 
+		
+		case OP_TRANSLATE:
+		{
+			VectorRegister *vector = &g_vector_registers[trace_op.vector_registers[0]];
+			VertexRegister *current_vertex = &g_gpu_vertex_registers[g_vertex_id];
+			current_vertex->x_value = current_vertex->x_value + vector->element[1].int_value;
+			current_vertex->y_value = current_vertex->y_value + vector->element[2].int_value;
+		}
+		break; 
+		
 		case OP_SCALE:  // optional 
+		break;
+		
 		case OP_PUSHMATRIX:       // deprecated 
+		break;
+		
 		case OP_POPMATRIX:   // deprecated 
+		break;
 		
 		case OP_BEGINPRIMITIVE: 
 		{
@@ -684,26 +696,133 @@ int ExecuteInstruction(const TraceOp &trace_op)
 		
 		case OP_ENDPRIMITIVE:
 		{
-			if (g_gpu_status_register.int_value == PRIM_TYPE0 && g_vertex_id == 2 || 
-				g_gpu_status_register.int_value == PRIM_TYPE1 && g_vertex_id == 3) {
+			/* PRIM_TYPE0 = 2 & PRIM_TYPE1 = 3 */
+			if (g_gpu_status_register.int_value == PRIM_TYPE0 && g_vertex_id == PRIM_TYPE0 || 
+				g_gpu_status_register.int_value == PRIM_TYPE1 && g_vertex_id == PRIM_TYPE1) {
 				g_vertex_id = 0;
 			}
 		}
 		break;
 		
 		case OP_LOADIDENTITY:  // deprecated 
+		break;
+		
+		/* Flush (Empty) the contents of the frame buffer. */
 		case OP_FLUSH: 
-		case OP_DRAW: 
+		{
+			for (int idx = 0; idx < NUM_VERTEX_REGISTER; idx++) {
+				g_gpu_vertex_registers[idx].x_value = 0;
+				g_gpu_vertex_registers[idx].y_value = 0;
+				g_gpu_vertex_registers[idx].z_value = 0;
+				g_gpu_vertex_registers[idx].r_value = 0;
+				g_gpu_vertex_registers[idx].g_value = 0;
+				g_gpu_vertex_registers[idx].b_value = 0;
+			}
+			g_gpu_status_register.int_value = FLASH_BIT;
+		}
+		break;
+		
+		/* Draw the contents of the frame buffer on a screen (if available).
+		 * Also, this instruction indicates the beginning of frame.
+		 */
+		case OP_DRAW:
+		{
+			g_gpu_status_register.int_value = DRAW_BIT;
+		}
+		break; 
+		
 		case OP_BRN: 
+		{
+			const int pc_offset = trace_op.int_value;
+			if (g_condition_code_register.int_value == 0) {
+				g_current_pc = g_current_pc + (pc_offset << 2);
+			}
+		}
+		break; 
+		
 		case OP_BRZ:
+		{
+			const int pc_offset = trace_op.int_value;
+			if (g_condition_code_register.int_value == 1) {
+				g_current_pc = g_current_pc + (pc_offset << 2);
+			}
+		}
+		break; 
+		
 		case OP_BRP:
+		{
+			const int pc_offset = trace_op.int_value;
+			if (g_condition_code_register.int_value == 2) {
+				g_current_pc = g_current_pc + (pc_offset << 2);
+			}
+		}
+		break; 
+		
 		case OP_BRNZ:
+		{
+			const int pc_offset = trace_op.int_value;
+			if (g_condition_code_register.int_value == 0 || 
+				g_condition_code_register.int_value == 1) {
+				g_current_pc = g_current_pc + (pc_offset << 2);
+			}
+		}
+		break; 
+		
 		case OP_BRNP:
+		{
+			const int pc_offset = trace_op.int_value;
+			if (g_condition_code_register.int_value == 0 || 
+				g_condition_code_register.int_value == 2) {
+				g_current_pc = g_current_pc + (pc_offset << 2);
+			}
+		}
+		break; 
+		
 		case OP_BRZP:
+		{
+			const int pc_offset = trace_op.int_value;
+			if (g_condition_code_register.int_value == 1 || 
+				g_condition_code_register.int_value == 2) {
+				g_current_pc = g_current_pc + (pc_offset << 2);
+			}
+		}
+		break; 
+		
 		case OP_BRNZP:
+		{
+			const int pc_offset = trace_op.int_value;
+			if (g_condition_code_register.int_value == 0 || 
+				g_condition_code_register.int_value == 1 ||
+				g_condition_code_register.int_value == 2) {
+				g_current_pc = g_current_pc + (pc_offset << 2);
+			}
+		}
+		break; 
+		
 		case OP_JMP:
+		{
+			const int base_reg_value = g_scalar_registers[trace_op.scalar_registers[0]].int_value;
+			assert(base_reg_value >= 0);
+			g_current_pc = base_reg_value;
+		}
+		break;
+		
 		case OP_JSR: 
+		{
+			const int register_7 = 6; // The 7th register
+			const int pc_offset = trace_op.int_value;
+			g_scalar_registers[register_7].int_value = g_current_pc;
+			g_current_pc = g_current_pc + (pc_offset << 2);
+		}
+		break; 
+		
 		case OP_JSRR: 
+		{
+			const int register_7 = 6; // The 7th register
+			const int base_reg_value = g_scalar_registers[trace_op.scalar_registers[0]].int_value;
+			g_scalar_registers[register_7].int_value = g_current_pc;
+			g_current_pc = base_reg_value;
+		}
 		break; 
 		  
 		case OP_HALT: 
