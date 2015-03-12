@@ -53,11 +53,11 @@ void SetConditionCodeInt(const int16_t val1, const int16_t val2)
 	/* fill out the conditional code checking logic */ 
 	g_condition_code_register.int_value = 0;
 	if (val1 < val2) {
-		g_condition_code_register.int_value |= 1; // 0001 
+		g_condition_code_register.int_value |= 4; // 0001 
 	} else if (val1 == val2) {
 		g_condition_code_register.int_value |= 2; // 0010
 	} else {
-		g_condition_code_register.int_value |= 4; // 0100
+		g_condition_code_register.int_value |= 1; // 0100
 	}
 }
 
@@ -627,9 +627,10 @@ int ExecuteInstruction(const TraceOp &trace_op)
 			int base_reg_idx = trace_op.scalar_registers[1];
 			int offset = trace_op.int_value;
 			int address = g_scalar_registers[base_reg_idx].int_value + offset;
-			int toLoad = g_memory[address];
-			g_scalar_registers[dest_idx].int_value = toLoad;
-			SetConditionCodeInt(toLoad, 0);
+			int first_byte = g_memory[address];
+			int second_byte = g_memory[address + 1];
+			g_scalar_registers[dest_idx].int_value = (first_byte << 8) | second_byte;
+			SetConditionCodeInt(g_scalar_registers[dest_idx].int_value, 0);
 		}
 		break;
 		
@@ -646,10 +647,13 @@ int ExecuteInstruction(const TraceOp &trace_op)
 		case OP_STW: 
 		{
 			int source_idx = trace_op.scalar_registers[0];
+			int first_byte = g_scalar_registers[source_idx].int_value & 0xFF;
+			int second_byte = g_scalar_registers[source_idx].int_value >> 8;
 			int base_reg_idx = trace_op.scalar_registers[1];
 			int offset = trace_op.int_value;
 			int address = g_scalar_registers[base_reg_idx].int_value + offset;
-			g_memory[address] = g_scalar_registers[source_idx].int_value;
+			g_memory[address] = first_byte;
+			g_memory[address + 1] = second_byte;
 		}
 		break;
 		
@@ -661,13 +665,9 @@ int ExecuteInstruction(const TraceOp &trace_op)
 			VertexRegister *current_vertex = &g_gpu_vertex_registers[g_vertex_id];
 			current_vertex->x_value = FIXED1114_TO_INT(vector->element[1].int_value); 
 			current_vertex->y_value = FIXED1114_TO_INT(vector->element[2].int_value); 
-			current_vertex->z_value = FIXED1114_TO_INT(vector->element[3].int_value); 
+			current_vertex->z_value = FIXED1114_TO_INT(vector->element[3].int_value);
+			printf("SET VERTEX, old g_vertex_id = %d\n", g_vertex_id);
 			g_vertex_id = (g_vertex_id + 1) % 3;
-			/* PRIM_TYPE0 = 2 & PRIM_TYPE1 = 3 */
-			//if (g_gpu_status_register.int_value == PRIM_TYPE0 && g_vertex_id == PRIM_TYPE0 || 
-				//g_gpu_status_register.int_value == PRIM_TYPE1 && g_vertex_id == PRIM_TYPE1) {
-				//g_vertex_id = 0;
-			//}
 		}
 		break; 
 		
@@ -692,7 +692,6 @@ int ExecuteInstruction(const TraceOp &trace_op)
 			current_vertex->y_value = current_vertex->y_value + FIXED1114_TO_INT(vector->element[2].int_value);
 			printf("current_vertex->x_value = %d\n", current_vertex->x_value);
 			printf("current_vertex->y_value = %d\n", current_vertex->y_value);
-			//exit(1);
 		}
 		break; 
 		
@@ -742,7 +741,7 @@ int ExecuteInstruction(const TraceOp &trace_op)
 		case OP_BRN: 
 		{
 			const int pc_offset = trace_op.int_value;
-			if (g_condition_code_register.int_value == 1) {
+			if (g_condition_code_register.int_value == 4) {
 				return SignExtension(pc_offset);	
 			}
 		}
@@ -759,7 +758,7 @@ int ExecuteInstruction(const TraceOp &trace_op)
 		
 		case OP_BRP:
 		{
-			if (g_condition_code_register.int_value == 4) {
+			if (g_condition_code_register.int_value == 1) {
 				const int pc_offset = trace_op.int_value;
 				return SignExtension(pc_offset);				
 			}
@@ -769,7 +768,7 @@ int ExecuteInstruction(const TraceOp &trace_op)
 		case OP_BRNZ:
 		{
 			const int pc_offset = trace_op.int_value;
-			if (g_condition_code_register.int_value == 1 || 
+			if (g_condition_code_register.int_value == 4 || 
 				g_condition_code_register.int_value == 2) {
 				return SignExtension(pc_offset);	
 			}
@@ -790,7 +789,7 @@ int ExecuteInstruction(const TraceOp &trace_op)
 		{
 			const int pc_offset = trace_op.int_value;
 			if (g_condition_code_register.int_value == 2 || 
-				g_condition_code_register.int_value == 4) {
+				g_condition_code_register.int_value == 1) {
 				return SignExtension(pc_offset);	
 			}
 		}
@@ -810,26 +809,21 @@ int ExecuteInstruction(const TraceOp &trace_op)
 		case OP_JMP:
 		{
 			const int base_reg_value = g_scalar_registers[trace_op.scalar_registers[0]].int_value;
-			assert(base_reg_value >= 0);
-			//g_current_pc = base_reg_value;
+			return base_reg_value / 4;
 		}
 		break;
 		
 		case OP_JSR: 
 		{
-			const int register_7 = 6; // The 7th register
 			const int pc_offset = trace_op.int_value;
-			g_scalar_registers[register_7].int_value = g_current_pc;
-			//g_current_pc = g_current_pc + (pc_offset << 2);
+			return pc_offset;
 		}
 		break; 
 		
 		case OP_JSRR: 
 		{
-			const int register_7 = 6; // The 7th register
 			const int base_reg_value = g_scalar_registers[trace_op.scalar_registers[0]].int_value;
-			g_scalar_registers[register_7].int_value = g_current_pc;
-			//g_current_pc = base_reg_value;
+			return base_reg_value / 4;
 		}
 		break; 
 		  
