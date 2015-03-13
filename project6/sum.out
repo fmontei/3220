@@ -1,0 +1,410 @@
+$ ./simulator.exe out
+The contents of the instruction vectors are :
+  00010001000000110000000000000000
+  00010001000000010000000000001010
+  00000000001100110000000100000000
+  00000001000100011111111111111111
+  11011001000000001111111111111101
+  11000000000000000000000000000000
+The contents of the g_trace_ops vectors are :
+  opcode: 17, scalar_register[0]: 3, scalar_register[1]: 0, scalar_register[2]: 0, vector_register[0]: 0, vector_register[1]: 0, idx: 0, primitive_index: 0, int_value: 0
+  opcode: 17, scalar_register[0]: 1, scalar_register[1]: 0, scalar_register[2]: 0, vector_register[0]: 0, vector_register[1]: 0, idx: 0, primitive_index: 0, int_value: 10
+  opcode: 0, scalar_register[0]: 3, scalar_register[1]: 3, scalar_register[2]: 1, vector_register[0]: 0, vector_register[1]: 0, idx: 0, primitive_index: 0, int_value: 0
+  opcode: 1, scalar_register[0]: 1, scalar_register[1]: 1, scalar_register[2]: 0, vector_register[0]: 0, vector_register[1]: 0, idx: 0, primitive_index: 0, int_value: 65535
+  opcode: 217, scalar_register[0]: 0, scalar_register[1]: 0, scalar_register[2]: 0, vector_register[0]: 0, vector_register[1]: 0, idx: 0, primitive_index: 0, int_value: 65533
+  opcode: 192, scalar_register[0]: 0, scalar_register[1]: 0, scalar_register[2]: 0, vector_register[0]: 0, vector_register[1]: 0, idx: 0, primitive_index: 0, int_value: 0
+--------------------------------------------------
+3220X-Instruction Count: 1 C_PC: 0 C_PC_IND: 0, Curr_Opcode: 17 NEXT_PC: 4 NEXT_PC_IND: 1, Next_Opcode: 17
+3220X-R0:0, R1:0, R2:0, R3:0, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:1 CC :N: 0 Z: 1 P: 0   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 2 C_PC: 4 C_PC_IND: 1, Curr_Opcode: 17 NEXT_PC: 8 NEXT_PC_IND: 2, Next_Opcode: 0
+3220X-R0:0, R1:10, R2:0, R3:0, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:2 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 3 C_PC: 8 C_PC_IND: 2, Curr_Opcode: 0 NEXT_PC: 12 NEXT_PC_IND: 3, Next_Opcode: 1
+3220X-R0:0, R1:10, R2:0, R3:10, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:3 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 4 C_PC: 12 C_PC_IND: 3, Curr_Opcode: 1 NEXT_PC: 16 NEXT_PC_IND: 4, Next_Opcode: 217
+3220X-R0:0, R1:9, R2:0, R3:10, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:4 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 5 C_PC: 16 C_PC_IND: 4, Curr_Opcode: 217 NEXT_PC: 8 NEXT_PC_IND: 2, Next_Opcode: 0
+3220X-R0:0, R1:9, R2:0, R3:10, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:2 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 6 C_PC: 8 C_PC_IND: 2, Curr_Opcode: 0 NEXT_PC: 12 NEXT_PC_IND: 3, Next_Opcode: 1
+3220X-R0:0, R1:9, R2:0, R3:19, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:3 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 7 C_PC: 12 C_PC_IND: 3, Curr_Opcode: 1 NEXT_PC: 16 NEXT_PC_IND: 4, Next_Opcode: 217
+3220X-R0:0, R1:8, R2:0, R3:19, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:4 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 8 C_PC: 16 C_PC_IND: 4, Curr_Opcode: 217 NEXT_PC: 8 NEXT_PC_IND: 2, Next_Opcode: 0
+3220X-R0:0, R1:8, R2:0, R3:19, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:2 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 9 C_PC: 8 C_PC_IND: 2, Curr_Opcode: 0 NEXT_PC: 12 NEXT_PC_IND: 3, Next_Opcode: 1
+3220X-R0:0, R1:8, R2:0, R3:27, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:3 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 10 C_PC: 12 C_PC_IND: 3, Curr_Opcode: 1 NEXT_PC: 16 NEXT_PC_IND: 4, Next_Opcode: 217
+3220X-R0:0, R1:7, R2:0, R3:27, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:4 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 11 C_PC: 16 C_PC_IND: 4, Curr_Opcode: 217 NEXT_PC: 8 NEXT_PC_IND: 2, Next_Opcode: 0
+3220X-R0:0, R1:7, R2:0, R3:27, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:2 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 12 C_PC: 8 C_PC_IND: 2, Curr_Opcode: 0 NEXT_PC: 12 NEXT_PC_IND: 3, Next_Opcode: 1
+3220X-R0:0, R1:7, R2:0, R3:34, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:3 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 13 C_PC: 12 C_PC_IND: 3, Curr_Opcode: 1 NEXT_PC: 16 NEXT_PC_IND: 4, Next_Opcode: 217
+3220X-R0:0, R1:6, R2:0, R3:34, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:4 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 14 C_PC: 16 C_PC_IND: 4, Curr_Opcode: 217 NEXT_PC: 8 NEXT_PC_IND: 2, Next_Opcode: 0
+3220X-R0:0, R1:6, R2:0, R3:34, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:2 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 15 C_PC: 8 C_PC_IND: 2, Curr_Opcode: 0 NEXT_PC: 12 NEXT_PC_IND: 3, Next_Opcode: 1
+3220X-R0:0, R1:6, R2:0, R3:40, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:3 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 16 C_PC: 12 C_PC_IND: 3, Curr_Opcode: 1 NEXT_PC: 16 NEXT_PC_IND: 4, Next_Opcode: 217
+3220X-R0:0, R1:5, R2:0, R3:40, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:4 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 17 C_PC: 16 C_PC_IND: 4, Curr_Opcode: 217 NEXT_PC: 8 NEXT_PC_IND: 2, Next_Opcode: 0
+3220X-R0:0, R1:5, R2:0, R3:40, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:2 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 18 C_PC: 8 C_PC_IND: 2, Curr_Opcode: 0 NEXT_PC: 12 NEXT_PC_IND: 3, Next_Opcode: 1
+3220X-R0:0, R1:5, R2:0, R3:45, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:3 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 19 C_PC: 12 C_PC_IND: 3, Curr_Opcode: 1 NEXT_PC: 16 NEXT_PC_IND: 4, Next_Opcode: 217
+3220X-R0:0, R1:4, R2:0, R3:45, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:4 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 20 C_PC: 16 C_PC_IND: 4, Curr_Opcode: 217 NEXT_PC: 8 NEXT_PC_IND: 2, Next_Opcode: 0
+3220X-R0:0, R1:4, R2:0, R3:45, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:2 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 21 C_PC: 8 C_PC_IND: 2, Curr_Opcode: 0 NEXT_PC: 12 NEXT_PC_IND: 3, Next_Opcode: 1
+3220X-R0:0, R1:4, R2:0, R3:49, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:3 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 22 C_PC: 12 C_PC_IND: 3, Curr_Opcode: 1 NEXT_PC: 16 NEXT_PC_IND: 4, Next_Opcode: 217
+3220X-R0:0, R1:3, R2:0, R3:49, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:4 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 23 C_PC: 16 C_PC_IND: 4, Curr_Opcode: 217 NEXT_PC: 8 NEXT_PC_IND: 2, Next_Opcode: 0
+3220X-R0:0, R1:3, R2:0, R3:49, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:2 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 24 C_PC: 8 C_PC_IND: 2, Curr_Opcode: 0 NEXT_PC: 12 NEXT_PC_IND: 3, Next_Opcode: 1
+3220X-R0:0, R1:3, R2:0, R3:52, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:3 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 25 C_PC: 12 C_PC_IND: 3, Curr_Opcode: 1 NEXT_PC: 16 NEXT_PC_IND: 4, Next_Opcode: 217
+3220X-R0:0, R1:2, R2:0, R3:52, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:4 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 26 C_PC: 16 C_PC_IND: 4, Curr_Opcode: 217 NEXT_PC: 8 NEXT_PC_IND: 2, Next_Opcode: 0
+3220X-R0:0, R1:2, R2:0, R3:52, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:2 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 27 C_PC: 8 C_PC_IND: 2, Curr_Opcode: 0 NEXT_PC: 12 NEXT_PC_IND: 3, Next_Opcode: 1
+3220X-R0:0, R1:2, R2:0, R3:54, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:3 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 28 C_PC: 12 C_PC_IND: 3, Curr_Opcode: 1 NEXT_PC: 16 NEXT_PC_IND: 4, Next_Opcode: 217
+3220X-R0:0, R1:1, R2:0, R3:54, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:4 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 29 C_PC: 16 C_PC_IND: 4, Curr_Opcode: 217 NEXT_PC: 8 NEXT_PC_IND: 2, Next_Opcode: 0
+3220X-R0:0, R1:1, R2:0, R3:54, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:2 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 30 C_PC: 8 C_PC_IND: 2, Curr_Opcode: 0 NEXT_PC: 12 NEXT_PC_IND: 3, Next_Opcode: 1
+3220X-R0:0, R1:1, R2:0, R3:55, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:3 CC :N: 0 Z: 0 P: 1   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 31 C_PC: 12 C_PC_IND: 3, Curr_Opcode: 1 NEXT_PC: 16 NEXT_PC_IND: 4, Next_Opcode: 217
+3220X-R0:0, R1:0, R2:0, R3:55, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:4 CC :N: 0 Z: 1 P: 0   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 32 C_PC: 16 C_PC_IND: 4, Curr_Opcode: 217 NEXT_PC: 20 NEXT_PC_IND: 5, Next_Opcode: 192
+3220X-R0:0, R1:0, R2:0, R3:55, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:5 CC :N: 0 Z: 1 P: 0   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0
+--------------------------------------------------
+--------------------------------------------------
+3220X-Instruction Count: 33 C_PC: 20 C_PC_IND: 5, Curr_Opcode: 192 NEXT_PC: 24 NEXT_PC_IND: 6, Next_Opcode: 0
+3220X-R0:0, R1:0, R2:0, R3:55, R4:0, R5:0, R6:0, R7:0, R8:0, R9:0, R10:0, R11:0, R12:0, R13:0, R14:0, R15:6 CC :N: 0 Z: 1 P: 0   draw: 0 fush: 0 prim_type: 0
+3220X-V0:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V1:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V2:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V3:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V4:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+3220X-V5:Element[0] = 0,Element[1] = 0,Element[2] = 0,Element[3] = 0
+
+3220X- vertices P1_X: 0 vertices P1_Y: 0 r: 0 g: 0 b: 0 P2_X: 0 P2_Y: 0 r: 0 g: 0 b: 0 P3_X: 0 P3_Y: 0 r: 0 g: 0 b: 0

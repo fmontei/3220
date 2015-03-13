@@ -666,7 +666,6 @@ int ExecuteInstruction(const TraceOp &trace_op)
 			current_vertex->x_value = FIXED1114_TO_INT(vector->element[1].int_value); 
 			current_vertex->y_value = FIXED1114_TO_INT(vector->element[2].int_value); 
 			current_vertex->z_value = FIXED1114_TO_INT(vector->element[3].int_value);
-			printf("SET VERTEX, old g_vertex_id = %d\n", g_vertex_id);
 			g_vertex_id = (g_vertex_id + 1) % 3;
 		}
 		break; 
@@ -687,11 +686,11 @@ int ExecuteInstruction(const TraceOp &trace_op)
 		case OP_TRANSLATE:
 		{
 			VectorRegister *vector = &g_vector_registers[trace_op.vector_registers[0]];
-			VertexRegister *current_vertex = &g_gpu_vertex_registers[g_vertex_id];
-			current_vertex->x_value = current_vertex->x_value + FIXED1114_TO_INT(vector->element[1].int_value);
-			current_vertex->y_value = current_vertex->y_value + FIXED1114_TO_INT(vector->element[2].int_value);
-			printf("current_vertex->x_value = %d\n", current_vertex->x_value);
-			printf("current_vertex->y_value = %d\n", current_vertex->y_value);
+			for (int id = 0; id < NUM_VERTEX_REGISTER; id++) {
+				VertexRegister *current_vertex = &g_gpu_vertex_registers[id];
+				current_vertex->x_value = current_vertex->x_value + FIXED1114_TO_INT(vector->element[1].int_value);
+				current_vertex->y_value = current_vertex->y_value + FIXED1114_TO_INT(vector->element[2].int_value);
+			}
 		}
 		break; 
 		
