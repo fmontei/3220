@@ -1,5 +1,5 @@
 Analysis & Synthesis report for lg_highlevel
-Sat Apr 04 20:56:30 2015
+Sun Apr 05 00:39:26 2015
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -52,7 +52,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Apr 04 20:56:30 2015           ;
+; Analysis & Synthesis Status        ; Successful - Sun Apr 05 00:39:26 2015           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; lg_highlevel                                    ;
 ; Top-level Entity Name              ; lg_highlevel                                    ;
@@ -170,22 +170,22 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------------+-----------------+---------------------------------------------+-----------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type                                   ; File Name with Absolute Path                                          ; Library ;
 +----------------------------------+-----------------+---------------------------------------------+-----------------------------------------------------------------------+---------+
-; gpu.v                            ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7_parth/gpu_frame_restored/gpu.v                  ;         ;
-; vga_controller.v                 ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7_parth/gpu_frame_restored/vga_controller.v       ;         ;
-; pixel_gen.v                      ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7_parth/gpu_frame_restored/pixel_gen.v            ;         ;
-; multi_sram.v                     ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7_parth/gpu_frame_restored/multi_sram.v           ;         ;
-; seven_segment.v                  ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7_parth/gpu_frame_restored/seven_segment.v        ;         ;
-; writeback.v                      ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7_parth/gpu_frame_restored/writeback.v            ;         ;
-; memory.v                         ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7_parth/gpu_frame_restored/memory.v               ;         ;
-; execute.v                        ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7_parth/gpu_frame_restored/execute.v              ;         ;
-; sign_extension.v                 ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7_parth/gpu_frame_restored/sign_extension.v       ;         ;
-; decode.v                         ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7_parth/gpu_frame_restored/decode.v               ;         ;
-; lg_highlevel.v                   ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7_parth/gpu_frame_restored/lg_highlevel.v         ;         ;
-; global_def.h                     ; yes             ; User Unspecified File                       ; E:/CPSC/3220/project7_parth/gpu_frame_restored/global_def.h           ;         ;
-; fetch.v                          ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7_parth/gpu_frame_restored/fetch.v                ;         ;
-; pll.v                            ; yes             ; User Wizard-Generated File                  ; E:/CPSC/3220/project7_parth/gpu_frame_restored/pll.v                  ;         ;
-; data.hex                         ; yes             ; Auto-Found Hexadecimal (Intel-Format) File  ; E:/CPSC/3220/project7_parth/gpu_frame_restored/data.hex               ;         ;
-; test_branch.hex                  ; yes             ; Auto-Found Hexadecimal (Intel-Format) File  ; E:/CPSC/3220/project7_parth/gpu_frame_restored/test_branch.hex        ;         ;
+; gpu.v                            ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/gpu.v                        ;         ;
+; vga_controller.v                 ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/vga_controller.v             ;         ;
+; pixel_gen.v                      ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/pixel_gen.v                  ;         ;
+; multi_sram.v                     ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/multi_sram.v                 ;         ;
+; seven_segment.v                  ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/seven_segment.v              ;         ;
+; writeback.v                      ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/writeback.v                  ;         ;
+; memory.v                         ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/memory.v                     ;         ;
+; execute.v                        ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/execute.v                    ;         ;
+; sign_extension.v                 ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/sign_extension.v             ;         ;
+; decode.v                         ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/decode.v                     ;         ;
+; lg_highlevel.v                   ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/lg_highlevel.v               ;         ;
+; global_def.h                     ; yes             ; User Unspecified File                       ; E:/CPSC/3220/project7/gpu_frame_restored/global_def.h                 ;         ;
+; fetch.v                          ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/fetch.v                      ;         ;
+; pll.v                            ; yes             ; User Wizard-Generated File                  ; E:/CPSC/3220/project7/gpu_frame_restored/pll.v                        ;         ;
+; data.hex                         ; yes             ; Auto-Found Hexadecimal (Intel-Format) File  ; E:/CPSC/3220/project7/gpu_frame_restored/data.hex                     ;         ;
+; test_branch.hex                  ; yes             ; Auto-Found Hexadecimal (Intel-Format) File  ; E:/CPSC/3220/project7/gpu_frame_restored/test_branch.hex              ;         ;
 ; altpll.tdf                       ; yes             ; Megafunction                                ; e:/programs/quartus/quartus/libraries/megafunctions/altpll.tdf        ;         ;
 ; aglobal130.inc                   ; yes             ; Megafunction                                ; e:/programs/quartus/quartus/libraries/megafunctions/aglobal130.inc    ;         ;
 ; stratix_pll.inc                  ; yes             ; Megafunction                                ; e:/programs/quartus/quartus/libraries/megafunctions/stratix_pll.inc   ;         ;
@@ -243,13 +243,13 @@ Parallel compilation was disabled, but you have multiple processors available. E
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis IP Cores Summary                                                                                                         ;
-+--------+--------------+---------+--------------+--------------+------------------------+------------------------------------------------------+
-; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance        ; IP Include File                                      ;
-+--------+--------------+---------+--------------+--------------+------------------------+------------------------------------------------------+
-; Altera ; ALTPLL       ; 12.1    ; N/A          ; N/A          ; |lg_highlevel|pll:pll0 ; E:/CPSC/3220/project7_parth/gpu_frame_restored/pll.v ;
-+--------+--------------+---------+--------------+--------------+------------------------+------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                                                   ;
++--------+--------------+---------+--------------+--------------+------------------------+------------------------------------------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance        ; IP Include File                                ;
++--------+--------------+---------+--------------+--------------+------------------------+------------------------------------------------+
+; Altera ; ALTPLL       ; 12.1    ; N/A          ; N/A          ; |lg_highlevel|pll:pll0 ; E:/CPSC/3220/project7/gpu_frame_restored/pll.v ;
++--------+--------------+---------+--------------+--------------+------------------------+------------------------------------------------+
 
 
 +-------------------------------------------------------------------------------------+
@@ -274,6 +274,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Execute:Execute0|O_RegWEn                  ; Lost fanout                            ;
 ; Execute:Execute0|O_DestValue[0..15]        ; Lost fanout                            ;
 ; Execute:Execute0|O_DestRegIdx[0..3]        ; Lost fanout                            ;
+; Execute:Execute0|O_IR[27..31]              ; Lost fanout                            ;
 ; Execute:Execute0|O_EX_Valid                ; Lost fanout                            ;
 ; Execute:Execute0|O_Opcode[0..7]            ; Lost fanout                            ;
 ; Decode:Decode0|O_Src2Value[0..8]           ; Lost fanout                            ;
@@ -286,6 +287,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Decode:Decode0|O_Src2Value[10..15]         ; Lost fanout                            ;
 ; Decode:Decode0|O_Src1Value[0..15]          ; Lost fanout                            ;
 ; Decode:Decode0|O_Opcode[0..7]              ; Lost fanout                            ;
+; Decode:Decode0|O_IR[27..31]                ; Lost fanout                            ;
 ; Decode:Decode0|O_PC[2..15]                 ; Lost fanout                            ;
 ; Decode:Decode0|ConditionalCode[1,2]        ; Lost fanout                            ;
 ; Fetch:Fetch0|O_IR[0]                       ; Lost fanout                            ;
@@ -304,7 +306,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Execute:Execute0|O_LOCK                    ; Lost fanout                            ;
 ; Decode:Decode0|O_LOCK                      ; Lost fanout                            ;
 ; Fetch:Fetch0|O_LOCK                        ; Lost fanout                            ;
-; Total Number of Removed Registers = 256    ;                                        ;
+; Total Number of Removed Registers = 266    ;                                        ;
 +--------------------------------------------+----------------------------------------+
 
 
@@ -319,22 +321,20 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Memory:Memory0|O_CCValue[2]                ; Lost Fanouts       ; Execute:Execute0|O_CCValue[2], Decode:Decode0|O_CCValue[2],                     ;
 ;                                            ;                    ; Decode:Decode0|ConditionalCode[2], Execute:Execute0|O_LOCK                      ;
 ; Memory:Memory0|O_Opcode[0]                 ; Lost Fanouts       ; Execute:Execute0|O_Opcode[0], Decode:Decode0|O_Opcode[0], Fetch:Fetch0|O_IR[24] ;
-; Memory:Memory0|O_DestRegIdx[2]             ; Lost Fanouts       ; Execute:Execute0|O_DestRegIdx[2], Decode:Decode0|O_DestRegIdx[2],               ;
-;                                            ;                    ; Fetch:Fetch0|O_IR[22]                                                           ;
-; Memory:Memory0|O_DestRegIdx[3]             ; Lost Fanouts       ; Execute:Execute0|O_DestRegIdx[3], Decode:Decode0|O_DestRegIdx[3],               ;
-;                                            ;                    ; Fetch:Fetch0|O_IR[23]                                                           ;
-; Memory:Memory0|O_DestRegIdx[1]             ; Lost Fanouts       ; Execute:Execute0|O_DestRegIdx[1], Decode:Decode0|O_DestRegIdx[1],               ;
-;                                            ;                    ; Fetch:Fetch0|O_IR[21]                                                           ;
 ; Memory:Memory0|O_Opcode[4]                 ; Lost Fanouts       ; Execute:Execute0|O_Opcode[4], Decode:Decode0|O_Opcode[4]                        ;
+; Memory:Memory0|O_Opcode[7]                 ; Lost Fanouts       ; Execute:Execute0|O_Opcode[7], Decode:Decode0|O_Opcode[7]                        ;
 ; Memory:Memory0|O_Opcode[1]                 ; Lost Fanouts       ; Execute:Execute0|O_Opcode[1], Decode:Decode0|O_Opcode[1]                        ;
 ; Memory:Memory0|O_Opcode[2]                 ; Lost Fanouts       ; Execute:Execute0|O_Opcode[2], Decode:Decode0|O_Opcode[2]                        ;
 ; Memory:Memory0|O_Opcode[3]                 ; Lost Fanouts       ; Execute:Execute0|O_Opcode[3], Decode:Decode0|O_Opcode[3]                        ;
+; Execute:Execute0|O_BranchAddrSelect_Signal ; Lost Fanouts       ; Decode:Decode0|O_DE_Valid, Decode:Decode0|O_LOCK                                ;
 ; Memory:Memory0|O_Opcode[5]                 ; Lost Fanouts       ; Execute:Execute0|O_Opcode[5], Decode:Decode0|O_Opcode[5]                        ;
 ; Memory:Memory0|O_Opcode[6]                 ; Lost Fanouts       ; Execute:Execute0|O_Opcode[6], Decode:Decode0|O_Opcode[6]                        ;
-; Memory:Memory0|O_Opcode[7]                 ; Lost Fanouts       ; Execute:Execute0|O_Opcode[7], Decode:Decode0|O_Opcode[7]                        ;
 ; Memory:Memory0|O_CCValue[1]                ; Lost Fanouts       ; Execute:Execute0|O_CCValue[1]                                                   ;
 ; Memory:Memory0|O_CCValue[0]                ; Lost Fanouts       ; Execute:Execute0|O_CCValue[0]                                                   ;
 ; Memory:Memory0|O_DestRegIdx[0]             ; Lost Fanouts       ; Execute:Execute0|O_DestRegIdx[0]                                                ;
+; Memory:Memory0|O_DestRegIdx[1]             ; Lost Fanouts       ; Execute:Execute0|O_DestRegIdx[1]                                                ;
+; Memory:Memory0|O_DestRegIdx[2]             ; Lost Fanouts       ; Execute:Execute0|O_DestRegIdx[2]                                                ;
+; Memory:Memory0|O_DestRegIdx[3]             ; Lost Fanouts       ; Execute:Execute0|O_DestRegIdx[3]                                                ;
 ; Memory:Memory0|O_DestValue[0]              ; Lost Fanouts       ; Execute:Execute0|O_DestValue[0]                                                 ;
 ; Memory:Memory0|O_DestValue[1]              ; Lost Fanouts       ; Execute:Execute0|O_DestValue[1]                                                 ;
 ; Memory:Memory0|O_DestValue[2]              ; Lost Fanouts       ; Execute:Execute0|O_DestValue[2]                                                 ;
@@ -351,7 +351,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Memory:Memory0|O_DestValue[13]             ; Lost Fanouts       ; Execute:Execute0|O_DestValue[13]                                                ;
 ; Memory:Memory0|O_DestValue[14]             ; Lost Fanouts       ; Execute:Execute0|O_DestValue[14]                                                ;
 ; Memory:Memory0|O_DestValue[15]             ; Lost Fanouts       ; Execute:Execute0|O_DestValue[15]                                                ;
-; Execute:Execute0|O_BranchAddrSelect_Signal ; Lost Fanouts       ; Decode:Decode0|O_LOCK                                                           ;
+; Decode:Decode0|O_DestRegIdx[3]             ; Lost Fanouts       ; Fetch:Fetch0|O_IR[23]                                                           ;
+; Decode:Decode0|O_DestRegIdx[2]             ; Lost Fanouts       ; Fetch:Fetch0|O_IR[22]                                                           ;
+; Decode:Decode0|O_DestRegIdx[1]             ; Lost Fanouts       ; Fetch:Fetch0|O_IR[21]                                                           ;
 ; Decode:Decode0|O_DestRegIdx[0]             ; Lost Fanouts       ; Fetch:Fetch0|O_IR[20]                                                           ;
 ; Decode:Decode0|O_Imm[15]                   ; Lost Fanouts       ; Fetch:Fetch0|O_IR[15]                                                           ;
 ; Decode:Decode0|O_Imm[14]                   ; Lost Fanouts       ; Fetch:Fetch0|O_IR[14]                                                           ;
@@ -872,7 +874,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sat Apr 04 20:56:28 2015
+    Info: Processing started: Sun Apr 05 00:39:23 2015
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lg_highlevel -c lg_highlevel
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Warning (10238): Verilog Module Declaration warning at gpu.v(23): ignored anonymous port(s) indicated by duplicate or dangling comma(s) in the port list for module "Gpu"
@@ -970,7 +972,7 @@ Info (12133): Instantiated megafunction "pll:pll0|altpll:altpll_component" with 
     Info (12134): Parameter "port_extclk3" = "PORT_UNUSED"
     Info (12134): Parameter "valid_lock_multiplier" = "1"
 Info (12128): Elaborating entity "Fetch" for hierarchy "Fetch:Fetch0"
-Warning (10850): Verilog HDL warning at fetch.v(49): number of words (4) in memory file does not match the number of elements in the address range [0:255]
+Warning (10850): Verilog HDL warning at fetch.v(49): number of words (5) in memory file does not match the number of elements in the address range [0:255]
 Warning (10230): Verilog HDL assignment warning at fetch.v(67): truncated value with size 32 to match size of target (6)
 Warning (10230): Verilog HDL assignment warning at fetch.v(68): truncated value with size 32 to match size of target (1)
 Warning (10030): Net "InstMem.data_a" at fetch.v(43) has no driver or initial value, using a default initial value '0'
@@ -1047,49 +1049,51 @@ Info (10041): Inferred latch for "Imm[15]" at decode.v(189)
 Info (10041): Inferred latch for "dep_stall" at decode.v(189)
 Info (12128): Elaborating entity "SignExtension" for hierarchy "Decode:Decode0|SignExtension:SE0"
 Info (12128): Elaborating entity "Execute" for hierarchy "Execute:Execute0"
-Warning (10230): Verilog HDL assignment warning at execute.v(123): truncated value with size 32 to match size of target (3)
-Warning (10230): Verilog HDL assignment warning at execute.v(131): truncated value with size 32 to match size of target (3)
-Warning (10230): Verilog HDL assignment warning at execute.v(139): truncated value with size 32 to match size of target (3)
-Warning (10230): Verilog HDL assignment warning at execute.v(200): truncated value with size 32 to match size of target (16)
-Warning (10240): Verilog HDL Always Construct warning at execute.v(116): inferring latch(es) for variable "CCValue", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at execute.v(116): inferring latch(es) for variable "CCWEn", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at execute.v(116): inferring latch(es) for variable "ALU_O_DestValue", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at execute.v(116): inferring latch(es) for variable "ALU_O_DestRegIdx", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at execute.v(116): inferring latch(es) for variable "RegWEn", which holds its previous value in one or more paths through the always construct
-Warning (10230): Verilog HDL assignment warning at execute.v(240): truncated value with size 32 to match size of target (1)
-Warning (10230): Verilog HDL assignment warning at execute.v(241): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at execute.v(124): truncated value with size 32 to match size of target (3)
+Warning (10230): Verilog HDL assignment warning at execute.v(132): truncated value with size 32 to match size of target (3)
+Warning (10230): Verilog HDL assignment warning at execute.v(140): truncated value with size 32 to match size of target (3)
+Warning (10230): Verilog HDL assignment warning at execute.v(201): truncated value with size 32 to match size of target (16)
+Warning (10240): Verilog HDL Always Construct warning at execute.v(117): inferring latch(es) for variable "Branch_Was_Taken", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at execute.v(117): inferring latch(es) for variable "CCValue", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at execute.v(117): inferring latch(es) for variable "CCWEn", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at execute.v(117): inferring latch(es) for variable "ALU_O_DestValue", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at execute.v(117): inferring latch(es) for variable "ALU_O_DestRegIdx", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at execute.v(117): inferring latch(es) for variable "RegWEn", which holds its previous value in one or more paths through the always construct
+Warning (10230): Verilog HDL assignment warning at execute.v(245): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at execute.v(246): truncated value with size 32 to match size of target (1)
 Warning (10034): Output port "O_R15PC" at execute.v(74) has no driver
 Warning (10034): Output port "O_DestVRegIdx" at execute.v(78) has no driver
 Warning (10034): Output port "O_VecSrc1Value" at execute.v(83) has no driver
 Warning (10034): Output port "O_VecDestValue" at execute.v(84) has no driver
 Warning (10034): Output port "O_MARValue" at execute.v(87) has no driver
 Warning (10034): Output port "O_MDRValue" at execute.v(88) has no driver
-Warning (10034): Output port "O_VRegWEn_Signal" at execute.v(104) has no driver
-Info (10041): Inferred latch for "RegWEn" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestRegIdx[0]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestRegIdx[1]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestRegIdx[2]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestRegIdx[3]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestValue[0]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestValue[1]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestValue[2]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestValue[3]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestValue[4]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestValue[5]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestValue[6]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestValue[7]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestValue[8]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestValue[9]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestValue[10]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestValue[11]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestValue[12]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestValue[13]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestValue[14]" at execute.v(116)
-Info (10041): Inferred latch for "ALU_O_DestValue[15]" at execute.v(116)
-Info (10041): Inferred latch for "CCWEn" at execute.v(116)
-Info (10041): Inferred latch for "CCValue[0]" at execute.v(116)
-Info (10041): Inferred latch for "CCValue[1]" at execute.v(116)
-Info (10041): Inferred latch for "CCValue[2]" at execute.v(116)
+Warning (10034): Output port "O_VRegWEn_Signal" at execute.v(105) has no driver
+Info (10041): Inferred latch for "RegWEn" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestRegIdx[0]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestRegIdx[1]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestRegIdx[2]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestRegIdx[3]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestValue[0]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestValue[1]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestValue[2]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestValue[3]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestValue[4]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestValue[5]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestValue[6]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestValue[7]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestValue[8]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestValue[9]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestValue[10]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestValue[11]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestValue[12]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestValue[13]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestValue[14]" at execute.v(117)
+Info (10041): Inferred latch for "ALU_O_DestValue[15]" at execute.v(117)
+Info (10041): Inferred latch for "CCWEn" at execute.v(117)
+Info (10041): Inferred latch for "CCValue[0]" at execute.v(117)
+Info (10041): Inferred latch for "CCValue[1]" at execute.v(117)
+Info (10041): Inferred latch for "CCValue[2]" at execute.v(117)
+Info (10041): Inferred latch for "Branch_Was_Taken" at execute.v(117)
 Info (12128): Elaborating entity "Memory" for hierarchy "Memory:Memory0"
 Warning (10036): Verilog HDL or VHDL warning at memory.v(173): object "dst_value" assigned a value but never read
 Warning (10850): Verilog HDL warning at memory.v(114): number of words (38) in memory file does not match the number of elements in the address range [0:255]
@@ -1218,7 +1222,7 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "SRAM_LB_N" is stuck at GND
     Warning (13410): Pin "SRAM_CE_N" is stuck at GND
     Warning (13410): Pin "SRAM_OE_N" is stuck at GND
-Info (17049): 212 registers lost all their fanouts during netlist optimizations.
+Info (17049): 222 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 15 input pin(s) that do not drive logic
@@ -1243,10 +1247,10 @@ Info (21057): Implemented 394 device resources after synthesis - the final resou
     Info (21060): Implemented 16 bidirectional pins
     Info (21061): Implemented 277 logic cells
     Info (21065): Implemented 1 PLLs
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 158 warnings
-    Info: Peak virtual memory: 477 megabytes
-    Info: Processing ended: Sat Apr 04 20:56:30 2015
-    Info: Elapsed time: 00:00:02
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 159 warnings
+    Info: Peak virtual memory: 469 megabytes
+    Info: Processing ended: Sun Apr 05 00:39:26 2015
+    Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:02
 
 

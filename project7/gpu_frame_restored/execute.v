@@ -98,6 +98,7 @@ output reg O_BranchAddrSelect_Signal;
 
 reg [`PC_WIDTH-1:0] BranchPCAddress;
 reg Branch_Signal_EF;
+reg Branch_Was_Taken = 0;
 
 // Signals to the DE stage for dependency checking    
 output O_RegWEn_Signal;
@@ -198,8 +199,12 @@ always @(*) begin
 		`OP_BRP: begin
 			if (I_CCValue == 2) begin
 				BranchPCAddress = I_PC + (I_Imm * 4);
-				Branch_Signal_EF = 1;
+				Branch_Was_Taken = 1;
+			end else begin
+				BranchPCAddress = I_PC;
+				Branch_Was_Taken = 0;
 			end
+			Branch_Signal_EF = 1;
 			CCValue = I_CCValue;
 			CCWEn = 0;
 		end
@@ -250,10 +255,16 @@ always @(negedge I_CLOCK) begin
 	O_Opcode <= I_Opcode;
 
 	if (I_LOCK == 1'b1) begin
+		// "Cheating": checking if last instruction was a branch instruction
+		if (O_IR[31:27] == 5'b11011 && Branch_Was_Taken == 1) begin 
+			O_EX_Valid <= 0;
+		end else begin
+			O_EX_Valid <= I_DE_Valid;
+		end
+	
 		O_PC <= I_PC;
 		O_IR <= I_IR;
-		O_EX_Valid <= I_DE_Valid;
-
+		
 		O_DestRegIdx <= ALU_O_DestRegIdx;
 		O_DestValue <= ALU_O_DestValue;
 		O_RegWEn <= O_RegWEn_Signal;  

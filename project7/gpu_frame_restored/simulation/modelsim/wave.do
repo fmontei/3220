@@ -23,8 +23,10 @@ add wave -noupdate -radix decimal /lg_highlevel/Decode0/I_CCWEn
 add wave -noupdate -radix decimal /lg_highlevel/Decode0/ConditionalCode
 add wave -noupdate -radix decimal /lg_highlevel/Decode0/I_CCValue
 add wave -noupdate -radix decimal /lg_highlevel/Decode0/O_CCValue
+add wave -noupdate -radix decimal /lg_highlevel/Execute0/O_BranchPC_Signal
+add wave -noupdate /lg_highlevel/Execute0/O_BranchAddrSelect_Signal
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {2601 ps} 0}
+WaveRestoreCursors {{Cursor 1} {1293 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 277
 configure wave -valuecolwidth 125
@@ -40,4 +42,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {2596 ps} {3443 ps}
+WaveRestoreZoom {596 ps} {1443 ps}
