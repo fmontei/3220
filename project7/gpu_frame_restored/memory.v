@@ -109,8 +109,7 @@ reg[`DATA_WIDTH-1:0] DataMem[0:`INST_MEM_SIZE-1];
 // INITIAL STATEMENT GOES HERE
 /////////////////////////////////////////
 //
-initial 
-begin
+initial begin
   $readmemh("data.hex", DataMem);
 end
 
@@ -119,19 +118,36 @@ end
 /////////////////////////////////////////
 //
 always @(negedge I_CLOCK) begin
-	
-
-	 case (I_Opcode)
-	   `OP_ADD_D: begin
+	case (I_Opcode)
+		`OP_ADD_D: begin
 			O_DestValue <= I_DestValue;
 			O_DestRegIdx <= I_DestRegIdx;
 		end
-		
+
 		`OP_ADDI_D: begin
 			O_DestValue <= I_DestValue;
 			O_DestRegIdx <= I_DestRegIdx;
 		end
-	 endcase
+		
+		`OP_ADDI_F: begin
+			O_DestValue <= I_DestValue;
+			O_DestRegIdx <= I_DestRegIdx;
+		end
+		
+		`OP_MOVI_D: begin
+			O_DestValue <= I_DestValue;
+			O_DestRegIdx <= I_DestRegIdx;
+		end
+		
+		`OP_MOVI_F: begin
+			O_DestValue <= I_DestValue;
+			O_DestRegIdx <= I_DestRegIdx;
+		end
+		
+		/* Nothing to be done: we're not writing to a destination register. */
+		`OP_CMPI: begin
+		end
+	endcase
 end
 
 /////////////////////////////////////////
@@ -142,12 +158,10 @@ always @(negedge I_CLOCK) begin
 	O_LOCK <= I_LOCK;
 	O_Opcode <= I_Opcode;
 
-	if (I_LOCK == 1'b1)
-	begin
+	if (I_LOCK == 1'b1) begin
 
-	end else // if (I_LOCK == 1'b1)
-	begin
-		  
+	end else begin // if (I_LOCK == 1'b1)
+	  
 	end // if (I_LOCK == 1'b1)
 end // always @(negedge I_CLOCK)
 
@@ -180,9 +194,10 @@ assign mar_line_addr = (I_MARValue >> 1) ; // data is stored with word address
 always @(*) begin
 	if (I_EX_Valid) begin
 		if (I_Opcode == `OP_LDW) begin
-		dst_value = (DataMem[mar_line_addr]);
+			dst_value = (DataMem[mar_line_addr]);
+		end
 	end
-	else 
+	else begin
 		dst_value = I_DestValue;
 	end // if (I_EX_Valid)
 end // always @ (*)

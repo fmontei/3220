@@ -111,8 +111,7 @@ output  O_CCWEn_Signal;
 wire [`REG_WIDTH-1:0] Imm32;
 //assign O_RegWEn_Signal = (I_DE_Valid == 1) ? 1 : 0;
 
-   
-
+  
 /////////////////////////////////////////
 // ALWAYS STATEMENT GOES HERE
 /////////////////////////////////////////
@@ -160,9 +159,17 @@ always @(*) begin
 		end
 
 		`OP_MOVI_D: begin 
+			ALU_O_DestValue = I_Imm;
+			ALU_O_DestRegIdx = I_DestRegIdx; 
+			CCWEn = 1;
+			RegWEn = 1;
 		end
 
 		`OP_MOVI_F: begin 
+			ALU_O_DestValue = I_Imm;
+			ALU_O_DestRegIdx = I_DestRegIdx; 
+			CCWEn = 1;
+			RegWEn = 1;
 		end
 
 		`OP_VMOV: begin 
@@ -174,7 +181,8 @@ always @(*) begin
 		`OP_CMP: begin
 		end
 
-		`OP_CMPI: begin		  
+		`OP_CMPI: begin
+			ALU_O_DestValue = I_Src1Value - I_Imm;
 		end
 		 
 		`OP_VCOMPMOV: begin  

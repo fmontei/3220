@@ -209,6 +209,9 @@ always @(*) begin
 		end
 
 		`OP_ADD_F: begin 
+			Src1Value = RF[I_IR[19:16]];
+			Src2Value = RF[I_IR[11:8]];
+			DestRegIdx = I_IR[23:20];
 			if (((I_IR[19:16] == I_EDDestRegIdx) && I_EDDestWrite)  || 
 				((I_IR[19:16] == I_MDDestRegIdx) && I_MDDestWrite) ||
 				((I_IR[11:8] == I_EDDestRegIdx)  && I_EDDestWrite) || 
@@ -220,7 +223,6 @@ always @(*) begin
 		  
 		`OP_ADDI_D: begin
 			Src1Value = RF[I_IR[19:16]];
-			//Imm = {16{I_IR[15]}, I_IR[15:0]};
 			DestRegIdx = I_IR[23:20];
 			/* Only one source register exists for this instruction */
 			if (((I_IR[19:16] == I_EDDestRegIdx) && I_EDDestWrite) || 
@@ -250,9 +252,11 @@ always @(*) begin
 		end
 
 		`OP_MOVI_D: begin 
+			DestRegIdx = I_IR[19:16];
 		end
 
 		`OP_MOVI_F: begin 
+			DestRegIdx = I_IR[19:16];
 		end
 
 		`OP_VMOV: begin 
@@ -264,7 +268,13 @@ always @(*) begin
 		`OP_CMP: begin
 		end
 
-		`OP_CMPI: begin		  
+		`OP_CMPI: begin	
+			Src1Value = RF[I_IR[19:16]];
+			if (((I_IR[19:16] == I_EDDestRegIdx) && I_EDDestWrite) || 
+				((I_IR[19:16] == I_MDDestRegIdx) && I_MDDestWrite))
+				dep_stall = 1;
+			else 
+				dep_stall = 0;
 		end
 		 
 		`OP_VCOMPMOV: begin  
@@ -405,10 +415,7 @@ end // always @(posedge I_CLOCK)
 // 2. To update valid bit for the corresponding register (for both writeback instruction and current instruction) 
 /////////////////////////////////////////
 always @(negedge I_CLOCK) begin
-  O_LOCK <= I_LOCK;
-
-
-
+	O_LOCK <= I_LOCK;
 
 	if (I_LOCK == 1'b1) begin
 		O_PC <= I_PC;
