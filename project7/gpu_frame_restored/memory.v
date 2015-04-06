@@ -67,9 +67,9 @@ input [2:0] I_CCValue;
 input [`REG_WIDTH-1:0] I_MARValue;
 input [`REG_WIDTH-1:0] I_MDRValue;
 
-input    I_RegWEn;
-input    I_VRegWEn;
-input    I_CCWEn;
+input I_RegWEn;
+input I_VRegWEn;
+input I_CCWEn;
 
 // GPU pipeline stall signal    
 input    I_GPUStallSignal; 
@@ -120,6 +120,11 @@ end
 always @(negedge I_CLOCK) begin
 	case (I_Opcode)
 		`OP_ADD_D: begin
+			O_DestValue <= I_DestValue;
+			O_DestRegIdx <= I_DestRegIdx;
+		end
+		
+		`OP_ADD_F: begin
 			O_DestValue <= I_DestValue;
 			O_DestRegIdx <= I_DestRegIdx;
 		end
@@ -186,7 +191,7 @@ SevenSeg sseg3(.OUT(O_HEX0), .IN(HexOut[3:0]));
 reg [9:0] LedROut;
 reg [7:0] LedGOut;
 wire [`DATA_MEM_ADDR_SIZE-1:0] mar_line_addr;
-reg [`DATA_WIDTH-1:0]      dst_value;
+reg [`DATA_WIDTH-1:0] dst_value;
 	 
 assign mar_line_addr = (I_MARValue >> 1) ; // data is stored with word address
     
@@ -224,7 +229,7 @@ always @(negedge I_CLOCK) begin
 		if (I_Opcode == `OP_STW) begin
 			// Memory-mapped IO operations 
 			// HexOut <= I_MDRValue;
-			if ( I_MARValue[9:0] == `ADDRHEX)
+			if (I_MARValue[9:0] == `ADDRHEX)
 				HexOut <= I_MDRValue;
 			else if (I_MARValue[9:0] == `ADDRLEDR)
 				LedROut <= I_MDRValue;

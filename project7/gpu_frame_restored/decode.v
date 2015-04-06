@@ -143,12 +143,9 @@ reg VRF_VALID[0:`NUM_VRF-1]; // Valid bits for Vector Register File
 wire [`REG_WIDTH-1:0] Imm32; // Sign-extended immediate value
 reg [2:0] ConditionalCode; // Set based on the written-back result
 
-
-
 /////////////////////////////////////////
 // INITIAL/ASSIGN STATEMENT GOES HERE
 /////////////////////////////////////////
-//
 reg[7:0] trav;
 
 initial begin
@@ -233,7 +230,13 @@ always @(*) begin
 		end
 
 		`OP_ADDI_F: begin
-
+			Src1Value = RF[I_IR[19:16]];
+			DestRegIdx = I_IR[23:20];
+			if (((I_IR[19:16] == I_EDDestRegIdx) && I_EDDestWrite) || 
+				((I_IR[19:16] == I_MDDestRegIdx) && I_MDDestWrite))
+				dep_stall = 1;
+			else 
+				dep_stall = 0;
 		end
 
 		`OP_VADD: begin 
@@ -293,6 +296,8 @@ always @(*) begin
 		end
 
 		`OP_STW: begin
+			Src1Value = RF[I_IR[23:20]]; // Src
+			DestRegIdx = RF[I_IR[19:16]]; // Base
 		end
 
 		`OP_BRP: begin

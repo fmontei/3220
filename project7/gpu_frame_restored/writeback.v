@@ -104,6 +104,16 @@ always @(*) begin
 			end 
 		end
 		
+		`OP_ADD_F: begin
+			if (I_MEM_Valid == 1) begin 
+				O_RegWEn = 1'b1;
+				O_WriteBackRegIdx = I_DestRegIdx;
+				O_WriteBackData = I_DestValue;
+				O_CCWEn = 1'b1;
+				O_CCValue = I_CCValue;
+			end 
+		end
+		
 		`OP_ADDI_D: begin
 			if (I_MEM_Valid == 1) begin 
 				O_RegWEn = 1'b1;

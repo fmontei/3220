@@ -1,5 +1,5 @@
 Analysis & Synthesis report for lg_highlevel
-Mon Apr 06 00:51:37 2015
+Mon Apr 06 15:04:54 2015
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -15,24 +15,22 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis IP Cores Summary
   9. State Machine - |lg_highlevel|Fetch:Fetch0|branch_detected
- 10. Registers Removed During Synthesis
- 11. Removed Registers Triggering Further Register Optimizations
- 12. General Register Statistics
- 13. Inverted Register Statistics
- 14. Multiplexer Restructuring Statistics (Restructuring Performed)
- 15. Source assignments for Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated
+ 10. User-Specified and Inferred Latches
+ 11. Registers Removed During Synthesis
+ 12. Removed Registers Triggering Further Register Optimizations
+ 13. General Register Statistics
+ 14. Inverted Register Statistics
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
  16. Parameter Settings for User Entity Instance: pll:pll0|altpll:altpll_component
- 17. Parameter Settings for Inferred Entity Instance: Decode:Decode0|altsyncram:RF_rtl_0
- 18. altpll Parameter Settings by Entity Instance
- 19. altsyncram Parameter Settings by Entity Instance
- 20. Port Connectivity Checks: "Gpu:Gpu0"
- 21. Port Connectivity Checks: "VgaController:VgaController0"
- 22. Port Connectivity Checks: "Writeback:Writeback0"
- 23. Port Connectivity Checks: "Execute:Execute0|SignExtension:SE0"
- 24. Port Connectivity Checks: "Decode:Decode0|SignExtension:SE0"
- 25. Elapsed Time Per Partition
- 26. Analysis & Synthesis Messages
- 27. Analysis & Synthesis Suppressed Messages
+ 17. altpll Parameter Settings by Entity Instance
+ 18. Port Connectivity Checks: "Gpu:Gpu0"
+ 19. Port Connectivity Checks: "VgaController:VgaController0"
+ 20. Port Connectivity Checks: "Writeback:Writeback0"
+ 21. Port Connectivity Checks: "Execute:Execute0|SignExtension:SE0"
+ 22. Port Connectivity Checks: "Decode:Decode0|SignExtension:SE0"
+ 23. Elapsed Time Per Partition
+ 24. Analysis & Synthesis Messages
+ 25. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -58,15 +56,15 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Apr 06 00:51:37 2015           ;
+; Analysis & Synthesis Status        ; Successful - Mon Apr 06 15:04:54 2015           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; lg_highlevel                                    ;
 ; Top-level Entity Name              ; lg_highlevel                                    ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 277                                             ;
-;     Total combinational functions  ; 251                                             ;
-;     Dedicated logic registers      ; 155                                             ;
-; Total registers                    ; 155                                             ;
+; Total logic elements               ; 989                                             ;
+;     Total combinational functions  ; 813                                             ;
+;     Dedicated logic registers      ; 465                                             ;
+; Total registers                    ; 465                                             ;
 ; Total pins                         ; 116                                             ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
@@ -166,48 +164,38 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 ; Processors                 ; Number ;
 +----------------------------+--------+
-; Number detected on machine ; 4      ;
+; Number detected on machine ; 8      ;
 ; Maximum allowed            ; 1      ;
 +----------------------------+--------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                                                   ;
-+----------------------------------------------+-----------------+-------------------------------------------------------+---------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path             ; Used in Netlist ; File Type                                             ; File Name with Absolute Path                                                          ; Library ;
-+----------------------------------------------+-----------------+-------------------------------------------------------+---------------------------------------------------------------------------------------+---------+
-; gpu.v                                        ; yes             ; User Verilog HDL File                                 ; D:/CPSC/3220/project7/gpu_frame_restored/gpu.v                                        ;         ;
-; vga_controller.v                             ; yes             ; User Verilog HDL File                                 ; D:/CPSC/3220/project7/gpu_frame_restored/vga_controller.v                             ;         ;
-; pixel_gen.v                                  ; yes             ; User Verilog HDL File                                 ; D:/CPSC/3220/project7/gpu_frame_restored/pixel_gen.v                                  ;         ;
-; multi_sram.v                                 ; yes             ; User Verilog HDL File                                 ; D:/CPSC/3220/project7/gpu_frame_restored/multi_sram.v                                 ;         ;
-; seven_segment.v                              ; yes             ; User Verilog HDL File                                 ; D:/CPSC/3220/project7/gpu_frame_restored/seven_segment.v                              ;         ;
-; writeback.v                                  ; yes             ; User Verilog HDL File                                 ; D:/CPSC/3220/project7/gpu_frame_restored/writeback.v                                  ;         ;
-; memory.v                                     ; yes             ; User Verilog HDL File                                 ; D:/CPSC/3220/project7/gpu_frame_restored/memory.v                                     ;         ;
-; execute.v                                    ; yes             ; User Verilog HDL File                                 ; D:/CPSC/3220/project7/gpu_frame_restored/execute.v                                    ;         ;
-; sign_extension.v                             ; yes             ; User Verilog HDL File                                 ; D:/CPSC/3220/project7/gpu_frame_restored/sign_extension.v                             ;         ;
-; decode.v                                     ; yes             ; User Verilog HDL File                                 ; D:/CPSC/3220/project7/gpu_frame_restored/decode.v                                     ;         ;
-; lg_highlevel.v                               ; yes             ; User Verilog HDL File                                 ; D:/CPSC/3220/project7/gpu_frame_restored/lg_highlevel.v                               ;         ;
-; global_def.h                                 ; yes             ; User Unspecified File                                 ; D:/CPSC/3220/project7/gpu_frame_restored/global_def.h                                 ;         ;
-; fetch.v                                      ; yes             ; User Verilog HDL File                                 ; D:/CPSC/3220/project7/gpu_frame_restored/fetch.v                                      ;         ;
-; pll.v                                        ; yes             ; User Wizard-Generated File                            ; D:/CPSC/3220/project7/gpu_frame_restored/pll.v                                        ;         ;
-; data.hex                                     ; yes             ; Auto-Found Hexadecimal (Intel-Format) File            ; D:/CPSC/3220/project7/gpu_frame_restored/data.hex                                     ;         ;
-; test_branch.hex                              ; yes             ; Auto-Found Hexadecimal (Intel-Format) File            ; D:/CPSC/3220/project7/gpu_frame_restored/test_branch.hex                              ;         ;
-; altpll.tdf                                   ; yes             ; Megafunction                                          ; d:/cpsc/altera/quartus/libraries/megafunctions/altpll.tdf                             ;         ;
-; aglobal130.inc                               ; yes             ; Megafunction                                          ; d:/cpsc/altera/quartus/libraries/megafunctions/aglobal130.inc                         ;         ;
-; stratix_pll.inc                              ; yes             ; Megafunction                                          ; d:/cpsc/altera/quartus/libraries/megafunctions/stratix_pll.inc                        ;         ;
-; stratixii_pll.inc                            ; yes             ; Megafunction                                          ; d:/cpsc/altera/quartus/libraries/megafunctions/stratixii_pll.inc                      ;         ;
-; cycloneii_pll.inc                            ; yes             ; Megafunction                                          ; d:/cpsc/altera/quartus/libraries/megafunctions/cycloneii_pll.inc                      ;         ;
-; altsyncram.tdf                               ; yes             ; Megafunction                                          ; d:/cpsc/altera/quartus/libraries/megafunctions/altsyncram.tdf                         ;         ;
-; stratix_ram_block.inc                        ; yes             ; Megafunction                                          ; d:/cpsc/altera/quartus/libraries/megafunctions/stratix_ram_block.inc                  ;         ;
-; lpm_mux.inc                                  ; yes             ; Megafunction                                          ; d:/cpsc/altera/quartus/libraries/megafunctions/lpm_mux.inc                            ;         ;
-; lpm_decode.inc                               ; yes             ; Megafunction                                          ; d:/cpsc/altera/quartus/libraries/megafunctions/lpm_decode.inc                         ;         ;
-; a_rdenreg.inc                                ; yes             ; Megafunction                                          ; d:/cpsc/altera/quartus/libraries/megafunctions/a_rdenreg.inc                          ;         ;
-; altrom.inc                                   ; yes             ; Megafunction                                          ; d:/cpsc/altera/quartus/libraries/megafunctions/altrom.inc                             ;         ;
-; altram.inc                                   ; yes             ; Megafunction                                          ; d:/cpsc/altera/quartus/libraries/megafunctions/altram.inc                             ;         ;
-; altdpram.inc                                 ; yes             ; Megafunction                                          ; d:/cpsc/altera/quartus/libraries/megafunctions/altdpram.inc                           ;         ;
-; db/altsyncram_rqh1.tdf                       ; yes             ; Auto-Generated Megafunction                           ; D:/CPSC/3220/project7/gpu_frame_restored/db/altsyncram_rqh1.tdf                       ;         ;
-; db/lg_highlevel.ram0_decode_8f0a662c.hdl.mif ; yes             ; Auto-Generated Auto-Found Memory Initialization File  ; D:/CPSC/3220/project7/gpu_frame_restored/db/lg_highlevel.ram0_decode_8f0a662c.hdl.mif ;         ;
-+----------------------------------------------+-----------------+-------------------------------------------------------+---------------------------------------------------------------------------------------+---------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                             ;
++----------------------------------+-----------------+---------------------------------------------+-----------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                                   ; File Name with Absolute Path                                          ; Library ;
++----------------------------------+-----------------+---------------------------------------------+-----------------------------------------------------------------------+---------+
+; gpu.v                            ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/gpu.v                        ;         ;
+; vga_controller.v                 ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/vga_controller.v             ;         ;
+; pixel_gen.v                      ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/pixel_gen.v                  ;         ;
+; multi_sram.v                     ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/multi_sram.v                 ;         ;
+; seven_segment.v                  ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/seven_segment.v              ;         ;
+; writeback.v                      ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/writeback.v                  ;         ;
+; memory.v                         ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/memory.v                     ;         ;
+; execute.v                        ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/execute.v                    ;         ;
+; sign_extension.v                 ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/sign_extension.v             ;         ;
+; decode.v                         ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/decode.v                     ;         ;
+; lg_highlevel.v                   ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/lg_highlevel.v               ;         ;
+; global_def.h                     ; yes             ; User Unspecified File                       ; E:/CPSC/3220/project7/gpu_frame_restored/global_def.h                 ;         ;
+; fetch.v                          ; yes             ; User Verilog HDL File                       ; E:/CPSC/3220/project7/gpu_frame_restored/fetch.v                      ;         ;
+; pll.v                            ; yes             ; User Wizard-Generated File                  ; E:/CPSC/3220/project7/gpu_frame_restored/pll.v                        ;         ;
+; data.hex                         ; yes             ; Auto-Found Hexadecimal (Intel-Format) File  ; E:/CPSC/3220/project7/gpu_frame_restored/data.hex                     ;         ;
+; sum.hex                          ; yes             ; Auto-Found Hexadecimal (Intel-Format) File  ; E:/CPSC/3220/project7/gpu_frame_restored/sum.hex                      ;         ;
+; altpll.tdf                       ; yes             ; Megafunction                                ; e:/programs/quartus/quartus/libraries/megafunctions/altpll.tdf        ;         ;
+; aglobal130.inc                   ; yes             ; Megafunction                                ; e:/programs/quartus/quartus/libraries/megafunctions/aglobal130.inc    ;         ;
+; stratix_pll.inc                  ; yes             ; Megafunction                                ; e:/programs/quartus/quartus/libraries/megafunctions/stratix_pll.inc   ;         ;
+; stratixii_pll.inc                ; yes             ; Megafunction                                ; e:/programs/quartus/quartus/libraries/megafunctions/stratixii_pll.inc ;         ;
+; cycloneii_pll.inc                ; yes             ; Megafunction                                ; e:/programs/quartus/quartus/libraries/megafunctions/cycloneii_pll.inc ;         ;
++----------------------------------+-----------------+---------------------------------------------+-----------------------------------------------------------------------+---------+
 
 
 +--------------------------------------------------------------------------------------+
@@ -215,20 +203,20 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+----------------------------------------+
 ; Resource                                    ; Usage                                  ;
 +---------------------------------------------+----------------------------------------+
-; Estimated Total logic elements              ; 277                                    ;
+; Estimated Total logic elements              ; 989                                    ;
 ;                                             ;                                        ;
-; Total combinational functions               ; 251                                    ;
+; Total combinational functions               ; 813                                    ;
 ; Logic element usage by number of LUT inputs ;                                        ;
-;     -- 4 input functions                    ; 47                                     ;
-;     -- 3 input functions                    ; 58                                     ;
-;     -- <=2 input functions                  ; 146                                    ;
+;     -- 4 input functions                    ; 344                                    ;
+;     -- 3 input functions                    ; 261                                    ;
+;     -- <=2 input functions                  ; 208                                    ;
 ;                                             ;                                        ;
 ; Logic elements by mode                      ;                                        ;
-;     -- normal mode                          ; 118                                    ;
-;     -- arithmetic mode                      ; 133                                    ;
+;     -- normal mode                          ; 616                                    ;
+;     -- arithmetic mode                      ; 197                                    ;
 ;                                             ;                                        ;
-; Total registers                             ; 155                                    ;
-;     -- Dedicated logic registers            ; 155                                    ;
+; Total registers                             ; 465                                    ;
+;     -- Dedicated logic registers            ; 465                                    ;
 ;     -- I/O registers                        ; 0                                      ;
 ;                                             ;                                        ;
 ; I/O pins                                    ; 116                                    ;
@@ -237,9 +225,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;     -- PLLs                                 ; 1                                      ;
 ;                                             ;                                        ;
 ; Maximum fan-out node                        ; pll:pll0|altpll:altpll_component|_clk0 ;
-; Maximum fan-out                             ; 155                                    ;
-; Total fan-out                               ; 1297                                   ;
-; Average fan-out                             ; 2.48                                   ;
+; Maximum fan-out                             ; 469                                    ;
+; Total fan-out                               ; 4173                                   ;
+; Average fan-out                             ; 2.99                                   ;
 +---------------------------------------------+----------------------------------------+
 
 
@@ -248,11 +236,20 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +-----------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------+--------------+
 ; Compilation Hierarchy Node        ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                            ; Library Name ;
 +-----------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------+--------------+
-; |lg_highlevel                     ; 251 (0)           ; 155 (0)      ; 0           ; 0            ; 0       ; 0         ; 116  ; 0            ; |lg_highlevel                                  ; work         ;
+; |lg_highlevel                     ; 813 (0)           ; 465 (0)      ; 0           ; 0            ; 0       ; 0         ; 116  ; 0            ; |lg_highlevel                                  ; work         ;
+;    |Decode:Decode0|               ; 242 (242)         ; 155 (155)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lg_highlevel|Decode:Decode0                   ; work         ;
+;    |Execute:Execute0|             ; 189 (189)         ; 63 (63)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lg_highlevel|Execute:Execute0                 ; work         ;
+;    |Fetch:Fetch0|                 ; 46 (46)           ; 27 (27)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lg_highlevel|Fetch:Fetch0                     ; work         ;
 ;    |Gpu:Gpu0|                     ; 78 (78)           ; 70 (70)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lg_highlevel|Gpu:Gpu0                         ; work         ;
+;    |Memory:Memory0|               ; 57 (29)           ; 65 (65)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lg_highlevel|Memory:Memory0                   ; work         ;
+;       |SevenSeg:sseg0|            ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lg_highlevel|Memory:Memory0|SevenSeg:sseg0    ; work         ;
+;       |SevenSeg:sseg1|            ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lg_highlevel|Memory:Memory0|SevenSeg:sseg1    ; work         ;
+;       |SevenSeg:sseg2|            ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lg_highlevel|Memory:Memory0|SevenSeg:sseg2    ; work         ;
+;       |SevenSeg:sseg3|            ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lg_highlevel|Memory:Memory0|SevenSeg:sseg3    ; work         ;
 ;    |MultiSram:MultiSram0|         ; 18 (18)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lg_highlevel|MultiSram:MultiSram0             ; work         ;
 ;    |PixelGen:PixelGen0|           ; 83 (83)           ; 31 (31)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lg_highlevel|PixelGen:PixelGen0               ; work         ;
 ;    |VgaController:VgaController0| ; 72 (72)           ; 54 (54)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lg_highlevel|VgaController:VgaController0     ; work         ;
+;    |Writeback:Writeback0|         ; 28 (28)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lg_highlevel|Writeback:Writeback0             ; work         ;
 ;    |pll:pll0|                     ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lg_highlevel|pll:pll0                         ; work         ;
 ;       |altpll:altpll_component|   ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |lg_highlevel|pll:pll0|altpll:altpll_component ; work         ;
 +-----------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------+--------------+
@@ -264,7 +261,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------+--------------+---------+--------------+--------------+------------------------+------------------------------------------------+
 ; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance        ; IP Include File                                ;
 +--------+--------------+---------+--------------+--------------+------------------------+------------------------------------------------+
-; Altera ; ALTPLL       ; 12.1    ; N/A          ; N/A          ; |lg_highlevel|pll:pll0 ; D:/CPSC/3220/project7/gpu_frame_restored/pll.v ;
+; Altera ; ALTPLL       ; 12.1    ; N/A          ; N/A          ; |lg_highlevel|pll:pll0 ; E:/CPSC/3220/project7/gpu_frame_restored/pll.v ;
 +--------+--------------+---------+--------------+--------------+------------------------+------------------------------------------------+
 
 
@@ -279,6 +276,116 @@ Encoding Type:  One-Hot
 +-------------------+----------------------------------------+
 
 
++-----------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                             ;
++------------------------------------------------------+---------------------------------+------------------------+
+; Latch Name                                           ; Latch Enable Signal             ; Free of Timing Hazards ;
++------------------------------------------------------+---------------------------------+------------------------+
+; Execute:Execute0|MDRValue[2]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MARValue[0]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MARValue[1]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MARValue[2]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MARValue[3]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MARValue[4]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MARValue[5]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MARValue[6]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MARValue[7]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MARValue[8]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MARValue[9]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MDRValue[1]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MDRValue[0]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MDRValue[3]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MDRValue[6]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MDRValue[5]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MDRValue[4]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MDRValue[7]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MDRValue[10]                        ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MDRValue[9]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MDRValue[8]                         ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MDRValue[11]                        ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MDRValue[14]                        ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MDRValue[13]                        ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MDRValue[12]                        ; Execute:Execute0|Decoder0       ; yes                    ;
+; Execute:Execute0|MDRValue[15]                        ; Execute:Execute0|Decoder0       ; yes                    ;
+; Decode:Decode0|Src1Value[2]                          ; Decode:Decode0|WideOr3          ; yes                    ;
+; Decode:Decode0|DestRegIdx[0]                         ; Decode:Decode0|WideOr5          ; yes                    ;
+; Decode:Decode0|DestRegIdx[1]                         ; Decode:Decode0|WideOr5          ; yes                    ;
+; Decode:Decode0|DestRegIdx[2]                         ; Decode:Decode0|WideOr5          ; yes                    ;
+; Decode:Decode0|DestRegIdx[3]                         ; Decode:Decode0|WideOr5          ; yes                    ;
+; Execute:Execute0|My_O_BranchAddrSelect_Signal        ; Execute:Execute0|WideOr1        ; yes                    ;
+; Decode:Decode0|dep_stall                             ; Decode:Decode0|WideOr1          ; yes                    ;
+; Decode:Decode0|Src1Value[1]                          ; Decode:Decode0|WideOr3          ; yes                    ;
+; Decode:Decode0|Src1Value[0]                          ; Decode:Decode0|WideOr3          ; yes                    ;
+; Decode:Decode0|Src1Value[3]                          ; Decode:Decode0|WideOr3          ; yes                    ;
+; Decode:Decode0|Src1Value[6]                          ; Decode:Decode0|WideOr3          ; yes                    ;
+; Decode:Decode0|Src1Value[5]                          ; Decode:Decode0|WideOr3          ; yes                    ;
+; Decode:Decode0|Src1Value[4]                          ; Decode:Decode0|WideOr3          ; yes                    ;
+; Decode:Decode0|Src1Value[7]                          ; Decode:Decode0|WideOr3          ; yes                    ;
+; Decode:Decode0|Src1Value[10]                         ; Decode:Decode0|WideOr3          ; yes                    ;
+; Decode:Decode0|Src1Value[9]                          ; Decode:Decode0|WideOr3          ; yes                    ;
+; Decode:Decode0|Src1Value[8]                          ; Decode:Decode0|WideOr3          ; yes                    ;
+; Decode:Decode0|Src1Value[11]                         ; Decode:Decode0|WideOr3          ; yes                    ;
+; Decode:Decode0|Src1Value[14]                         ; Decode:Decode0|WideOr3          ; yes                    ;
+; Decode:Decode0|Src1Value[13]                         ; Decode:Decode0|WideOr3          ; yes                    ;
+; Decode:Decode0|Src1Value[12]                         ; Decode:Decode0|WideOr3          ; yes                    ;
+; Decode:Decode0|Src1Value[15]                         ; Decode:Decode0|WideOr3          ; yes                    ;
+; Execute:Execute0|My_O_BranchPC_Signal[2]             ; Execute:Execute0|Selector49     ; yes                    ;
+; Execute:Execute0|My_O_BranchPC_Signal[3]             ; Execute:Execute0|Selector49     ; yes                    ;
+; Execute:Execute0|My_O_BranchPC_Signal[4]             ; Execute:Execute0|Selector49     ; yes                    ;
+; Execute:Execute0|My_O_BranchPC_Signal[5]             ; Execute:Execute0|Selector49     ; yes                    ;
+; Execute:Execute0|My_O_BranchPC_Signal[6]             ; Execute:Execute0|Selector49     ; yes                    ;
+; Execute:Execute0|My_O_BranchPC_Signal[7]             ; Execute:Execute0|Selector49     ; yes                    ;
+; Execute:Execute0|ALU_O_DestRegIdx[2]                 ; Execute:Execute0|WideOr3        ; yes                    ;
+; Execute:Execute0|ALU_O_DestRegIdx[3]                 ; Execute:Execute0|WideOr3        ; yes                    ;
+; Execute:Execute0|ALU_O_DestRegIdx[0]                 ; Execute:Execute0|WideOr3        ; yes                    ;
+; Execute:Execute0|ALU_O_DestRegIdx[1]                 ; Execute:Execute0|WideOr3        ; yes                    ;
+; Writeback:Writeback0|O_WriteBackData[2]              ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackRegIdx[0]            ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackRegIdx[1]            ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackRegIdx[2]            ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackRegIdx[3]            ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackData[0]              ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackData[1]              ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackData[3]              ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_CCValue[2]                    ; Writeback:Writeback0|Selector1  ; yes                    ;
+; Writeback:Writeback0|O_CCValue[1]                    ; Writeback:Writeback0|Selector1  ; yes                    ;
+; Writeback:Writeback0|O_CCValue[0]                    ; Writeback:Writeback0|Selector1  ; yes                    ;
+; Writeback:Writeback0|O_WriteBackData[6]              ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackData[5]              ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackData[4]              ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackData[7]              ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackData[10]             ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackData[9]              ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackData[8]              ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackData[11]             ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackData[14]             ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackData[13]             ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackData[12]             ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Writeback:Writeback0|O_WriteBackData[15]             ; Writeback:Writeback0|Selector28 ; yes                    ;
+; Execute:Execute0|ALU_O_DestValue[2]                  ; Execute:Execute0|WideOr2        ; yes                    ;
+; Execute:Execute0|Branch_Was_Taken.1_1818             ; Execute:Execute0|WideOr1        ; yes                    ;
+; Execute:Execute0|ALU_O_DestValue[0]                  ; Execute:Execute0|WideOr2        ; yes                    ;
+; Execute:Execute0|ALU_O_DestValue[1]                  ; Execute:Execute0|WideOr2        ; yes                    ;
+; Execute:Execute0|ALU_O_DestValue[3]                  ; Execute:Execute0|WideOr2        ; yes                    ;
+; Execute:Execute0|CCValue[2]                          ; GND                             ; yes                    ;
+; Execute:Execute0|CCValue[1]                          ; GND                             ; yes                    ;
+; Execute:Execute0|CCValue[0]                          ; GND                             ; yes                    ;
+; Execute:Execute0|ALU_O_DestValue[6]                  ; Execute:Execute0|WideOr2        ; yes                    ;
+; Execute:Execute0|ALU_O_DestValue[5]                  ; Execute:Execute0|WideOr2        ; yes                    ;
+; Execute:Execute0|ALU_O_DestValue[4]                  ; Execute:Execute0|WideOr2        ; yes                    ;
+; Execute:Execute0|ALU_O_DestValue[7]                  ; Execute:Execute0|WideOr2        ; yes                    ;
+; Execute:Execute0|ALU_O_DestValue[10]                 ; Execute:Execute0|WideOr2        ; yes                    ;
+; Execute:Execute0|ALU_O_DestValue[9]                  ; Execute:Execute0|WideOr2        ; yes                    ;
+; Execute:Execute0|ALU_O_DestValue[8]                  ; Execute:Execute0|WideOr2        ; yes                    ;
+; Execute:Execute0|ALU_O_DestValue[11]                 ; Execute:Execute0|WideOr2        ; yes                    ;
+; Execute:Execute0|ALU_O_DestValue[14]                 ; Execute:Execute0|WideOr2        ; yes                    ;
+; Execute:Execute0|ALU_O_DestValue[13]                 ; Execute:Execute0|WideOr2        ; yes                    ;
+; Execute:Execute0|ALU_O_DestValue[12]                 ; Execute:Execute0|WideOr2        ; yes                    ;
+; Number of user-specified and inferred latches = 117  ;                                 ;                        ;
++------------------------------------------------------+---------------------------------+------------------------+
+Table restricted to first 100 entries. Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
 +------------------------------------------------------------------------------------+
 ; Registers Removed During Synthesis                                                 ;
 +-----------------------------------------+------------------------------------------+
@@ -287,15 +394,6 @@ Encoding Type:  One-Hot
 ; Gpu:Gpu0|O_GPU_WRITE                    ; Stuck at VCC due to stuck port data_in   ;
 ; Gpu:Gpu0|O_GPU_READ                     ; Stuck at GND due to stuck port data_in   ;
 ; Gpu:Gpu0|O_GPU_DATA[0..3,12..15]        ; Stuck at GND due to stuck port data_in   ;
-; Memory:Memory0|LedROut[0..9]            ; Stuck at VCC due to stuck port data_in   ;
-; Memory:Memory0|LedGOut[0..7]            ; Stuck at VCC due to stuck port data_in   ;
-; Memory:Memory0|HexOut[0..3]             ; Stuck at VCC due to stuck port data_in   ;
-; Memory:Memory0|HexOut[4]                ; Stuck at GND due to stuck port data_in   ;
-; Memory:Memory0|HexOut[5..7]             ; Stuck at VCC due to stuck port data_in   ;
-; Memory:Memory0|HexOut[8]                ; Stuck at GND due to stuck port data_in   ;
-; Memory:Memory0|HexOut[9..13]            ; Stuck at VCC due to stuck port data_in   ;
-; Memory:Memory0|HexOut[14]               ; Stuck at GND due to stuck port data_in   ;
-; Memory:Memory0|HexOut[15]               ; Stuck at VCC due to stuck port data_in   ;
 ; Decode:Decode0|O_IR[14,15]              ; Lost fanout                              ;
 ; Decode:Decode0|O_IR[13]                 ; Merged with Decode:Decode0|O_Imm[13]     ;
 ; Decode:Decode0|O_IR[12]                 ; Merged with Decode:Decode0|O_Imm[12]     ;
@@ -317,478 +415,196 @@ Encoding Type:  One-Hot
 ; Decode:Decode0|O_IR[30]                 ; Merged with Decode:Decode0|O_Opcode[6]   ;
 ; Decode:Decode0|O_IR[31]                 ; Merged with Decode:Decode0|O_Opcode[7]   ;
 ; Execute:Execute0|O_RegWEn               ; Merged with Execute:Execute0|O_CCWEn     ;
-; Fetch:Fetch0|O_IR[19,23]                ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|O_DestRegIdx[3]          ; Stuck at GND due to stuck port data_in   ;
-; Execute:Execute0|O_DestRegIdx[3]        ; Stuck at GND due to stuck port data_in   ;
-; Memory:Memory0|O_DestRegIdx[3]          ; Stuck at GND due to stuck port data_in   ;
-; Fetch:Fetch0|O_IR[28]                   ; Merged with Fetch:Fetch0|O_IR[27]        ;
-; Fetch:Fetch0|O_IR[25,26]                ; Merged with Fetch:Fetch0|O_IR[29]        ;
+; Fetch:Fetch0|O_IR[18,19,21..23]         ; Stuck at GND due to stuck port data_in   ;
 ; Fetch:Fetch0|O_IR[31]                   ; Merged with Fetch:Fetch0|O_IR[30]        ;
-; Fetch:Fetch0|O_IR[3,4,10,12..15]        ; Merged with Fetch:Fetch0|O_IR[11]        ;
-; Fetch:Fetch0|O_IR[5..7,9]               ; Merged with Fetch:Fetch0|O_IR[8]         ;
-; Decode:Decode0|O_Opcode[4]              ; Merged with Decode:Decode0|O_Opcode[3]   ;
-; Decode:Decode0|O_Opcode[1,2]            ; Merged with Decode:Decode0|O_Opcode[5]   ;
 ; Decode:Decode0|O_Opcode[7]              ; Merged with Decode:Decode0|O_Opcode[6]   ;
-; Execute:Execute0|O_Opcode[2,5]          ; Merged with Execute:Execute0|O_Opcode[1] ;
-; Execute:Execute0|O_Opcode[4]            ; Merged with Execute:Execute0|O_Opcode[3] ;
-; Execute:Execute0|O_Opcode[7]            ; Merged with Execute:Execute0|O_Opcode[6] ;
-; Decode:Decode0|O_Imm[4,10..15]          ; Merged with Decode:Decode0|O_Imm[3]      ;
-; Decode:Decode0|O_Imm[6..9]              ; Merged with Decode:Decode0|O_Imm[5]      ;
-; Execute:Execute0|O_IR[28]               ; Merged with Execute:Execute0|O_IR[27]    ;
+; Fetch:Fetch0|O_IR[2,4,9,10,12..15]      ; Merged with Fetch:Fetch0|O_IR[11]        ;
+; Fetch:Fetch0|O_IR[5..7]                 ; Merged with Fetch:Fetch0|O_IR[8]         ;
+; Decode:Decode0|O_Imm[4,9..15]           ; Merged with Decode:Decode0|O_Imm[2]      ;
+; Decode:Decode0|O_Imm[6..8]              ; Merged with Decode:Decode0|O_Imm[5]      ;
 ; Execute:Execute0|O_IR[31]               ; Merged with Execute:Execute0|O_IR[30]    ;
-; Memory:Memory0|O_Opcode[2,5]            ; Merged with Memory:Memory0|O_Opcode[1]   ;
-; Memory:Memory0|O_Opcode[4]              ; Merged with Memory:Memory0|O_Opcode[3]   ;
+; Execute:Execute0|O_Opcode[7]            ; Merged with Execute:Execute0|O_Opcode[6] ;
 ; Memory:Memory0|O_Opcode[7]              ; Merged with Memory:Memory0|O_Opcode[6]   ;
-; Decode:Decode0|RF~143                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~159                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~175                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~191                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~207                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~223                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~239                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~255                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~142                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~158                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~174                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~190                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~206                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~222                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~238                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~254                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~141                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~157                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~173                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~189                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~205                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~221                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~237                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~253                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~140                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~156                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~172                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~188                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~204                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~220                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~236                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~252                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~139                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~155                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~171                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~187                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~203                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~219                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~235                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~251                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~138                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~154                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~170                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~186                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~202                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~218                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~234                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~250                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~137                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~153                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~169                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~185                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~201                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~217                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~233                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~249                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~136                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~152                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~168                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~184                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~200                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~216                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~232                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~248                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~135                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~151                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~167                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~183                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~199                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~215                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~231                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~247                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~134                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~150                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~166                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~182                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~198                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~214                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~230                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~246                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~133                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~149                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~165                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~181                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~197                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~213                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~229                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~245                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~132                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~148                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~164                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~180                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~196                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~212                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~228                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~244                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~131                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~147                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~163                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~179                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~195                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~211                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~227                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~243                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~130                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~146                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~162                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~178                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~194                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~210                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~226                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~242                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~129                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~145                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~161                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~177                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~193                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~209                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~225                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~241                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~128                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~144                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~160                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~176                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~192                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~208                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~224                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|RF~240                   ; Stuck at GND due to stuck port data_in   ;
-; Decode:Decode0|O_PC[8..15]              ; Lost fanout                              ;
-; Fetch:Fetch0|O_PC[8..15]                ; Lost fanout                              ;
-; Fetch:Fetch0|O_LOCK                     ; Lost fanout                              ;
-; Fetch:Fetch0|branch_bubble_count[0..2]  ; Lost fanout                              ;
-; Fetch:Fetch0|O_FE_Valid                 ; Lost fanout                              ;
-; Fetch:Fetch0|O_IR[27,29,30]             ; Lost fanout                              ;
-; Fetch:Fetch0|branch_detected.1          ; Lost fanout                              ;
-; Fetch:Fetch0|O_IR[16,24]                ; Lost fanout                              ;
-; Decode:Decode0|O_DE_Valid               ; Lost fanout                              ;
-; Execute:Execute0|O_CCWEn                ; Lost fanout                              ;
-; Decode:Decode0|O_DestRegIdx[0]          ; Lost fanout                              ;
-; Fetch:Fetch0|O_IR[17]                   ; Lost fanout                              ;
-; Decode:Decode0|O_DestRegIdx[1]          ; Lost fanout                              ;
-; Fetch:Fetch0|O_IR[18]                   ; Lost fanout                              ;
-; Decode:Decode0|O_DestRegIdx[2]          ; Lost fanout                              ;
-; Execute:Execute0|O_DestRegIdx[0..2]     ; Lost fanout                              ;
-; Fetch:Fetch0|O_IR[8,11]                 ; Lost fanout                              ;
-; Decode:Decode0|O_Opcode[3,5,6]          ; Lost fanout                              ;
-; Memory:Memory0|O_DestValue[0]           ; Lost fanout                              ;
-; Memory:Memory0|O_MEM_Valid              ; Lost fanout                              ;
-; Memory:Memory0|O_Opcode[1,3,6]          ; Lost fanout                              ;
-; Memory:Memory0|O_DestValue[1..15]       ; Lost fanout                              ;
-; Memory:Memory0|O_DestRegIdx[0..2]       ; Lost fanout                              ;
-; Decode:Decode0|O_LOCK                   ; Lost fanout                              ;
-; Decode:Decode0|O_Opcode[0]              ; Lost fanout                              ;
-; Decode:Decode0|O_CCValue[0..2]          ; Lost fanout                              ;
-; Execute:Execute0|O_DestValue[0]         ; Lost fanout                              ;
-; Execute:Execute0|O_Opcode[1,3,6]        ; Lost fanout                              ;
-; Execute:Execute0|O_LOCK                 ; Lost fanout                              ;
-; Execute:Execute0|O_EX_Valid             ; Lost fanout                              ;
-; Execute:Execute0|O_DestValue[1..15]     ; Lost fanout                              ;
-; Fetch:Fetch0|O_IR[20..22]               ; Lost fanout                              ;
-; Execute:Execute0|O_IR[27,29,30]         ; Lost fanout                              ;
-; Decode:Decode0|O_PC[2]                  ; Lost fanout                              ;
-; Decode:Decode0|O_Imm[0]                 ; Lost fanout                              ;
-; Decode:Decode0|O_PC[3]                  ; Lost fanout                              ;
-; Decode:Decode0|O_Imm[1]                 ; Lost fanout                              ;
-; Decode:Decode0|O_PC[4]                  ; Lost fanout                              ;
-; Decode:Decode0|O_Imm[2]                 ; Lost fanout                              ;
-; Decode:Decode0|O_PC[5]                  ; Lost fanout                              ;
-; Decode:Decode0|O_Imm[3]                 ; Lost fanout                              ;
-; Decode:Decode0|O_PC[6,7]                ; Lost fanout                              ;
-; Decode:Decode0|O_Imm[5]                 ; Lost fanout                              ;
-; Memory:Memory0|O_CCValue[2]             ; Lost fanout                              ;
-; Memory:Memory0|O_Opcode[0]              ; Lost fanout                              ;
-; Memory:Memory0|O_CCValue[0,1]           ; Lost fanout                              ;
-; Fetch:Fetch0|O_IR[0..2]                 ; Lost fanout                              ;
-; Execute:Execute0|O_CCValue[2]           ; Lost fanout                              ;
-; Execute:Execute0|O_Opcode[0]            ; Lost fanout                              ;
-; Execute:Execute0|O_CCValue[0,1]         ; Lost fanout                              ;
-; Decode:Decode0|O_Src1Value[0]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src2Value[0]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src1Value[1]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src2Value[1]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src1Value[2]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src2Value[2]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src1Value[3]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src2Value[3]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src1Value[4]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src2Value[4]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src1Value[5]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src2Value[5]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src1Value[6]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src2Value[6]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src1Value[7]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src2Value[7]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src1Value[8]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src2Value[8]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src1Value[9]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src2Value[9]           ; Lost fanout                              ;
-; Decode:Decode0|O_Src1Value[10]          ; Lost fanout                              ;
-; Decode:Decode0|O_Src2Value[10]          ; Lost fanout                              ;
-; Decode:Decode0|O_Src1Value[11]          ; Lost fanout                              ;
-; Decode:Decode0|O_Src2Value[11]          ; Lost fanout                              ;
-; Decode:Decode0|O_Src1Value[12]          ; Lost fanout                              ;
-; Decode:Decode0|O_Src2Value[12]          ; Lost fanout                              ;
-; Decode:Decode0|O_Src1Value[13]          ; Lost fanout                              ;
-; Decode:Decode0|O_Src2Value[13]          ; Lost fanout                              ;
-; Decode:Decode0|O_Src1Value[14]          ; Lost fanout                              ;
-; Decode:Decode0|O_Src2Value[14]          ; Lost fanout                              ;
-; Decode:Decode0|O_Src1Value[15]          ; Lost fanout                              ;
-; Decode:Decode0|O_Src2Value[15]          ; Lost fanout                              ;
-; Decode:Decode0|RF~32                    ; Lost fanout                              ;
-; Decode:Decode0|RF~16                    ; Lost fanout                              ;
-; Decode:Decode0|RF~0                     ; Lost fanout                              ;
-; Decode:Decode0|RF~48                    ; Lost fanout                              ;
-; Decode:Decode0|RF~80                    ; Lost fanout                              ;
-; Decode:Decode0|RF~96                    ; Lost fanout                              ;
-; Decode:Decode0|RF~64                    ; Lost fanout                              ;
-; Decode:Decode0|RF~112                   ; Lost fanout                              ;
-; Decode:Decode0|RF~33                    ; Lost fanout                              ;
-; Decode:Decode0|RF~17                    ; Lost fanout                              ;
-; Decode:Decode0|RF~1                     ; Lost fanout                              ;
-; Decode:Decode0|RF~49                    ; Lost fanout                              ;
-; Decode:Decode0|RF~81                    ; Lost fanout                              ;
-; Decode:Decode0|RF~97                    ; Lost fanout                              ;
-; Decode:Decode0|RF~65                    ; Lost fanout                              ;
-; Decode:Decode0|RF~113                   ; Lost fanout                              ;
-; Decode:Decode0|RF~34                    ; Lost fanout                              ;
-; Decode:Decode0|RF~18                    ; Lost fanout                              ;
-; Decode:Decode0|RF~2                     ; Lost fanout                              ;
-; Decode:Decode0|RF~50                    ; Lost fanout                              ;
-; Decode:Decode0|RF~82                    ; Lost fanout                              ;
-; Decode:Decode0|RF~98                    ; Lost fanout                              ;
-; Decode:Decode0|RF~66                    ; Lost fanout                              ;
-; Decode:Decode0|RF~114                   ; Lost fanout                              ;
-; Decode:Decode0|RF~35                    ; Lost fanout                              ;
-; Decode:Decode0|RF~19                    ; Lost fanout                              ;
-; Decode:Decode0|RF~3                     ; Lost fanout                              ;
-; Decode:Decode0|RF~51                    ; Lost fanout                              ;
+; Decode:Decode0|RF~67                    ; Lost fanout                              ;
 ; Decode:Decode0|RF~83                    ; Lost fanout                              ;
 ; Decode:Decode0|RF~99                    ; Lost fanout                              ;
-; Decode:Decode0|RF~67                    ; Lost fanout                              ;
 ; Decode:Decode0|RF~115                   ; Lost fanout                              ;
-; Decode:Decode0|RF~36                    ; Lost fanout                              ;
-; Decode:Decode0|RF~20                    ; Lost fanout                              ;
-; Decode:Decode0|RF~4                     ; Lost fanout                              ;
-; Decode:Decode0|RF~52                    ; Lost fanout                              ;
-; Decode:Decode0|RF~84                    ; Lost fanout                              ;
-; Decode:Decode0|RF~100                   ; Lost fanout                              ;
-; Decode:Decode0|RF~68                    ; Lost fanout                              ;
-; Decode:Decode0|RF~116                   ; Lost fanout                              ;
-; Decode:Decode0|RF~37                    ; Lost fanout                              ;
-; Decode:Decode0|RF~21                    ; Lost fanout                              ;
-; Decode:Decode0|RF~5                     ; Lost fanout                              ;
-; Decode:Decode0|RF~53                    ; Lost fanout                              ;
-; Decode:Decode0|RF~85                    ; Lost fanout                              ;
-; Decode:Decode0|RF~101                   ; Lost fanout                              ;
-; Decode:Decode0|RF~69                    ; Lost fanout                              ;
-; Decode:Decode0|RF~117                   ; Lost fanout                              ;
-; Decode:Decode0|RF~38                    ; Lost fanout                              ;
-; Decode:Decode0|RF~22                    ; Lost fanout                              ;
-; Decode:Decode0|RF~6                     ; Lost fanout                              ;
-; Decode:Decode0|RF~54                    ; Lost fanout                              ;
-; Decode:Decode0|RF~86                    ; Lost fanout                              ;
-; Decode:Decode0|RF~102                   ; Lost fanout                              ;
-; Decode:Decode0|RF~70                    ; Lost fanout                              ;
-; Decode:Decode0|RF~118                   ; Lost fanout                              ;
-; Decode:Decode0|RF~39                    ; Lost fanout                              ;
-; Decode:Decode0|RF~23                    ; Lost fanout                              ;
-; Decode:Decode0|RF~7                     ; Lost fanout                              ;
-; Decode:Decode0|RF~55                    ; Lost fanout                              ;
+; Decode:Decode0|RF~131                   ; Lost fanout                              ;
+; Decode:Decode0|RF~147                   ; Lost fanout                              ;
+; Decode:Decode0|RF~163                   ; Lost fanout                              ;
+; Decode:Decode0|RF~179                   ; Lost fanout                              ;
+; Decode:Decode0|RF~64                    ; Lost fanout                              ;
+; Decode:Decode0|RF~80                    ; Lost fanout                              ;
+; Decode:Decode0|RF~96                    ; Lost fanout                              ;
+; Decode:Decode0|RF~112                   ; Lost fanout                              ;
+; Decode:Decode0|RF~128                   ; Lost fanout                              ;
+; Decode:Decode0|RF~144                   ; Lost fanout                              ;
+; Decode:Decode0|RF~160                   ; Lost fanout                              ;
+; Decode:Decode0|RF~176                   ; Lost fanout                              ;
+; Decode:Decode0|RF~65                    ; Lost fanout                              ;
+; Decode:Decode0|RF~81                    ; Lost fanout                              ;
+; Decode:Decode0|RF~97                    ; Lost fanout                              ;
+; Decode:Decode0|RF~113                   ; Lost fanout                              ;
+; Decode:Decode0|RF~129                   ; Lost fanout                              ;
+; Decode:Decode0|RF~145                   ; Lost fanout                              ;
+; Decode:Decode0|RF~161                   ; Lost fanout                              ;
+; Decode:Decode0|RF~177                   ; Lost fanout                              ;
+; Decode:Decode0|RF~66                    ; Lost fanout                              ;
+; Decode:Decode0|RF~82                    ; Lost fanout                              ;
+; Decode:Decode0|RF~98                    ; Lost fanout                              ;
+; Decode:Decode0|RF~114                   ; Lost fanout                              ;
+; Decode:Decode0|RF~130                   ; Lost fanout                              ;
+; Decode:Decode0|RF~146                   ; Lost fanout                              ;
+; Decode:Decode0|RF~162                   ; Lost fanout                              ;
+; Decode:Decode0|RF~178                   ; Lost fanout                              ;
+; Decode:Decode0|RF~71                    ; Lost fanout                              ;
 ; Decode:Decode0|RF~87                    ; Lost fanout                              ;
 ; Decode:Decode0|RF~103                   ; Lost fanout                              ;
-; Decode:Decode0|RF~71                    ; Lost fanout                              ;
 ; Decode:Decode0|RF~119                   ; Lost fanout                              ;
-; Decode:Decode0|RF~40                    ; Lost fanout                              ;
-; Decode:Decode0|RF~24                    ; Lost fanout                              ;
-; Decode:Decode0|RF~8                     ; Lost fanout                              ;
-; Decode:Decode0|RF~56                    ; Lost fanout                              ;
-; Decode:Decode0|RF~88                    ; Lost fanout                              ;
-; Decode:Decode0|RF~104                   ; Lost fanout                              ;
-; Decode:Decode0|RF~72                    ; Lost fanout                              ;
-; Decode:Decode0|RF~120                   ; Lost fanout                              ;
-; Decode:Decode0|RF~41                    ; Lost fanout                              ;
-; Decode:Decode0|RF~25                    ; Lost fanout                              ;
-; Decode:Decode0|RF~9                     ; Lost fanout                              ;
-; Decode:Decode0|RF~57                    ; Lost fanout                              ;
-; Decode:Decode0|RF~89                    ; Lost fanout                              ;
-; Decode:Decode0|RF~105                   ; Lost fanout                              ;
-; Decode:Decode0|RF~73                    ; Lost fanout                              ;
-; Decode:Decode0|RF~121                   ; Lost fanout                              ;
-; Decode:Decode0|RF~42                    ; Lost fanout                              ;
-; Decode:Decode0|RF~26                    ; Lost fanout                              ;
-; Decode:Decode0|RF~10                    ; Lost fanout                              ;
-; Decode:Decode0|RF~58                    ; Lost fanout                              ;
-; Decode:Decode0|RF~90                    ; Lost fanout                              ;
-; Decode:Decode0|RF~106                   ; Lost fanout                              ;
-; Decode:Decode0|RF~74                    ; Lost fanout                              ;
-; Decode:Decode0|RF~122                   ; Lost fanout                              ;
-; Decode:Decode0|RF~43                    ; Lost fanout                              ;
-; Decode:Decode0|RF~27                    ; Lost fanout                              ;
-; Decode:Decode0|RF~11                    ; Lost fanout                              ;
-; Decode:Decode0|RF~59                    ; Lost fanout                              ;
+; Decode:Decode0|RF~135                   ; Lost fanout                              ;
+; Decode:Decode0|RF~151                   ; Lost fanout                              ;
+; Decode:Decode0|RF~167                   ; Lost fanout                              ;
+; Decode:Decode0|RF~183                   ; Lost fanout                              ;
+; Decode:Decode0|RF~70                    ; Lost fanout                              ;
+; Decode:Decode0|RF~86                    ; Lost fanout                              ;
+; Decode:Decode0|RF~102                   ; Lost fanout                              ;
+; Decode:Decode0|RF~118                   ; Lost fanout                              ;
+; Decode:Decode0|RF~134                   ; Lost fanout                              ;
+; Decode:Decode0|RF~150                   ; Lost fanout                              ;
+; Decode:Decode0|RF~166                   ; Lost fanout                              ;
+; Decode:Decode0|RF~182                   ; Lost fanout                              ;
+; Decode:Decode0|RF~68                    ; Lost fanout                              ;
+; Decode:Decode0|RF~84                    ; Lost fanout                              ;
+; Decode:Decode0|RF~100                   ; Lost fanout                              ;
+; Decode:Decode0|RF~116                   ; Lost fanout                              ;
+; Decode:Decode0|RF~132                   ; Lost fanout                              ;
+; Decode:Decode0|RF~148                   ; Lost fanout                              ;
+; Decode:Decode0|RF~164                   ; Lost fanout                              ;
+; Decode:Decode0|RF~180                   ; Lost fanout                              ;
+; Decode:Decode0|RF~69                    ; Lost fanout                              ;
+; Decode:Decode0|RF~85                    ; Lost fanout                              ;
+; Decode:Decode0|RF~101                   ; Lost fanout                              ;
+; Decode:Decode0|RF~117                   ; Lost fanout                              ;
+; Decode:Decode0|RF~133                   ; Lost fanout                              ;
+; Decode:Decode0|RF~149                   ; Lost fanout                              ;
+; Decode:Decode0|RF~165                   ; Lost fanout                              ;
+; Decode:Decode0|RF~181                   ; Lost fanout                              ;
+; Decode:Decode0|RF~75                    ; Lost fanout                              ;
 ; Decode:Decode0|RF~91                    ; Lost fanout                              ;
 ; Decode:Decode0|RF~107                   ; Lost fanout                              ;
-; Decode:Decode0|RF~75                    ; Lost fanout                              ;
 ; Decode:Decode0|RF~123                   ; Lost fanout                              ;
-; Decode:Decode0|RF~44                    ; Lost fanout                              ;
-; Decode:Decode0|RF~28                    ; Lost fanout                              ;
-; Decode:Decode0|RF~12                    ; Lost fanout                              ;
-; Decode:Decode0|RF~60                    ; Lost fanout                              ;
-; Decode:Decode0|RF~92                    ; Lost fanout                              ;
-; Decode:Decode0|RF~108                   ; Lost fanout                              ;
-; Decode:Decode0|RF~76                    ; Lost fanout                              ;
-; Decode:Decode0|RF~124                   ; Lost fanout                              ;
-; Decode:Decode0|RF~45                    ; Lost fanout                              ;
-; Decode:Decode0|RF~29                    ; Lost fanout                              ;
-; Decode:Decode0|RF~13                    ; Lost fanout                              ;
-; Decode:Decode0|RF~61                    ; Lost fanout                              ;
-; Decode:Decode0|RF~93                    ; Lost fanout                              ;
-; Decode:Decode0|RF~109                   ; Lost fanout                              ;
-; Decode:Decode0|RF~77                    ; Lost fanout                              ;
-; Decode:Decode0|RF~125                   ; Lost fanout                              ;
-; Decode:Decode0|RF~46                    ; Lost fanout                              ;
-; Decode:Decode0|RF~30                    ; Lost fanout                              ;
-; Decode:Decode0|RF~14                    ; Lost fanout                              ;
-; Decode:Decode0|RF~62                    ; Lost fanout                              ;
-; Decode:Decode0|RF~94                    ; Lost fanout                              ;
-; Decode:Decode0|RF~110                   ; Lost fanout                              ;
-; Decode:Decode0|RF~78                    ; Lost fanout                              ;
-; Decode:Decode0|RF~126                   ; Lost fanout                              ;
-; Decode:Decode0|RF~47                    ; Lost fanout                              ;
-; Decode:Decode0|RF~31                    ; Lost fanout                              ;
-; Decode:Decode0|RF~15                    ; Lost fanout                              ;
-; Decode:Decode0|RF~63                    ; Lost fanout                              ;
+; Decode:Decode0|RF~139                   ; Lost fanout                              ;
+; Decode:Decode0|RF~155                   ; Lost fanout                              ;
+; Decode:Decode0|RF~171                   ; Lost fanout                              ;
+; Decode:Decode0|RF~187                   ; Lost fanout                              ;
+; Decode:Decode0|RF~74                    ; Lost fanout                              ;
+; Decode:Decode0|RF~90                    ; Lost fanout                              ;
+; Decode:Decode0|RF~106                   ; Lost fanout                              ;
+; Decode:Decode0|RF~122                   ; Lost fanout                              ;
+; Decode:Decode0|RF~138                   ; Lost fanout                              ;
+; Decode:Decode0|RF~154                   ; Lost fanout                              ;
+; Decode:Decode0|RF~170                   ; Lost fanout                              ;
+; Decode:Decode0|RF~186                   ; Lost fanout                              ;
+; Decode:Decode0|RF~72                    ; Lost fanout                              ;
+; Decode:Decode0|RF~88                    ; Lost fanout                              ;
+; Decode:Decode0|RF~104                   ; Lost fanout                              ;
+; Decode:Decode0|RF~120                   ; Lost fanout                              ;
+; Decode:Decode0|RF~136                   ; Lost fanout                              ;
+; Decode:Decode0|RF~152                   ; Lost fanout                              ;
+; Decode:Decode0|RF~168                   ; Lost fanout                              ;
+; Decode:Decode0|RF~184                   ; Lost fanout                              ;
+; Decode:Decode0|RF~73                    ; Lost fanout                              ;
+; Decode:Decode0|RF~89                    ; Lost fanout                              ;
+; Decode:Decode0|RF~105                   ; Lost fanout                              ;
+; Decode:Decode0|RF~121                   ; Lost fanout                              ;
+; Decode:Decode0|RF~137                   ; Lost fanout                              ;
+; Decode:Decode0|RF~153                   ; Lost fanout                              ;
+; Decode:Decode0|RF~169                   ; Lost fanout                              ;
+; Decode:Decode0|RF~185                   ; Lost fanout                              ;
+; Decode:Decode0|RF~79                    ; Lost fanout                              ;
 ; Decode:Decode0|RF~95                    ; Lost fanout                              ;
 ; Decode:Decode0|RF~111                   ; Lost fanout                              ;
-; Decode:Decode0|RF~79                    ; Lost fanout                              ;
 ; Decode:Decode0|RF~127                   ; Lost fanout                              ;
-; Fetch:Fetch0|O_PC[2..7]                 ; Lost fanout                              ;
-; Total Number of Removed Registers = 524 ;                                          ;
+; Decode:Decode0|RF~143                   ; Lost fanout                              ;
+; Decode:Decode0|RF~159                   ; Lost fanout                              ;
+; Decode:Decode0|RF~175                   ; Lost fanout                              ;
+; Decode:Decode0|RF~191                   ; Lost fanout                              ;
+; Decode:Decode0|RF~78                    ; Lost fanout                              ;
+; Decode:Decode0|RF~94                    ; Lost fanout                              ;
+; Decode:Decode0|RF~110                   ; Lost fanout                              ;
+; Decode:Decode0|RF~126                   ; Lost fanout                              ;
+; Decode:Decode0|RF~142                   ; Lost fanout                              ;
+; Decode:Decode0|RF~158                   ; Lost fanout                              ;
+; Decode:Decode0|RF~174                   ; Lost fanout                              ;
+; Decode:Decode0|RF~190                   ; Lost fanout                              ;
+; Decode:Decode0|RF~76                    ; Lost fanout                              ;
+; Decode:Decode0|RF~92                    ; Lost fanout                              ;
+; Decode:Decode0|RF~108                   ; Lost fanout                              ;
+; Decode:Decode0|RF~124                   ; Lost fanout                              ;
+; Decode:Decode0|RF~140                   ; Lost fanout                              ;
+; Decode:Decode0|RF~156                   ; Lost fanout                              ;
+; Decode:Decode0|RF~172                   ; Lost fanout                              ;
+; Decode:Decode0|RF~188                   ; Lost fanout                              ;
+; Decode:Decode0|RF~77                    ; Lost fanout                              ;
+; Decode:Decode0|RF~93                    ; Lost fanout                              ;
+; Decode:Decode0|RF~109                   ; Lost fanout                              ;
+; Decode:Decode0|RF~125                   ; Lost fanout                              ;
+; Decode:Decode0|RF~141                   ; Lost fanout                              ;
+; Decode:Decode0|RF~157                   ; Lost fanout                              ;
+; Decode:Decode0|RF~173                   ; Lost fanout                              ;
+; Decode:Decode0|RF~189                   ; Lost fanout                              ;
+; Decode:Decode0|O_PC[8..15]              ; Lost fanout                              ;
+; Fetch:Fetch0|O_PC[8..15]                ; Lost fanout                              ;
+; Decode:Decode0|RF~223                   ; Lost fanout                              ;
+; Decode:Decode0|RF~207                   ; Lost fanout                              ;
+; Decode:Decode0|RF~222                   ; Lost fanout                              ;
+; Decode:Decode0|RF~206                   ; Lost fanout                              ;
+; Decode:Decode0|RF~221                   ; Lost fanout                              ;
+; Decode:Decode0|RF~205                   ; Lost fanout                              ;
+; Decode:Decode0|RF~220                   ; Lost fanout                              ;
+; Decode:Decode0|RF~204                   ; Lost fanout                              ;
+; Decode:Decode0|RF~219                   ; Lost fanout                              ;
+; Decode:Decode0|RF~203                   ; Lost fanout                              ;
+; Decode:Decode0|RF~218                   ; Lost fanout                              ;
+; Decode:Decode0|RF~202                   ; Lost fanout                              ;
+; Decode:Decode0|RF~217                   ; Lost fanout                              ;
+; Decode:Decode0|RF~201                   ; Lost fanout                              ;
+; Decode:Decode0|RF~216                   ; Lost fanout                              ;
+; Decode:Decode0|RF~200                   ; Lost fanout                              ;
+; Decode:Decode0|RF~215                   ; Lost fanout                              ;
+; Decode:Decode0|RF~199                   ; Lost fanout                              ;
+; Decode:Decode0|RF~214                   ; Lost fanout                              ;
+; Decode:Decode0|RF~198                   ; Lost fanout                              ;
+; Decode:Decode0|RF~213                   ; Lost fanout                              ;
+; Decode:Decode0|RF~197                   ; Lost fanout                              ;
+; Decode:Decode0|RF~212                   ; Lost fanout                              ;
+; Decode:Decode0|RF~196                   ; Lost fanout                              ;
+; Decode:Decode0|RF~211                   ; Lost fanout                              ;
+; Decode:Decode0|RF~195                   ; Lost fanout                              ;
+; Decode:Decode0|RF~210                   ; Lost fanout                              ;
+; Decode:Decode0|RF~194                   ; Lost fanout                              ;
+; Decode:Decode0|RF~209                   ; Lost fanout                              ;
+; Decode:Decode0|RF~193                   ; Lost fanout                              ;
+; Decode:Decode0|RF~208                   ; Lost fanout                              ;
+; Decode:Decode0|RF~192                   ; Lost fanout                              ;
+; Total Number of Removed Registers = 240 ;                                          ;
 +-----------------------------------------+------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                          ;
-+--------------------------------+---------------------------+-----------------------------------------------------------------------------------------+
-; Register name                  ; Reason for Removal        ; Registers Removed due to This Register                                                  ;
-+--------------------------------+---------------------------+-----------------------------------------------------------------------------------------+
-; Fetch:Fetch0|O_IR[23]          ; Stuck at GND              ; Decode:Decode0|O_DestRegIdx[3], Execute:Execute0|O_DestRegIdx[3],                       ;
-;                                ; due to stuck port data_in ; Memory:Memory0|O_DestRegIdx[3], Execute:Execute0|O_DestRegIdx[0],                       ;
-;                                ;                           ; Execute:Execute0|O_DestRegIdx[1], Execute:Execute0|O_DestRegIdx[2],                     ;
-;                                ;                           ; Decode:Decode0|O_Opcode[5], Decode:Decode0|O_Opcode[6], Memory:Memory0|O_MEM_Valid,     ;
-;                                ;                           ; Memory:Memory0|O_DestValue[2], Memory:Memory0|O_DestValue[4],                           ;
-;                                ;                           ; Memory:Memory0|O_DestValue[5], Memory:Memory0|O_DestValue[6], Decode:Decode0|O_LOCK,    ;
-;                                ;                           ; Execute:Execute0|O_Opcode[1], Execute:Execute0|O_Opcode[3],                             ;
-;                                ;                           ; Execute:Execute0|O_Opcode[6], Execute:Execute0|O_EX_Valid,                              ;
-;                                ;                           ; Execute:Execute0|O_DestValue[2], Execute:Execute0|O_DestValue[4],                       ;
-;                                ;                           ; Execute:Execute0|O_DestValue[5], Execute:Execute0|O_DestValue[6],                       ;
-;                                ;                           ; Execute:Execute0|O_IR[27], Execute:Execute0|O_IR[29], Execute:Execute0|O_IR[30],        ;
-;                                ;                           ; Decode:Decode0|O_Imm[2], Decode:Decode0|O_Imm[5], Fetch:Fetch0|O_IR[2],                 ;
-;                                ;                           ; Execute:Execute0|O_Opcode[0], Decode:Decode0|O_Src1Value[2],                            ;
-;                                ;                           ; Decode:Decode0|O_Src2Value[2], Decode:Decode0|O_Src1Value[4],                           ;
-;                                ;                           ; Decode:Decode0|O_Src2Value[4], Decode:Decode0|O_Src1Value[5],                           ;
-;                                ;                           ; Decode:Decode0|O_Src2Value[5], Decode:Decode0|O_Src1Value[6],                           ;
-;                                ;                           ; Decode:Decode0|O_Src2Value[6], Decode:Decode0|RF~50, Decode:Decode0|RF~52,              ;
-;                                ;                           ; Decode:Decode0|RF~53, Decode:Decode0|RF~54                                              ;
-; Fetch:Fetch0|O_IR[19]          ; Stuck at GND              ; Fetch:Fetch0|O_IR[27], Fetch:Fetch0|O_IR[29], Fetch:Fetch0|O_IR[16],                    ;
-;                                ; due to stuck port data_in ; Fetch:Fetch0|O_IR[24], Execute:Execute0|O_CCWEn, Decode:Decode0|O_DestRegIdx[0],        ;
-;                                ;                           ; Fetch:Fetch0|O_IR[17], Decode:Decode0|O_DestRegIdx[1], Fetch:Fetch0|O_IR[18],           ;
-;                                ;                           ; Decode:Decode0|O_DestRegIdx[2], Fetch:Fetch0|O_IR[11], Fetch:Fetch0|O_IR[8],            ;
-;                                ;                           ; Decode:Decode0|O_Opcode[3], Memory:Memory0|O_DestValue[0],                              ;
-;                                ;                           ; Memory:Memory0|O_DestValue[1], Decode:Decode0|O_Opcode[0],                              ;
-;                                ;                           ; Execute:Execute0|O_DestValue[0], Execute:Execute0|O_DestValue[1],                       ;
-;                                ;                           ; Fetch:Fetch0|O_IR[20], Fetch:Fetch0|O_IR[21], Fetch:Fetch0|O_IR[22],                    ;
-;                                ;                           ; Decode:Decode0|O_Imm[0], Decode:Decode0|O_Imm[1], Fetch:Fetch0|O_IR[0],                 ;
-;                                ;                           ; Fetch:Fetch0|O_IR[1], Decode:Decode0|O_Src1Value[0], Decode:Decode0|O_Src2Value[0],     ;
-;                                ;                           ; Decode:Decode0|O_Src1Value[1], Decode:Decode0|O_Src2Value[1], Decode:Decode0|RF~48,     ;
-;                                ;                           ; Decode:Decode0|RF~49, Fetch:Fetch0|O_PC[2], Fetch:Fetch0|O_PC[3], Fetch:Fetch0|O_PC[4], ;
-;                                ;                           ; Fetch:Fetch0|O_PC[5], Fetch:Fetch0|O_PC[6]                                              ;
-; Decode:Decode0|RF~143          ; Stuck at GND              ; Fetch:Fetch0|O_IR[30], Memory:Memory0|O_DestValue[3],                                   ;
-;                                ; due to stuck port data_in ; Execute:Execute0|O_DestValue[3], Decode:Decode0|O_Imm[3],                               ;
-;                                ;                           ; Decode:Decode0|O_Src1Value[3], Decode:Decode0|O_Src2Value[3], Decode:Decode0|RF~51,     ;
-;                                ;                           ; Decode:Decode0|RF~47, Decode:Decode0|RF~31, Decode:Decode0|RF~15, Decode:Decode0|RF~95, ;
-;                                ;                           ; Decode:Decode0|RF~79                                                                    ;
-; Decode:Decode0|O_PC[8]         ; Lost Fanouts              ; Fetch:Fetch0|O_PC[8], Fetch:Fetch0|branch_bubble_count[1],                              ;
-;                                ;                           ; Fetch:Fetch0|branch_bubble_count[0], Fetch:Fetch0|O_FE_Valid,                           ;
-;                                ;                           ; Fetch:Fetch0|branch_detected.1, Decode:Decode0|O_DE_Valid, Fetch:Fetch0|O_PC[7]         ;
-; Decode:Decode0|RF~142          ; Stuck at GND              ; Decode:Decode0|RF~46, Decode:Decode0|RF~30, Decode:Decode0|RF~14, Decode:Decode0|RF~94, ;
-;                                ; due to stuck port data_in ; Decode:Decode0|RF~78                                                                    ;
-; Decode:Decode0|RF~141          ; Stuck at GND              ; Decode:Decode0|RF~45, Decode:Decode0|RF~29, Decode:Decode0|RF~13, Decode:Decode0|RF~93, ;
-;                                ; due to stuck port data_in ; Decode:Decode0|RF~77                                                                    ;
-; Decode:Decode0|RF~140          ; Stuck at GND              ; Decode:Decode0|RF~44, Decode:Decode0|RF~28, Decode:Decode0|RF~12, Decode:Decode0|RF~92, ;
-;                                ; due to stuck port data_in ; Decode:Decode0|RF~76                                                                    ;
-; Decode:Decode0|RF~139          ; Stuck at GND              ; Decode:Decode0|RF~43, Decode:Decode0|RF~27, Decode:Decode0|RF~11, Decode:Decode0|RF~91, ;
-;                                ; due to stuck port data_in ; Decode:Decode0|RF~75                                                                    ;
-; Decode:Decode0|RF~138          ; Stuck at GND              ; Decode:Decode0|RF~42, Decode:Decode0|RF~26, Decode:Decode0|RF~10, Decode:Decode0|RF~90, ;
-;                                ; due to stuck port data_in ; Decode:Decode0|RF~74                                                                    ;
-; Decode:Decode0|RF~137          ; Stuck at GND              ; Decode:Decode0|RF~41, Decode:Decode0|RF~25, Decode:Decode0|RF~9, Decode:Decode0|RF~89,  ;
-;                                ; due to stuck port data_in ; Decode:Decode0|RF~73                                                                    ;
-; Decode:Decode0|RF~136          ; Stuck at GND              ; Decode:Decode0|RF~40, Decode:Decode0|RF~24, Decode:Decode0|RF~8, Decode:Decode0|RF~88,  ;
-;                                ; due to stuck port data_in ; Decode:Decode0|RF~72                                                                    ;
-; Decode:Decode0|RF~135          ; Stuck at GND              ; Decode:Decode0|RF~39, Decode:Decode0|RF~23, Decode:Decode0|RF~7, Decode:Decode0|RF~87,  ;
-;                                ; due to stuck port data_in ; Decode:Decode0|RF~71                                                                    ;
-; Decode:Decode0|RF~134          ; Stuck at GND              ; Decode:Decode0|RF~38, Decode:Decode0|RF~22, Decode:Decode0|RF~6, Decode:Decode0|RF~86,  ;
-;                                ; due to stuck port data_in ; Decode:Decode0|RF~70                                                                    ;
-; Decode:Decode0|RF~133          ; Stuck at GND              ; Decode:Decode0|RF~37, Decode:Decode0|RF~21, Decode:Decode0|RF~5, Decode:Decode0|RF~85,  ;
-;                                ; due to stuck port data_in ; Decode:Decode0|RF~69                                                                    ;
-; Decode:Decode0|RF~132          ; Stuck at GND              ; Decode:Decode0|RF~36, Decode:Decode0|RF~20, Decode:Decode0|RF~4, Decode:Decode0|RF~84,  ;
-;                                ; due to stuck port data_in ; Decode:Decode0|RF~68                                                                    ;
-; Decode:Decode0|RF~131          ; Stuck at GND              ; Decode:Decode0|RF~35, Decode:Decode0|RF~19, Decode:Decode0|RF~3, Decode:Decode0|RF~83,  ;
-;                                ; due to stuck port data_in ; Decode:Decode0|RF~67                                                                    ;
-; Decode:Decode0|RF~130          ; Stuck at GND              ; Decode:Decode0|RF~34, Decode:Decode0|RF~18, Decode:Decode0|RF~2, Decode:Decode0|RF~82,  ;
-;                                ; due to stuck port data_in ; Decode:Decode0|RF~66                                                                    ;
-; Decode:Decode0|RF~129          ; Stuck at GND              ; Decode:Decode0|RF~33, Decode:Decode0|RF~17, Decode:Decode0|RF~1, Decode:Decode0|RF~81,  ;
-;                                ; due to stuck port data_in ; Decode:Decode0|RF~65                                                                    ;
-; Decode:Decode0|RF~128          ; Stuck at GND              ; Decode:Decode0|RF~32, Decode:Decode0|RF~16, Decode:Decode0|RF~0, Decode:Decode0|RF~80,  ;
-;                                ; due to stuck port data_in ; Decode:Decode0|RF~64                                                                    ;
-; Memory:Memory0|O_DestValue[7]  ; Lost Fanouts              ; Execute:Execute0|O_DestValue[7], Decode:Decode0|O_Src1Value[7],                         ;
-;                                ;                           ; Decode:Decode0|O_Src2Value[7], Decode:Decode0|RF~55                                     ;
-; Memory:Memory0|O_DestValue[8]  ; Lost Fanouts              ; Execute:Execute0|O_DestValue[8], Decode:Decode0|O_Src1Value[8],                         ;
-;                                ;                           ; Decode:Decode0|O_Src2Value[8], Decode:Decode0|RF~56                                     ;
-; Memory:Memory0|O_DestValue[9]  ; Lost Fanouts              ; Execute:Execute0|O_DestValue[9], Decode:Decode0|O_Src1Value[9],                         ;
-;                                ;                           ; Decode:Decode0|O_Src2Value[9], Decode:Decode0|RF~57                                     ;
-; Memory:Memory0|O_DestValue[10] ; Lost Fanouts              ; Execute:Execute0|O_DestValue[10], Decode:Decode0|O_Src1Value[10],                       ;
-;                                ;                           ; Decode:Decode0|O_Src2Value[10], Decode:Decode0|RF~58                                    ;
-; Memory:Memory0|O_DestValue[11] ; Lost Fanouts              ; Execute:Execute0|O_DestValue[11], Decode:Decode0|O_Src1Value[11],                       ;
-;                                ;                           ; Decode:Decode0|O_Src2Value[11], Decode:Decode0|RF~59                                    ;
-; Memory:Memory0|O_DestValue[12] ; Lost Fanouts              ; Execute:Execute0|O_DestValue[12], Decode:Decode0|O_Src1Value[12],                       ;
-;                                ;                           ; Decode:Decode0|O_Src2Value[12], Decode:Decode0|RF~60                                    ;
-; Memory:Memory0|O_DestValue[13] ; Lost Fanouts              ; Execute:Execute0|O_DestValue[13], Decode:Decode0|O_Src1Value[13],                       ;
-;                                ;                           ; Decode:Decode0|O_Src2Value[13], Decode:Decode0|RF~61                                    ;
-; Memory:Memory0|O_DestValue[14] ; Lost Fanouts              ; Execute:Execute0|O_DestValue[14], Decode:Decode0|O_Src1Value[14],                       ;
-;                                ;                           ; Decode:Decode0|O_Src2Value[14], Decode:Decode0|RF~62                                    ;
-; Memory:Memory0|O_DestValue[15] ; Lost Fanouts              ; Execute:Execute0|O_DestValue[15], Decode:Decode0|O_Src1Value[15],                       ;
-;                                ;                           ; Decode:Decode0|O_Src2Value[15], Decode:Decode0|RF~63                                    ;
-; Decode:Decode0|O_CCValue[2]    ; Lost Fanouts              ; Memory:Memory0|O_CCValue[2], Memory:Memory0|O_Opcode[0],                                ;
-;                                ;                           ; Execute:Execute0|O_CCValue[2]                                                           ;
-; Decode:Decode0|O_CCValue[0]    ; Lost Fanouts              ; Memory:Memory0|O_CCValue[0], Execute:Execute0|O_CCValue[0]                              ;
-; Decode:Decode0|O_CCValue[1]    ; Lost Fanouts              ; Memory:Memory0|O_CCValue[1], Execute:Execute0|O_CCValue[1]                              ;
-; Decode:Decode0|O_PC[11]        ; Lost Fanouts              ; Fetch:Fetch0|O_PC[11]                                                                   ;
-; Decode:Decode0|O_PC[12]        ; Lost Fanouts              ; Fetch:Fetch0|O_PC[12]                                                                   ;
-; Decode:Decode0|O_PC[13]        ; Lost Fanouts              ; Fetch:Fetch0|O_PC[13]                                                                   ;
-; Decode:Decode0|O_PC[14]        ; Lost Fanouts              ; Fetch:Fetch0|O_PC[14]                                                                   ;
-; Decode:Decode0|O_PC[15]        ; Lost Fanouts              ; Fetch:Fetch0|O_PC[15]                                                                   ;
-; Decode:Decode0|O_IR[14]        ; Lost Fanouts              ; Fetch:Fetch0|O_LOCK                                                                     ;
-; Decode:Decode0|O_PC[9]         ; Lost Fanouts              ; Fetch:Fetch0|O_PC[9]                                                                    ;
-; Decode:Decode0|O_PC[10]        ; Lost Fanouts              ; Fetch:Fetch0|O_PC[10]                                                                   ;
-; Memory:Memory0|LedROut[0]      ; Stuck at VCC              ; Execute:Execute0|O_LOCK                                                                 ;
-;                                ; due to stuck port data_in ;                                                                                         ;
-+--------------------------------+---------------------------+-----------------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                           ;
++-------------------------+--------------------+----------------------------------------+
+; Register name           ; Reason for Removal ; Registers Removed due to This Register ;
++-------------------------+--------------------+----------------------------------------+
+; Decode:Decode0|O_PC[8]  ; Lost Fanouts       ; Fetch:Fetch0|O_PC[8]                   ;
+; Decode:Decode0|O_PC[9]  ; Lost Fanouts       ; Fetch:Fetch0|O_PC[9]                   ;
+; Decode:Decode0|O_PC[10] ; Lost Fanouts       ; Fetch:Fetch0|O_PC[10]                  ;
+; Decode:Decode0|O_PC[11] ; Lost Fanouts       ; Fetch:Fetch0|O_PC[11]                  ;
+; Decode:Decode0|O_PC[12] ; Lost Fanouts       ; Fetch:Fetch0|O_PC[12]                  ;
+; Decode:Decode0|O_PC[13] ; Lost Fanouts       ; Fetch:Fetch0|O_PC[13]                  ;
+; Decode:Decode0|O_PC[14] ; Lost Fanouts       ; Fetch:Fetch0|O_PC[14]                  ;
+; Decode:Decode0|O_PC[15] ; Lost Fanouts       ; Fetch:Fetch0|O_PC[15]                  ;
++-------------------------+--------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -796,27 +612,34 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 155   ;
-; Number of registers using Synchronous Clear  ; 40    ;
-; Number of registers using Synchronous Load   ; 0     ;
+; Total registers                              ; 465   ;
+; Number of registers using Synchronous Clear  ; 47    ;
+; Number of registers using Synchronous Load   ; 6     ;
 ; Number of registers using Asynchronous Clear ; 155   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 100   ;
+; Number of registers using Clock Enable       ; 390   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+--------------------------------------------------+
-; Inverted Register Statistics                     ;
-+----------------------------------------+---------+
-; Inverted Register                      ; Fan out ;
-+----------------------------------------+---------+
-; Gpu:Gpu0|O_GPU_DATA[8]                 ; 1       ;
-; Gpu:Gpu0|O_GPU_DATA[9]                 ; 1       ;
-; Gpu:Gpu0|O_GPU_DATA[10]                ; 1       ;
-; Gpu:Gpu0|O_GPU_DATA[11]                ; 1       ;
-; Total number of inverted registers = 4 ;         ;
-+----------------------------------------+---------+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; Gpu:Gpu0|O_GPU_DATA[8]                  ; 1       ;
+; Gpu:Gpu0|O_GPU_DATA[9]                  ; 1       ;
+; Gpu:Gpu0|O_GPU_DATA[10]                 ; 1       ;
+; Gpu:Gpu0|O_GPU_DATA[11]                 ; 1       ;
+; Fetch:Fetch0|O_IR[25]                   ; 21      ;
+; Fetch:Fetch0|O_IR[24]                   ; 21      ;
+; Fetch:Fetch0|O_IR[26]                   ; 15      ;
+; Fetch:Fetch0|O_IR[27]                   ; 19      ;
+; Fetch:Fetch0|O_IR[28]                   ; 22      ;
+; Fetch:Fetch0|O_IR[29]                   ; 22      ;
+; Fetch:Fetch0|O_IR[30]                   ; 20      ;
+; Total number of inverted registers = 11 ;         ;
++-----------------------------------------+---------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -824,26 +647,19 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                        ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
-; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |lg_highlevel|PixelGen:PixelGen0|O_RED[1]         ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |lg_highlevel|PixelGen:PixelGen0|O_GREEN[3]       ;
 ; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |lg_highlevel|Fetch:Fetch0|branch_bubble_count[0] ;
-; 4:1                ; 18 bits   ; 36 LEs        ; 18 LEs               ; 18 LEs                 ; Yes        ; |lg_highlevel|PixelGen:PixelGen0|O_NEXT_ADDR[10]  ;
-; 5:1                ; 19 bits   ; 57 LEs        ; 19 LEs               ; 38 LEs                 ; Yes        ; |lg_highlevel|Fetch:Fetch0|O_IR[11]               ;
-; 6:1                ; 14 bits   ; 56 LEs        ; 28 LEs               ; 28 LEs                 ; Yes        ; |lg_highlevel|Fetch:Fetch0|O_PC[4]                ;
-; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; Yes        ; |lg_highlevel|Fetch:Fetch0|O_IR[26]               ;
-; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |lg_highlevel|Fetch:Fetch0|O_IR[28]               ;
-; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; No         ; |lg_highlevel|Fetch:Fetch0|O_IR                   ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |lg_highlevel|Execute:Execute0|Selector32         ;
-; 69:1               ; 16 bits   ; 736 LEs       ; 48 LEs               ; 688 LEs                ; No         ; |lg_highlevel|Execute:Execute0|Selector17         ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |lg_highlevel|Memory:Memory0|HexOut[1]            ;
+; 4:1                ; 18 bits   ; 36 LEs        ; 18 LEs               ; 18 LEs                 ; Yes        ; |lg_highlevel|PixelGen:PixelGen0|O_NEXT_ADDR[13]  ;
+; 5:1                ; 10 bits   ; 30 LEs        ; 10 LEs               ; 20 LEs                 ; Yes        ; |lg_highlevel|Memory:Memory0|LedROut[9]           ;
+; 5:1                ; 19 bits   ; 57 LEs        ; 19 LEs               ; 38 LEs                 ; Yes        ; |lg_highlevel|Fetch:Fetch0|O_IR[9]                ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 8 LEs                ; 24 LEs                 ; Yes        ; |lg_highlevel|Memory:Memory0|LedGOut[1]           ;
+; 6:1                ; 14 bits   ; 56 LEs        ; 28 LEs               ; 28 LEs                 ; Yes        ; |lg_highlevel|Fetch:Fetch0|O_PC[7]                ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |lg_highlevel|Fetch:Fetch0|O_IR[26]               ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; No         ; |lg_highlevel|Decode:Decode0|Selector12           ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |lg_highlevel|Execute:Execute0|Selector44         ;
+; 69:1               ; 16 bits   ; 736 LEs       ; 48 LEs               ; 688 LEs                ; No         ; |lg_highlevel|Execute:Execute0|Selector26         ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
-
-
-+------------------------------------------------------------------------------------------+
-; Source assignments for Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated ;
-+---------------------------------+--------------------+------+----------------------------+
-; Assignment                      ; Value              ; From ; To                         ;
-+---------------------------------+--------------------+------+----------------------------+
-; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                          ;
-+---------------------------------+--------------------+------+----------------------------+
 
 
 +-------------------------------------------------------------------------------+
@@ -1220,67 +1036,6 @@ Encoding Type:  One-Hot
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+----------------------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: Decode:Decode0|altsyncram:RF_rtl_0                ;
-+------------------------------------+----------------------------------------------+----------------+
-; Parameter Name                     ; Value                                        ; Type           ;
-+------------------------------------+----------------------------------------------+----------------+
-; BYTE_SIZE_BLOCK                    ; 8                                            ; Untyped        ;
-; AUTO_CARRY_CHAINS                  ; ON                                           ; AUTO_CARRY     ;
-; IGNORE_CARRY_BUFFERS               ; OFF                                          ; IGNORE_CARRY   ;
-; AUTO_CASCADE_CHAINS                ; ON                                           ; AUTO_CASCADE   ;
-; IGNORE_CASCADE_BUFFERS             ; OFF                                          ; IGNORE_CASCADE ;
-; WIDTH_BYTEENA                      ; 1                                            ; Untyped        ;
-; OPERATION_MODE                     ; DUAL_PORT                                    ; Untyped        ;
-; WIDTH_A                            ; 16                                           ; Untyped        ;
-; WIDTHAD_A                          ; 4                                            ; Untyped        ;
-; NUMWORDS_A                         ; 16                                           ; Untyped        ;
-; OUTDATA_REG_A                      ; UNREGISTERED                                 ; Untyped        ;
-; ADDRESS_ACLR_A                     ; NONE                                         ; Untyped        ;
-; OUTDATA_ACLR_A                     ; NONE                                         ; Untyped        ;
-; WRCONTROL_ACLR_A                   ; NONE                                         ; Untyped        ;
-; INDATA_ACLR_A                      ; NONE                                         ; Untyped        ;
-; BYTEENA_ACLR_A                     ; NONE                                         ; Untyped        ;
-; WIDTH_B                            ; 16                                           ; Untyped        ;
-; WIDTHAD_B                          ; 4                                            ; Untyped        ;
-; NUMWORDS_B                         ; 16                                           ; Untyped        ;
-; INDATA_REG_B                       ; CLOCK1                                       ; Untyped        ;
-; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1                                       ; Untyped        ;
-; RDCONTROL_REG_B                    ; CLOCK1                                       ; Untyped        ;
-; ADDRESS_REG_B                      ; CLOCK1                                       ; Untyped        ;
-; OUTDATA_REG_B                      ; UNREGISTERED                                 ; Untyped        ;
-; BYTEENA_REG_B                      ; CLOCK1                                       ; Untyped        ;
-; INDATA_ACLR_B                      ; NONE                                         ; Untyped        ;
-; WRCONTROL_ACLR_B                   ; NONE                                         ; Untyped        ;
-; ADDRESS_ACLR_B                     ; NONE                                         ; Untyped        ;
-; OUTDATA_ACLR_B                     ; NONE                                         ; Untyped        ;
-; RDCONTROL_ACLR_B                   ; NONE                                         ; Untyped        ;
-; BYTEENA_ACLR_B                     ; NONE                                         ; Untyped        ;
-; WIDTH_BYTEENA_A                    ; 1                                            ; Untyped        ;
-; WIDTH_BYTEENA_B                    ; 1                                            ; Untyped        ;
-; RAM_BLOCK_TYPE                     ; AUTO                                         ; Untyped        ;
-; BYTE_SIZE                          ; 8                                            ; Untyped        ;
-; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                    ; Untyped        ;
-; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ                         ; Untyped        ;
-; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ                         ; Untyped        ;
-; INIT_FILE                          ; db/lg_highlevel.ram0_Decode_8f0a662c.hdl.mif ; Untyped        ;
-; INIT_FILE_LAYOUT                   ; PORT_A                                       ; Untyped        ;
-; MAXIMUM_DEPTH                      ; 0                                            ; Untyped        ;
-; CLOCK_ENABLE_INPUT_A               ; NORMAL                                       ; Untyped        ;
-; CLOCK_ENABLE_INPUT_B               ; NORMAL                                       ; Untyped        ;
-; CLOCK_ENABLE_OUTPUT_A              ; NORMAL                                       ; Untyped        ;
-; CLOCK_ENABLE_OUTPUT_B              ; NORMAL                                       ; Untyped        ;
-; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN                              ; Untyped        ;
-; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN                              ; Untyped        ;
-; ENABLE_ECC                         ; FALSE                                        ; Untyped        ;
-; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                                        ; Untyped        ;
-; WIDTH_ECCSTATUS                    ; 3                                            ; Untyped        ;
-; DEVICE_FAMILY                      ; Cyclone II                                   ; Untyped        ;
-; CBXI_PARAMETER                     ; altsyncram_rqh1                              ; Untyped        ;
-+------------------------------------+----------------------------------------------+----------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
 +------------------------------------------------------------------+
 ; altpll Parameter Settings by Entity Instance                     ;
 +-------------------------------+----------------------------------+
@@ -1296,26 +1051,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     -- VCO_MULTIPLY_BY        ; 0                                ;
 ;     -- VCO_DIVIDE_BY          ; 0                                ;
 +-------------------------------+----------------------------------+
-
-
-+--------------------------------------------------------------------------------+
-; altsyncram Parameter Settings by Entity Instance                               ;
-+-------------------------------------------+------------------------------------+
-; Name                                      ; Value                              ;
-+-------------------------------------------+------------------------------------+
-; Number of entity instances                ; 1                                  ;
-; Entity Instance                           ; Decode:Decode0|altsyncram:RF_rtl_0 ;
-;     -- OPERATION_MODE                     ; DUAL_PORT                          ;
-;     -- WIDTH_A                            ; 16                                 ;
-;     -- NUMWORDS_A                         ; 16                                 ;
-;     -- OUTDATA_REG_A                      ; UNREGISTERED                       ;
-;     -- WIDTH_B                            ; 16                                 ;
-;     -- NUMWORDS_B                         ; 16                                 ;
-;     -- ADDRESS_REG_B                      ; CLOCK1                             ;
-;     -- OUTDATA_REG_B                      ; UNREGISTERED                       ;
-;     -- RAM_BLOCK_TYPE                     ; AUTO                               ;
-;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                          ;
-+-------------------------------------------+------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------+
@@ -1371,7 +1106,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:02     ;
 +----------------+--------------+
 
 
@@ -1381,7 +1116,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Mon Apr 06 00:51:34 2015
+    Info: Processing started: Mon Apr 06 15:04:50 2015
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lg_highlevel -c lg_highlevel
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Warning (10238): Verilog Module Declaration warning at gpu.v(23): ignored anonymous port(s) indicated by duplicate or dangling comma(s) in the port list for module "Gpu"
@@ -1479,11 +1214,11 @@ Info (12133): Instantiated megafunction "pll:pll0|altpll:altpll_component" with 
     Info (12134): Parameter "port_extclk3" = "PORT_UNUSED"
     Info (12134): Parameter "valid_lock_multiplier" = "1"
 Info (12128): Elaborating entity "Fetch" for hierarchy "Fetch:Fetch0"
-Warning (10850): Verilog HDL warning at fetch.v(50): number of words (7) in memory file does not match the number of elements in the address range [0:255]
+Warning (10850): Verilog HDL warning at fetch.v(50): number of words (9) in memory file does not match the number of elements in the address range [0:255]
 Warning (10230): Verilog HDL assignment warning at fetch.v(76): truncated value with size 32 to match size of target (16)
 Warning (10240): Verilog HDL Always Construct warning at fetch.v(76): inferring latch(es) for variable "fe_valid", which holds its previous value in one or more paths through the always construct
 Warning (10240): Verilog HDL Always Construct warning at fetch.v(76): inferring latch(es) for variable "latch_keep", which holds its previous value in one or more paths through the always construct
-Warning (10230): Verilog HDL assignment warning at fetch.v(116): truncated value with size 32 to match size of target (3)
+Warning (10230): Verilog HDL assignment warning at fetch.v(126): truncated value with size 32 to match size of target (3)
 Warning (10030): Net "InstMem.data_a" at fetch.v(44) has no driver or initial value, using a default initial value '0'
 Warning (10030): Net "InstMem.waddr_a" at fetch.v(44) has no driver or initial value, using a default initial value '0'
 Warning (10030): Net "InstMem.we_a" at fetch.v(44) has no driver or initial value, using a default initial value '0'
@@ -1493,129 +1228,162 @@ Info (12128): Elaborating entity "Decode" for hierarchy "Decode:Decode0"
 Warning (10036): Verilog HDL or VHDL warning at decode.v(137): object "VRF" assigned a value but never read
 Warning (10036): Verilog HDL or VHDL warning at decode.v(140): object "RF_VALID" assigned a value but never read
 Warning (10036): Verilog HDL or VHDL warning at decode.v(141): object "VRF_VALID" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at decode.v(182): object "CCValue" assigned a value but never read
-Warning (10240): Verilog HDL Always Construct warning at decode.v(196): inferring latch(es) for variable "dep_stall", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at decode.v(196): inferring latch(es) for variable "Src1Value", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at decode.v(196): inferring latch(es) for variable "DestRegIdx", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at decode.v(196): inferring latch(es) for variable "Src2Value", which holds its previous value in one or more paths through the always construct
+Warning (10036): Verilog HDL or VHDL warning at decode.v(179): object "CCValue" assigned a value but never read
+Warning (10230): Verilog HDL assignment warning at decode.v(300): truncated value with size 16 to match size of target (4)
+Warning (10240): Verilog HDL Always Construct warning at decode.v(193): inferring latch(es) for variable "dep_stall", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at decode.v(193): inferring latch(es) for variable "Src1Value", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at decode.v(193): inferring latch(es) for variable "DestRegIdx", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at decode.v(193): inferring latch(es) for variable "Src2Value", which holds its previous value in one or more paths through the always construct
 Warning (10034): Output port "O_DestVRegIdx" at decode.v(111) has no driver
 Warning (10034): Output port "O_Idx" at decode.v(112) has no driver
 Warning (10034): Output port "O_VecSrc1Value" at decode.v(116) has no driver
 Warning (10034): Output port "O_VecSrc2Value" at decode.v(117) has no driver
-Info (10041): Inferred latch for "Src2Value[0]" at decode.v(196)
-Info (10041): Inferred latch for "Src2Value[1]" at decode.v(196)
-Info (10041): Inferred latch for "Src2Value[2]" at decode.v(196)
-Info (10041): Inferred latch for "Src2Value[3]" at decode.v(196)
-Info (10041): Inferred latch for "Src2Value[4]" at decode.v(196)
-Info (10041): Inferred latch for "Src2Value[5]" at decode.v(196)
-Info (10041): Inferred latch for "Src2Value[6]" at decode.v(196)
-Info (10041): Inferred latch for "Src2Value[7]" at decode.v(196)
-Info (10041): Inferred latch for "Src2Value[8]" at decode.v(196)
-Info (10041): Inferred latch for "Src2Value[9]" at decode.v(196)
-Info (10041): Inferred latch for "Src2Value[10]" at decode.v(196)
-Info (10041): Inferred latch for "Src2Value[11]" at decode.v(196)
-Info (10041): Inferred latch for "Src2Value[12]" at decode.v(196)
-Info (10041): Inferred latch for "Src2Value[13]" at decode.v(196)
-Info (10041): Inferred latch for "Src2Value[14]" at decode.v(196)
-Info (10041): Inferred latch for "Src2Value[15]" at decode.v(196)
-Info (10041): Inferred latch for "DestRegIdx[0]" at decode.v(196)
-Info (10041): Inferred latch for "DestRegIdx[1]" at decode.v(196)
-Info (10041): Inferred latch for "DestRegIdx[2]" at decode.v(196)
-Info (10041): Inferred latch for "DestRegIdx[3]" at decode.v(196)
-Info (10041): Inferred latch for "Src1Value[0]" at decode.v(196)
-Info (10041): Inferred latch for "Src1Value[1]" at decode.v(196)
-Info (10041): Inferred latch for "Src1Value[2]" at decode.v(196)
-Info (10041): Inferred latch for "Src1Value[3]" at decode.v(196)
-Info (10041): Inferred latch for "Src1Value[4]" at decode.v(196)
-Info (10041): Inferred latch for "Src1Value[5]" at decode.v(196)
-Info (10041): Inferred latch for "Src1Value[6]" at decode.v(196)
-Info (10041): Inferred latch for "Src1Value[7]" at decode.v(196)
-Info (10041): Inferred latch for "Src1Value[8]" at decode.v(196)
-Info (10041): Inferred latch for "Src1Value[9]" at decode.v(196)
-Info (10041): Inferred latch for "Src1Value[10]" at decode.v(196)
-Info (10041): Inferred latch for "Src1Value[11]" at decode.v(196)
-Info (10041): Inferred latch for "Src1Value[12]" at decode.v(196)
-Info (10041): Inferred latch for "Src1Value[13]" at decode.v(196)
-Info (10041): Inferred latch for "Src1Value[14]" at decode.v(196)
-Info (10041): Inferred latch for "Src1Value[15]" at decode.v(196)
-Info (10041): Inferred latch for "dep_stall" at decode.v(196)
+Info (10041): Inferred latch for "Src2Value[0]" at decode.v(193)
+Info (10041): Inferred latch for "Src2Value[1]" at decode.v(193)
+Info (10041): Inferred latch for "Src2Value[2]" at decode.v(193)
+Info (10041): Inferred latch for "Src2Value[3]" at decode.v(193)
+Info (10041): Inferred latch for "Src2Value[4]" at decode.v(193)
+Info (10041): Inferred latch for "Src2Value[5]" at decode.v(193)
+Info (10041): Inferred latch for "Src2Value[6]" at decode.v(193)
+Info (10041): Inferred latch for "Src2Value[7]" at decode.v(193)
+Info (10041): Inferred latch for "Src2Value[8]" at decode.v(193)
+Info (10041): Inferred latch for "Src2Value[9]" at decode.v(193)
+Info (10041): Inferred latch for "Src2Value[10]" at decode.v(193)
+Info (10041): Inferred latch for "Src2Value[11]" at decode.v(193)
+Info (10041): Inferred latch for "Src2Value[12]" at decode.v(193)
+Info (10041): Inferred latch for "Src2Value[13]" at decode.v(193)
+Info (10041): Inferred latch for "Src2Value[14]" at decode.v(193)
+Info (10041): Inferred latch for "Src2Value[15]" at decode.v(193)
+Info (10041): Inferred latch for "DestRegIdx[0]" at decode.v(193)
+Info (10041): Inferred latch for "DestRegIdx[1]" at decode.v(193)
+Info (10041): Inferred latch for "DestRegIdx[2]" at decode.v(193)
+Info (10041): Inferred latch for "DestRegIdx[3]" at decode.v(193)
+Info (10041): Inferred latch for "Src1Value[0]" at decode.v(193)
+Info (10041): Inferred latch for "Src1Value[1]" at decode.v(193)
+Info (10041): Inferred latch for "Src1Value[2]" at decode.v(193)
+Info (10041): Inferred latch for "Src1Value[3]" at decode.v(193)
+Info (10041): Inferred latch for "Src1Value[4]" at decode.v(193)
+Info (10041): Inferred latch for "Src1Value[5]" at decode.v(193)
+Info (10041): Inferred latch for "Src1Value[6]" at decode.v(193)
+Info (10041): Inferred latch for "Src1Value[7]" at decode.v(193)
+Info (10041): Inferred latch for "Src1Value[8]" at decode.v(193)
+Info (10041): Inferred latch for "Src1Value[9]" at decode.v(193)
+Info (10041): Inferred latch for "Src1Value[10]" at decode.v(193)
+Info (10041): Inferred latch for "Src1Value[11]" at decode.v(193)
+Info (10041): Inferred latch for "Src1Value[12]" at decode.v(193)
+Info (10041): Inferred latch for "Src1Value[13]" at decode.v(193)
+Info (10041): Inferred latch for "Src1Value[14]" at decode.v(193)
+Info (10041): Inferred latch for "Src1Value[15]" at decode.v(193)
+Info (10041): Inferred latch for "dep_stall" at decode.v(193)
 Info (12128): Elaborating entity "SignExtension" for hierarchy "Decode:Decode0|SignExtension:SE0"
 Info (12128): Elaborating entity "Execute" for hierarchy "Execute:Execute0"
-Warning (10230): Verilog HDL assignment warning at execute.v(208): truncated value with size 32 to match size of target (16)
-Warning (10230): Verilog HDL assignment warning at execute.v(219): truncated value with size 32 to match size of target (16)
-Warning (10230): Verilog HDL assignment warning at execute.v(230): truncated value with size 32 to match size of target (16)
-Warning (10230): Verilog HDL assignment warning at execute.v(241): truncated value with size 32 to match size of target (16)
-Warning (10230): Verilog HDL assignment warning at execute.v(252): truncated value with size 32 to match size of target (16)
-Warning (10230): Verilog HDL assignment warning at execute.v(263): truncated value with size 32 to match size of target (16)
-Warning (10230): Verilog HDL assignment warning at execute.v(274): truncated value with size 32 to match size of target (16)
-Warning (10240): Verilog HDL Always Construct warning at execute.v(119): inferring latch(es) for variable "My_O_BranchPC_Signal", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at execute.v(119): inferring latch(es) for variable "My_O_BranchAddrSelect_Signal", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at execute.v(119): inferring latch(es) for variable "Branch_Was_Taken", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at execute.v(119): inferring latch(es) for variable "ALU_O_DestValue", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at execute.v(119): inferring latch(es) for variable "ALU_O_DestRegIdx", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at execute.v(119): inferring latch(es) for variable "CCWEn", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at execute.v(119): inferring latch(es) for variable "RegWEn", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at execute.v(119): inferring latch(es) for variable "CCValue", which holds its previous value in one or more paths through the always construct
-Warning (10230): Verilog HDL assignment warning at execute.v(306): truncated value with size 32 to match size of target (1)
-Warning (10230): Verilog HDL assignment warning at execute.v(308): truncated value with size 32 to match size of target (1)
-Warning (10230): Verilog HDL assignment warning at execute.v(309): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at execute.v(212): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at execute.v(223): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at execute.v(234): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at execute.v(245): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at execute.v(256): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at execute.v(267): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at execute.v(278): truncated value with size 32 to match size of target (16)
+Warning (10240): Verilog HDL Always Construct warning at execute.v(121): inferring latch(es) for variable "My_O_BranchPC_Signal", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at execute.v(121): inferring latch(es) for variable "My_O_BranchAddrSelect_Signal", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at execute.v(121): inferring latch(es) for variable "Branch_Was_Taken", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at execute.v(121): inferring latch(es) for variable "MARValue", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at execute.v(121): inferring latch(es) for variable "MDRValue", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at execute.v(121): inferring latch(es) for variable "ALU_O_DestValue", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at execute.v(121): inferring latch(es) for variable "ALU_O_DestRegIdx", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at execute.v(121): inferring latch(es) for variable "CCWEn", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at execute.v(121): inferring latch(es) for variable "RegWEn", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at execute.v(121): inferring latch(es) for variable "CCValue", which holds its previous value in one or more paths through the always construct
+Warning (10230): Verilog HDL assignment warning at execute.v(310): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at execute.v(312): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at execute.v(313): truncated value with size 32 to match size of target (1)
 Warning (10034): Output port "O_R15PC" at execute.v(74) has no driver
 Warning (10034): Output port "O_DestVRegIdx" at execute.v(78) has no driver
 Warning (10034): Output port "O_VecSrc1Value" at execute.v(82) has no driver
 Warning (10034): Output port "O_VecDestValue" at execute.v(83) has no driver
-Warning (10034): Output port "O_MARValue" at execute.v(86) has no driver
-Warning (10034): Output port "O_MDRValue" at execute.v(87) has no driver
-Warning (10034): Output port "O_VRegWEn_Signal" at execute.v(105) has no driver
-Info (10041): Inferred latch for "RegWEn" at execute.v(119)
-Info (10041): Inferred latch for "CCWEn" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestRegIdx[0]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestRegIdx[1]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestRegIdx[2]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestRegIdx[3]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestValue[0]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestValue[1]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestValue[2]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestValue[3]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestValue[4]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestValue[5]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestValue[6]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestValue[7]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestValue[8]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestValue[9]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestValue[10]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestValue[11]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestValue[12]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestValue[13]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestValue[14]" at execute.v(119)
-Info (10041): Inferred latch for "ALU_O_DestValue[15]" at execute.v(119)
-Info (10041): Inferred latch for "Branch_Was_Taken.1" at execute.v(119)
-Info (10041): Inferred latch for "Branch_Was_Taken.0" at execute.v(119)
-Info (10041): Inferred latch for "My_O_BranchAddrSelect_Signal" at execute.v(119)
-Info (10041): Inferred latch for "My_O_BranchPC_Signal[0]" at execute.v(119)
-Info (10041): Inferred latch for "My_O_BranchPC_Signal[1]" at execute.v(119)
-Info (10041): Inferred latch for "My_O_BranchPC_Signal[2]" at execute.v(119)
-Info (10041): Inferred latch for "My_O_BranchPC_Signal[3]" at execute.v(119)
-Info (10041): Inferred latch for "My_O_BranchPC_Signal[4]" at execute.v(119)
-Info (10041): Inferred latch for "My_O_BranchPC_Signal[5]" at execute.v(119)
-Info (10041): Inferred latch for "My_O_BranchPC_Signal[6]" at execute.v(119)
-Info (10041): Inferred latch for "My_O_BranchPC_Signal[7]" at execute.v(119)
-Info (10041): Inferred latch for "My_O_BranchPC_Signal[8]" at execute.v(119)
-Info (10041): Inferred latch for "My_O_BranchPC_Signal[9]" at execute.v(119)
-Info (10041): Inferred latch for "My_O_BranchPC_Signal[10]" at execute.v(119)
-Info (10041): Inferred latch for "My_O_BranchPC_Signal[11]" at execute.v(119)
-Info (10041): Inferred latch for "My_O_BranchPC_Signal[12]" at execute.v(119)
-Info (10041): Inferred latch for "My_O_BranchPC_Signal[13]" at execute.v(119)
-Info (10041): Inferred latch for "My_O_BranchPC_Signal[14]" at execute.v(119)
-Info (10041): Inferred latch for "My_O_BranchPC_Signal[15]" at execute.v(119)
-Info (10041): Inferred latch for "CCValue[0]" at execute.v(298)
-Info (10041): Inferred latch for "CCValue[1]" at execute.v(298)
-Info (10041): Inferred latch for "CCValue[2]" at execute.v(298)
+Warning (10034): Output port "O_VRegWEn_Signal" at execute.v(107) has no driver
+Info (10041): Inferred latch for "RegWEn" at execute.v(121)
+Info (10041): Inferred latch for "CCWEn" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestRegIdx[0]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestRegIdx[1]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestRegIdx[2]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestRegIdx[3]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestValue[0]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestValue[1]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestValue[2]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestValue[3]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestValue[4]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestValue[5]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestValue[6]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestValue[7]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestValue[8]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestValue[9]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestValue[10]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestValue[11]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestValue[12]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestValue[13]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestValue[14]" at execute.v(121)
+Info (10041): Inferred latch for "ALU_O_DestValue[15]" at execute.v(121)
+Info (10041): Inferred latch for "MDRValue[0]" at execute.v(121)
+Info (10041): Inferred latch for "MDRValue[1]" at execute.v(121)
+Info (10041): Inferred latch for "MDRValue[2]" at execute.v(121)
+Info (10041): Inferred latch for "MDRValue[3]" at execute.v(121)
+Info (10041): Inferred latch for "MDRValue[4]" at execute.v(121)
+Info (10041): Inferred latch for "MDRValue[5]" at execute.v(121)
+Info (10041): Inferred latch for "MDRValue[6]" at execute.v(121)
+Info (10041): Inferred latch for "MDRValue[7]" at execute.v(121)
+Info (10041): Inferred latch for "MDRValue[8]" at execute.v(121)
+Info (10041): Inferred latch for "MDRValue[9]" at execute.v(121)
+Info (10041): Inferred latch for "MDRValue[10]" at execute.v(121)
+Info (10041): Inferred latch for "MDRValue[11]" at execute.v(121)
+Info (10041): Inferred latch for "MDRValue[12]" at execute.v(121)
+Info (10041): Inferred latch for "MDRValue[13]" at execute.v(121)
+Info (10041): Inferred latch for "MDRValue[14]" at execute.v(121)
+Info (10041): Inferred latch for "MDRValue[15]" at execute.v(121)
+Info (10041): Inferred latch for "MARValue[0]" at execute.v(121)
+Info (10041): Inferred latch for "MARValue[1]" at execute.v(121)
+Info (10041): Inferred latch for "MARValue[2]" at execute.v(121)
+Info (10041): Inferred latch for "MARValue[3]" at execute.v(121)
+Info (10041): Inferred latch for "MARValue[4]" at execute.v(121)
+Info (10041): Inferred latch for "MARValue[5]" at execute.v(121)
+Info (10041): Inferred latch for "MARValue[6]" at execute.v(121)
+Info (10041): Inferred latch for "MARValue[7]" at execute.v(121)
+Info (10041): Inferred latch for "MARValue[8]" at execute.v(121)
+Info (10041): Inferred latch for "MARValue[9]" at execute.v(121)
+Info (10041): Inferred latch for "MARValue[10]" at execute.v(121)
+Info (10041): Inferred latch for "MARValue[11]" at execute.v(121)
+Info (10041): Inferred latch for "MARValue[12]" at execute.v(121)
+Info (10041): Inferred latch for "MARValue[13]" at execute.v(121)
+Info (10041): Inferred latch for "MARValue[14]" at execute.v(121)
+Info (10041): Inferred latch for "MARValue[15]" at execute.v(121)
+Info (10041): Inferred latch for "Branch_Was_Taken.1" at execute.v(121)
+Info (10041): Inferred latch for "Branch_Was_Taken.0" at execute.v(121)
+Info (10041): Inferred latch for "My_O_BranchAddrSelect_Signal" at execute.v(121)
+Info (10041): Inferred latch for "My_O_BranchPC_Signal[0]" at execute.v(121)
+Info (10041): Inferred latch for "My_O_BranchPC_Signal[1]" at execute.v(121)
+Info (10041): Inferred latch for "My_O_BranchPC_Signal[2]" at execute.v(121)
+Info (10041): Inferred latch for "My_O_BranchPC_Signal[3]" at execute.v(121)
+Info (10041): Inferred latch for "My_O_BranchPC_Signal[4]" at execute.v(121)
+Info (10041): Inferred latch for "My_O_BranchPC_Signal[5]" at execute.v(121)
+Info (10041): Inferred latch for "My_O_BranchPC_Signal[6]" at execute.v(121)
+Info (10041): Inferred latch for "My_O_BranchPC_Signal[7]" at execute.v(121)
+Info (10041): Inferred latch for "My_O_BranchPC_Signal[8]" at execute.v(121)
+Info (10041): Inferred latch for "My_O_BranchPC_Signal[9]" at execute.v(121)
+Info (10041): Inferred latch for "My_O_BranchPC_Signal[10]" at execute.v(121)
+Info (10041): Inferred latch for "My_O_BranchPC_Signal[11]" at execute.v(121)
+Info (10041): Inferred latch for "My_O_BranchPC_Signal[12]" at execute.v(121)
+Info (10041): Inferred latch for "My_O_BranchPC_Signal[13]" at execute.v(121)
+Info (10041): Inferred latch for "My_O_BranchPC_Signal[14]" at execute.v(121)
+Info (10041): Inferred latch for "My_O_BranchPC_Signal[15]" at execute.v(121)
+Info (10041): Inferred latch for "CCValue[0]" at execute.v(302)
+Info (10041): Inferred latch for "CCValue[1]" at execute.v(302)
+Info (10041): Inferred latch for "CCValue[2]" at execute.v(302)
 Info (12128): Elaborating entity "Memory" for hierarchy "Memory:Memory0"
-Warning (10036): Verilog HDL or VHDL warning at memory.v(189): object "dst_value" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at memory.v(194): object "dst_value" assigned a value but never read
 Warning (10850): Verilog HDL warning at memory.v(113): number of words (38) in memory file does not match the number of elements in the address range [0:255]
-Warning (10230): Verilog HDL assignment warning at memory.v(191): truncated value with size 16 to match size of target (6)
-Warning (10230): Verilog HDL assignment warning at memory.v(230): truncated value with size 16 to match size of target (10)
-Warning (10230): Verilog HDL assignment warning at memory.v(232): truncated value with size 16 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at memory.v(196): truncated value with size 16 to match size of target (6)
+Warning (10230): Verilog HDL assignment warning at memory.v(235): truncated value with size 16 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at memory.v(237): truncated value with size 16 to match size of target (8)
 Warning (10034): Output port "O_R15PC" at memory.v(82) has no driver
 Warning (10034): Output port "O_DestVRegIdx" at memory.v(84) has no driver
 Warning (10034): Output port "O_VecSrc1Value" at memory.v(88) has no driver
@@ -1684,120 +1452,97 @@ Warning (12011): Net is missing source, defaulting to GND
     Warning (12110): Net "GPUStallSignal" is missing source, defaulting to GND
 Warning (12011): Net is missing source, defaulting to GND
     Warning (12110): Net "GPUStallSignal" is missing source, defaulting to GND
-Warning (276027): Inferred dual-clock RAM node "Decode:Decode0|RF_rtl_0" from synchronous design logic.  The read-during-write behavior of a dual-clock RAM is undefined and may not match the behavior of the original design.
 Info (276014): Found 1 instances of uninferred RAM logic
     Info (276007): RAM logic "Decode:Decode0|RF" is uninferred due to asynchronous read logic
-Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "D:/CPSC/3220/project7/gpu_frame_restored/db/lg_highlevel.ram0_Fetch_4c7a7c9.hdl.mif" contains "don't care" values -- overwriting them with 0s
-Info (19000): Inferred 1 megafunctions from design logic
-    Info (276029): Inferred altsyncram megafunction from the following design logic: "Decode:Decode0|RF_rtl_0" 
-        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
-        Info (286033): Parameter WIDTH_A set to 16
-        Info (286033): Parameter WIDTHAD_A set to 4
-        Info (286033): Parameter NUMWORDS_A set to 16
-        Info (286033): Parameter WIDTH_B set to 16
-        Info (286033): Parameter WIDTHAD_B set to 4
-        Info (286033): Parameter NUMWORDS_B set to 16
-        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
-        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
-        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
-        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
-        Info (286033): Parameter ADDRESS_REG_B set to CLOCK1
-        Info (286033): Parameter INDATA_ACLR_A set to NONE
-        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
-        Info (286033): Parameter INIT_FILE set to db/lg_highlevel.ram0_Decode_8f0a662c.hdl.mif
-Info (12130): Elaborated megafunction instantiation "Decode:Decode0|altsyncram:RF_rtl_0"
-Info (12133): Instantiated megafunction "Decode:Decode0|altsyncram:RF_rtl_0" with the following parameter:
-    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
-    Info (12134): Parameter "WIDTH_A" = "16"
-    Info (12134): Parameter "WIDTHAD_A" = "4"
-    Info (12134): Parameter "NUMWORDS_A" = "16"
-    Info (12134): Parameter "WIDTH_B" = "16"
-    Info (12134): Parameter "WIDTHAD_B" = "4"
-    Info (12134): Parameter "NUMWORDS_B" = "16"
-    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
-    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
-    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
-    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
-    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK1"
-    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
-    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
-    Info (12134): Parameter "INIT_FILE" = "db/lg_highlevel.ram0_Decode_8f0a662c.hdl.mif"
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_rqh1.tdf
-    Info (12023): Found entity 1: altsyncram_rqh1
-Warning (14284): Synthesized away the following node(s):
-    Warning (14285): Synthesized away the following RAM node(s):
-        Warning (14320): Synthesized away node "Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated|ram_block1a0"
-        Warning (14320): Synthesized away node "Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated|ram_block1a1"
-        Warning (14320): Synthesized away node "Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated|ram_block1a2"
-        Warning (14320): Synthesized away node "Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated|ram_block1a3"
-        Warning (14320): Synthesized away node "Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated|ram_block1a4"
-        Warning (14320): Synthesized away node "Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated|ram_block1a5"
-        Warning (14320): Synthesized away node "Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated|ram_block1a6"
-        Warning (14320): Synthesized away node "Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated|ram_block1a7"
-        Warning (14320): Synthesized away node "Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated|ram_block1a8"
-        Warning (14320): Synthesized away node "Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated|ram_block1a9"
-        Warning (14320): Synthesized away node "Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated|ram_block1a10"
-        Warning (14320): Synthesized away node "Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated|ram_block1a11"
-        Warning (14320): Synthesized away node "Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated|ram_block1a12"
-        Warning (14320): Synthesized away node "Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated|ram_block1a13"
-        Warning (14320): Synthesized away node "Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated|ram_block1a14"
-        Warning (14320): Synthesized away node "Decode:Decode0|altsyncram:RF_rtl_0|altsyncram_rqh1:auto_generated|ram_block1a15"
+Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "E:/CPSC/3220/project7/gpu_frame_restored/db/lg_highlevel.ram0_Fetch_4c7a7c9.hdl.mif" contains "don't care" values -- overwriting them with 0s
 Warning (12241): 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
+    Info (13026): Duplicate LATCH primitive "Execute:Execute0|Branch_Was_Taken.1_1818" merged with LATCH primitive "Execute:Execute0|My_O_BranchAddrSelect_Signal"
+Warning (13012): Latch Decode:Decode0|Src1Value[2] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[24]
+Warning (13012): Latch Decode:Decode0|DestRegIdx[0] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[27]
+Warning (13012): Latch Decode:Decode0|DestRegIdx[1] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[27]
+Warning (13012): Latch Decode:Decode0|DestRegIdx[2] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[29]
+Warning (13012): Latch Decode:Decode0|DestRegIdx[3] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[29]
+Warning (13012): Latch Execute:Execute0|My_O_BranchAddrSelect_Signal has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Decode:Decode0|O_Opcode[3]
+Warning (13012): Latch Decode:Decode0|dep_stall has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[29]
+Warning (13012): Latch Decode:Decode0|Src1Value[1] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[24]
+Warning (13012): Latch Decode:Decode0|Src1Value[0] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[24]
+Warning (13012): Latch Decode:Decode0|Src1Value[3] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[24]
+Warning (13012): Latch Decode:Decode0|Src1Value[6] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[24]
+Warning (13012): Latch Decode:Decode0|Src1Value[5] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[24]
+Warning (13012): Latch Decode:Decode0|Src1Value[4] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[24]
+Warning (13012): Latch Decode:Decode0|Src1Value[7] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[24]
+Warning (13012): Latch Decode:Decode0|Src1Value[10] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[24]
+Warning (13012): Latch Decode:Decode0|Src1Value[9] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[24]
+Warning (13012): Latch Decode:Decode0|Src1Value[8] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[24]
+Warning (13012): Latch Decode:Decode0|Src1Value[11] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[24]
+Warning (13012): Latch Decode:Decode0|Src1Value[14] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[24]
+Warning (13012): Latch Decode:Decode0|Src1Value[13] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[24]
+Warning (13012): Latch Decode:Decode0|Src1Value[12] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[24]
+Warning (13012): Latch Decode:Decode0|Src1Value[15] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Fetch:Fetch0|O_IR[24]
+Warning (13012): Latch Execute:Execute0|ALU_O_DestValue[2] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Decode:Decode0|O_Opcode[0]
+Warning (13012): Latch Execute:Execute0|ALU_O_DestValue[0] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Decode:Decode0|O_Opcode[0]
+Warning (13012): Latch Execute:Execute0|ALU_O_DestValue[1] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Decode:Decode0|O_Opcode[0]
+Warning (13012): Latch Execute:Execute0|ALU_O_DestValue[3] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Decode:Decode0|O_Opcode[0]
+Warning (13012): Latch Execute:Execute0|ALU_O_DestValue[6] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Decode:Decode0|O_Opcode[0]
+Warning (13012): Latch Execute:Execute0|ALU_O_DestValue[5] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Decode:Decode0|O_Opcode[0]
+Warning (13012): Latch Execute:Execute0|ALU_O_DestValue[4] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Decode:Decode0|O_Opcode[0]
+Warning (13012): Latch Execute:Execute0|ALU_O_DestValue[7] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Decode:Decode0|O_Opcode[4]
+Warning (13012): Latch Execute:Execute0|ALU_O_DestValue[10] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Decode:Decode0|O_Opcode[0]
+Warning (13012): Latch Execute:Execute0|ALU_O_DestValue[9] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Decode:Decode0|O_Opcode[4]
+Warning (13012): Latch Execute:Execute0|ALU_O_DestValue[8] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Decode:Decode0|O_Opcode[4]
+Warning (13012): Latch Execute:Execute0|ALU_O_DestValue[11] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Decode:Decode0|O_Opcode[0]
+Warning (13012): Latch Execute:Execute0|ALU_O_DestValue[14] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Decode:Decode0|O_Opcode[0]
+Warning (13012): Latch Execute:Execute0|ALU_O_DestValue[13] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Decode:Decode0|O_Opcode[0]
+Warning (13012): Latch Execute:Execute0|ALU_O_DestValue[12] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Decode:Decode0|O_Opcode[4]
+Warning (13012): Latch Execute:Execute0|ALU_O_DestValue[15] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Decode:Decode0|O_Opcode[0]
 Info (13000): Registers with preset signals will power-up high
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "HEX0[0]" is stuck at GND
-    Warning (13410): Pin "HEX0[1]" is stuck at VCC
-    Warning (13410): Pin "HEX0[2]" is stuck at VCC
-    Warning (13410): Pin "HEX0[3]" is stuck at VCC
-    Warning (13410): Pin "HEX0[4]" is stuck at GND
-    Warning (13410): Pin "HEX0[5]" is stuck at GND
-    Warning (13410): Pin "HEX0[6]" is stuck at GND
-    Warning (13410): Pin "HEX1[0]" is stuck at GND
-    Warning (13410): Pin "HEX1[1]" is stuck at VCC
-    Warning (13410): Pin "HEX1[2]" is stuck at VCC
-    Warning (13410): Pin "HEX1[3]" is stuck at GND
-    Warning (13410): Pin "HEX1[4]" is stuck at GND
-    Warning (13410): Pin "HEX1[5]" is stuck at GND
-    Warning (13410): Pin "HEX1[6]" is stuck at GND
-    Warning (13410): Pin "HEX2[0]" is stuck at GND
-    Warning (13410): Pin "HEX2[1]" is stuck at VCC
-    Warning (13410): Pin "HEX2[2]" is stuck at VCC
-    Warning (13410): Pin "HEX2[3]" is stuck at GND
-    Warning (13410): Pin "HEX2[4]" is stuck at GND
-    Warning (13410): Pin "HEX2[5]" is stuck at GND
-    Warning (13410): Pin "HEX2[6]" is stuck at GND
-    Warning (13410): Pin "HEX3[0]" is stuck at VCC
-    Warning (13410): Pin "HEX3[1]" is stuck at VCC
-    Warning (13410): Pin "HEX3[2]" is stuck at GND
-    Warning (13410): Pin "HEX3[3]" is stuck at GND
-    Warning (13410): Pin "HEX3[4]" is stuck at GND
-    Warning (13410): Pin "HEX3[5]" is stuck at GND
-    Warning (13410): Pin "HEX3[6]" is stuck at GND
-    Warning (13410): Pin "LEDG[0]" is stuck at VCC
-    Warning (13410): Pin "LEDG[1]" is stuck at VCC
-    Warning (13410): Pin "LEDG[2]" is stuck at VCC
-    Warning (13410): Pin "LEDG[3]" is stuck at VCC
-    Warning (13410): Pin "LEDG[4]" is stuck at VCC
-    Warning (13410): Pin "LEDG[5]" is stuck at VCC
-    Warning (13410): Pin "LEDG[6]" is stuck at VCC
-    Warning (13410): Pin "LEDG[7]" is stuck at VCC
-    Warning (13410): Pin "LEDR[0]" is stuck at VCC
-    Warning (13410): Pin "LEDR[1]" is stuck at VCC
-    Warning (13410): Pin "LEDR[2]" is stuck at VCC
-    Warning (13410): Pin "LEDR[3]" is stuck at VCC
-    Warning (13410): Pin "LEDR[4]" is stuck at VCC
-    Warning (13410): Pin "LEDR[5]" is stuck at VCC
-    Warning (13410): Pin "LEDR[6]" is stuck at VCC
-    Warning (13410): Pin "LEDR[7]" is stuck at VCC
-    Warning (13410): Pin "LEDR[8]" is stuck at VCC
-    Warning (13410): Pin "LEDR[9]" is stuck at VCC
     Warning (13410): Pin "SRAM_UB_N" is stuck at GND
     Warning (13410): Pin "SRAM_LB_N" is stuck at GND
     Warning (13410): Pin "SRAM_CE_N" is stuck at GND
     Warning (13410): Pin "SRAM_OE_N" is stuck at GND
-Info (17049): 287 registers lost all their fanouts during netlist optimizations.
-Info (144001): Generated suppressed messages file D:/CPSC/3220/project7/gpu_frame_restored/output_files/lg_highlevel.map.smsg
+Info (17049): 178 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file E:/CPSC/3220/project7/gpu_frame_restored/output_files/lg_highlevel.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 15 input pin(s) that do not drive logic
@@ -1816,22 +1561,22 @@ Warning (21074): Design contains 15 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[7]"
     Warning (15610): No output dependent on input pin "SW[8]"
     Warning (15610): No output dependent on input pin "SW[9]"
-Info (21057): Implemented 394 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1217 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 17 input pins
     Info (21059): Implemented 83 output pins
     Info (21060): Implemented 16 bidirectional pins
-    Info (21061): Implemented 277 logic cells
+    Info (21061): Implemented 1100 logic cells
     Info (21065): Implemented 1 PLLs
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 184 warnings
-    Info: Peak virtual memory: 472 megabytes
-    Info: Processing ended: Mon Apr 06 00:51:37 2015
-    Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:03
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 196 warnings
+    Info: Peak virtual memory: 470 megabytes
+    Info: Processing ended: Mon Apr 06 15:04:54 2015
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:04
 
 
 +------------------------------------------+
 ; Analysis & Synthesis Suppressed Messages ;
 +------------------------------------------+
-The suppressed messages can be found in D:/CPSC/3220/project7/gpu_frame_restored/output_files/lg_highlevel.map.smsg.
+The suppressed messages can be found in E:/CPSC/3220/project7/gpu_frame_restored/output_files/lg_highlevel.map.smsg.
 
 

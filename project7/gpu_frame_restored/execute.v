@@ -99,6 +99,8 @@ output O_BranchAddrSelect_Signal;
 reg [`PC_WIDTH-1:0] My_O_BranchPC_Signal;
 reg My_O_BranchAddrSelect_Signal;
 reg [0:0] Branch_Was_Taken = 0;
+reg[`REG_WIDTH-1:0] MARValue;
+reg[`REG_WIDTH-1:0] MDRValue;
 
 // Signals to the DE stage for dependency checking    
 output  O_RegWEn_Signal;
@@ -201,6 +203,8 @@ always @(*) begin
 		end
 
 		`OP_STW: begin
+			MARValue = I_DestRegIdx + I_Imm;
+			MDRValue = I_Src1Value;
 		end
 
 		`OP_BRP: begin
@@ -333,6 +337,8 @@ always @(negedge I_CLOCK) begin
 		O_DestValue <= ALU_O_DestValue;
 		O_RegWEn <= O_RegWEn_Signal; 
 		O_CCWEn <= O_CCWEn_Signal;
+		O_MARValue <= MARValue;
+		O_MDRValue <= MDRValue;
 		if (O_CCWEn_Signal == 1) begin
 			O_CCValue <= CCValue;
 		end else begin
