@@ -1,3 +1,4 @@
+halt
 movi.d r0 1 
 movi.d r1 0
 add.d r1 r1 r0 

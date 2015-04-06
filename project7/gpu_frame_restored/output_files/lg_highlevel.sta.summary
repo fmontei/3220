@@ -3,39 +3,51 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow Model Setup 'pll0|altpll_component|pll|clk[0]'
-Slack : -8.225
-TNS   : -1307.721
+Slack : -10.425
+TNS   : -1026.089
 
 Type  : Slow Model Setup 'Fetch:Fetch0|O_IR[24]'
-Slack : -3.249
-TNS   : -60.532
+Slack : -4.011
+TNS   : -98.039
 
 Type  : Slow Model Setup 'Decode:Decode0|O_Opcode[0]'
-Slack : -1.695
-TNS   : -24.674
+Slack : -1.559
+TNS   : -18.355
 
-Type  : Slow Model Setup 'Memory:Memory0|O_MEM_Valid'
-Slack : 1.362
+Type  : Slow Model Setup 'Decode:Decode0|O_CCValue[0]'
+Slack : 0.805
 TNS   : 0.000
 
-Type  : Slow Model Hold 'Fetch:Fetch0|O_IR[24]'
-Slack : -4.152
-TNS   : -136.369
+Type  : Slow Model Setup 'Memory:Memory0|O_MEM_Valid'
+Slack : 1.006
+TNS   : 0.000
 
 Type  : Slow Model Hold 'Decode:Decode0|O_Opcode[0]'
-Slack : -3.460
-TNS   : -125.817
+Slack : -4.280
+TNS   : -150.630
+
+Type  : Slow Model Hold 'Decode:Decode0|O_CCValue[0]'
+Slack : -3.898
+TNS   : -20.885
+
+Type  : Slow Model Hold 'Fetch:Fetch0|O_IR[24]'
+Slack : -3.527
+TNS   : -90.740
 
 Type  : Slow Model Hold 'Memory:Memory0|O_MEM_Valid'
-Slack : -3.151
-TNS   : -69.770
+Slack : -2.636
+TNS   : -47.553
 
 Type  : Slow Model Hold 'pll0|altpll_component|pll|clk[0]'
 Slack : 0.445
 TNS   : 0.000
 
 Type  : Slow Model Minimum Pulse Width 'Fetch:Fetch0|O_IR[24]'
-Slack : 0.398
+Slack : -1.879
+TNS   : -11.274
+
+Type  : Slow Model Minimum Pulse Width 'Decode:Decode0|O_CCValue[0]'
+Slack : 0.067
 TNS   : 0.000
 
 Type  : Slow Model Minimum Pulse Width 'Decode:Decode0|O_Opcode[0]'
@@ -55,39 +67,51 @@ Slack : 18.730
 TNS   : 0.000
 
 Type  : Fast Model Setup 'pll0|altpll_component|pll|clk[0]'
-Slack : -3.995
-TNS   : -667.992
+Slack : -4.200
+TNS   : -529.544
 
 Type  : Fast Model Setup 'Fetch:Fetch0|O_IR[24]'
-Slack : -0.866
-TNS   : -3.450
+Slack : -1.084
+TNS   : -4.351
 
 Type  : Fast Model Setup 'Decode:Decode0|O_Opcode[0]'
-Slack : -0.192
-TNS   : -0.192
+Slack : -0.170
+TNS   : -0.170
 
-Type  : Fast Model Setup 'Memory:Memory0|O_MEM_Valid'
-Slack : 1.361
+Type  : Fast Model Setup 'Decode:Decode0|O_CCValue[0]'
+Slack : 1.195
 TNS   : 0.000
 
-Type  : Fast Model Hold 'Fetch:Fetch0|O_IR[24]'
-Slack : -2.362
-TNS   : -80.906
+Type  : Fast Model Setup 'Memory:Memory0|O_MEM_Valid'
+Slack : 1.234
+TNS   : 0.000
 
 Type  : Fast Model Hold 'Decode:Decode0|O_Opcode[0]'
-Slack : -2.149
-TNS   : -92.389
+Slack : -2.509
+TNS   : -98.765
+
+Type  : Fast Model Hold 'Decode:Decode0|O_CCValue[0]'
+Slack : -2.279
+TNS   : -12.841
+
+Type  : Fast Model Hold 'Fetch:Fetch0|O_IR[24]'
+Slack : -2.192
+TNS   : -63.965
 
 Type  : Fast Model Hold 'Memory:Memory0|O_MEM_Valid'
-Slack : -1.987
-TNS   : -44.613
+Slack : -1.821
+TNS   : -34.500
 
 Type  : Fast Model Hold 'pll0|altpll_component|pll|clk[0]'
 Slack : 0.215
 TNS   : 0.000
 
 Type  : Fast Model Minimum Pulse Width 'Fetch:Fetch0|O_IR[24]'
-Slack : 0.458
+Slack : -0.325
+TNS   : -1.950
+
+Type  : Fast Model Minimum Pulse Width 'Decode:Decode0|O_CCValue[0]'
+Slack : 0.352
 TNS   : 0.000
 
 Type  : Fast Model Minimum Pulse Width 'Decode:Decode0|O_Opcode[0]'

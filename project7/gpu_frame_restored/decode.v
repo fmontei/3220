@@ -297,7 +297,7 @@ always @(*) begin
 
 		`OP_STW: begin
 			Src1Value = RF[I_IR[23:20]]; // Src
-			DestRegIdx = RF[I_IR[19:16]]; // Base
+			Src2Value = RF[I_IR[19:16]]; // Base
 		end
 
 		`OP_BRP: begin
