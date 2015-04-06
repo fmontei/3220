@@ -1,5 +1,5 @@
 Flow report for lg_highlevel
-Sun Apr 05 00:39:36 2015
+Sun Apr 05 20:02:07 2015
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -40,7 +40,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Sun Apr 05 00:39:36 2015           ;
+; Flow Status                        ; Successful - Sun Apr 05 20:02:07 2015           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; lg_highlevel                                    ;
 ; Top-level Entity Name              ; lg_highlevel                                    ;
@@ -64,7 +64,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/05/2015 00:39:24 ;
+; Start date & time ; 04/05/2015 20:01:54 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; lg_highlevel        ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ applicable agreement for further details.
 +----------------------------------------+---------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                        ; Value                                 ; Default Value ; Entity Name ; Section Id     ;
 +----------------------------------------+---------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID                  ; 171859733332017.142820876307324       ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                  ; 171859733332017.142827851403648       ; --            ; --          ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME               ; NA                                    ; --            ; --          ; my_testbench   ;
 ; EDA_NATIVELINK_SIMULATION_SETUP_SCRIPT ; simulation/modelsim/my_custom_view.do ; --            ; --          ; eda_simulation ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH   ; my_testbench                          ; --            ; --          ; eda_simulation ;
@@ -109,11 +109,11 @@ applicable agreement for further details.
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Analysis & Synthesis      ; 00:00:02     ; 1.0                     ; 459 MB              ; 00:00:02                           ;
-; Fitter                    ; 00:00:05     ; 1.0                     ; 632 MB              ; 00:00:04                           ;
+; Fitter                    ; 00:00:05     ; 1.0                     ; 632 MB              ; 00:00:05                           ;
 ; Assembler                 ; 00:00:01     ; 1.0                     ; 423 MB              ; 00:00:01                           ;
 ; TimeQuest Timing Analyzer ; 00:00:01     ; 1.0                     ; 400 MB              ; 00:00:01                           ;
-; EDA Netlist Writer        ; 00:00:00     ; 1.0                     ; 378 MB              ; 00:00:01                           ;
-; Total                     ; 00:00:09     ; --                      ; --                  ; 00:00:09                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 378 MB              ; 00:00:01                           ;
+; Total                     ; 00:00:10     ; --                      ; --                  ; 00:00:10                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

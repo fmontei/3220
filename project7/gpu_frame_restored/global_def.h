@@ -79,7 +79,7 @@
 `define OP_RET              8'b11100000
 `define OP_JSR              8'b11110000
 `define OP_JSRR             8'b11111000
-`define OP_HALT             8'b11100000
+`define OP_HALT             8'b11000000
 
 /////////////////////////////////////////
 // GPU-RELATED DEFINITIONS GO HERE 

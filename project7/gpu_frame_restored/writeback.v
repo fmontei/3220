@@ -90,7 +90,7 @@ reg [1:0] vertex_point_status;
 /////////////////////////////////////////
 // ALWAYS STATEMENT GOES HERE
 // Generate write back data to the decode stage 
-// Perform Graphic operaionts 
+//   Perform Graphic operaionts 
 /////////////////////////////////////////
 always @(*) begin
 	case (I_Opcode)

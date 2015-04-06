@@ -181,23 +181,26 @@ wire [`VREG_WIDTH-1:0] VecSrc1Value_MW;
 wire [`VREG_WIDTH-1:0] VecSrc2Value_MW;
 wire [`VREG_WIDTH-1:0] VecDestValue_MW;
 
-wire LOCK_WG; 
-wire RegWEn_MW;
-wire VRegWEn_MW;
-wire CCWEn_MW;
+wire         LOCK_WG; 
+wire 	       RegWEn_MW;
+wire 	       VRegWEn_MW;
+wire 	       CCWEn_MW;
 
+   
 wire [`GSR_WIDTH-1:0] GSRValue_WG; 
 wire [`VERTEX_REG_WIDTH-1:0] VertexV1_WG;
 wire [`VERTEX_REG_WIDTH-1:0] VertexV2_WG;
 wire [`VERTEX_REG_WIDTH-1:0] VertexV3_WG;
 wire GSRValue_Valid_WG; 
 
-wire [2:0] CCValue_DE;
-wire [2:0] CCValue_EM;
-wire [2:0] CCValue_MW;
-wire [2:0] CCValue_WD;         
+
+wire [2:0] 		     CCValue_DE;
+wire [2:0] 		     CCValue_EM;
+wire [2:0] 		     CCValue_MW;
+wire [2:0] 		     CCValue_WD;         
    
-wire GPUStallSignal_G; 
+
+wire 	GPUStallSignal_G; 
 
 /////////////////////////////////////////
 // PLL MODULE GOES HERE 

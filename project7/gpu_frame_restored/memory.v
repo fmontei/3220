@@ -119,6 +119,8 @@ end
 /////////////////////////////////////////
 //
 always @(negedge I_CLOCK) begin
+	
+
 	 case (I_Opcode)
 	   `OP_ADD_D: begin
 			O_DestValue <= I_DestValue;
@@ -199,6 +201,7 @@ always @(negedge I_CLOCK) begin
 		O_IR <= I_IR;
 		O_MEM_Valid <= I_EX_Valid;
 		O_RegWEn <= I_RegWEn;
+		//O_CCRegWen <= I_CCRegWen
 		O_CCWEn <= I_CCWEn;
 		O_CCValue <= I_CCValue;
 

@@ -47,6 +47,11 @@ module Decode(
   O_DE_Valid
 );
 
+reg dep_stall;
+reg de_valid;
+reg br_stall; 
+
+
 /////////////////////////////////////////
 // IN/OUT DEFINITION GOES HERE
 /////////////////////////////////////////
@@ -138,6 +143,8 @@ reg VRF_VALID[0:`NUM_VRF-1]; // Valid bits for Vector Register File
 wire [`REG_WIDTH-1:0] Imm32; // Sign-extended immediate value
 reg [2:0] ConditionalCode; // Set based on the written-back result
 
+
+
 /////////////////////////////////////////
 // INITIAL/ASSIGN STATEMENT GOES HERE
 /////////////////////////////////////////
@@ -145,6 +152,8 @@ reg [2:0] ConditionalCode; // Set based on the written-back result
 reg[7:0] trav;
 
 initial begin
+	dep_stall = 0;
+	br_stall = 0;
 	for (trav = 0; trav < `NUM_RF; trav = trav + 1'b1) begin
 		RF[trav] = 0;
 		RF_VALID[trav] = 1;  
@@ -169,10 +178,7 @@ reg [`REG_WIDTH-1:0] Src1Value;
 reg [`REG_WIDTH-1:0] Src2Value;
 reg [`REG_WIDTH-1:0] Imm;
 reg [3:0] DestRegIdx;   
-reg dep_stall;
-reg de_valid;
-reg br_stall; 
-reg decode_lock;
+
 wire [2:0] CCValue;
 reg [1:0] Idx; 
 reg [`VREG_WIDTH-1:0] VecSrc1Value; 
@@ -186,8 +192,7 @@ assign Opcode = I_IR[31:24];
 // ALWAYS STATEMENT GOES HERE
 /////////////////////////////////////////
 always @(*) begin
-	decode_lock = I_LOCK;
-	
+	//O_DE_Valid <= I_FE_Valid;
 	case (Opcode)
 		`OP_ADD_D: begin 
 			Src1Value = RF[I_IR[19:16]];
@@ -215,7 +220,7 @@ always @(*) begin
 		  
 		`OP_ADDI_D: begin
 			Src1Value = RF[I_IR[19:16]];
-			Imm = I_IR[15:0];
+			//Imm = {16{I_IR[15]}, I_IR[15:0]};
 			DestRegIdx = I_IR[23:20];
 			/* Only one source register exists for this instruction */
 			if (((I_IR[19:16] == I_EDDestRegIdx) && I_EDDestWrite) || 
@@ -281,30 +286,59 @@ always @(*) begin
 		end
 
 		`OP_BRP: begin
+			//br_stall = 1;
 			if (I_EDCCWEn == 1 || I_MDCCWEn == 1)
-				dep_stall = 1;
+		       dep_stall = 1;
 			else
-				dep_stall = 0;
-				
-			Imm = I_IR[15:0];
+				 dep_stall = 0;
 		end
 
 		`OP_BRN: begin
+			//br_stall = 1;
+			if (I_EDCCWEn == 1 || I_MDCCWEn == 1)
+		       dep_stall = 1;
+			else
+				 dep_stall = 0;
 		end 
 
 		`OP_BRZ: begin
+			//br_stall = 1;
+			if (I_EDCCWEn == 1 || I_MDCCWEn == 1)
+		       dep_stall = 1;
+			else
+				 dep_stall = 0;
 		end
 
 		`OP_BRNP: begin
+			//br_stall = 1;
+			if (I_EDCCWEn == 1 || I_MDCCWEn == 1)
+		       dep_stall = 1;
+			else
+				 dep_stall = 0;
 		end
 
 		`OP_BRZP: begin
+			//br_stall = 1;
+			if (I_EDCCWEn == 1 || I_MDCCWEn == 1)
+		       dep_stall = 1;
+			else
+				 dep_stall = 0;
 		end 
 
 		`OP_BRNZ: begin
+			//br_stall = 1;
+			if (I_EDCCWEn == 1 || I_MDCCWEn == 1)
+		        dep_stall = 1;
+			else
+				 dep_stall = 0;
 		end 
 
 		`OP_BRNZP: begin
+			//br_stall = 1;
+			if (I_EDCCWEn == 1 || I_MDCCWEn == 1)
+		       dep_stall = 1;
+			else
+				 dep_stall = 0;
 		end 
 
 		`OP_JMP: begin
@@ -315,33 +349,31 @@ always @(*) begin
 
 		`OP_JSRR: begin
 		end
-		
-		`OP_HALT: begin
-			decode_lock = 0;
-		end
 		  
 		default: begin
 			dep_stall = 0;
+			br_stall = 0;
 		end
 		
 	endcase // case (IR[31:24])
-	if (I_FE_Valid == 1)
-		O_DepStallSignal = dep_stall;
-	else 
-		O_DepStallSignal = 0;
 	
-end // always @ (*)
-
-always @(*) begin
-	// Branch opcode detection logic is already provided for you. 
+ 
 	if ((I_IR[31:27] == 5'b11011)  ||
 		 (I_IR[31:24] == `OP_JMP) ||
 		 (I_IR[31:24] == `OP_JSR) ||
 		 (I_IR[31:24] == `OP_JSRR))
-		br_stall = 1;
+		 br_stall = 1;
 	else
 		br_stall = 0;
-	O_BranchStallSignal = br_stall;
+		
+  if (I_FE_Valid == 1) begin
+		O_BranchStallSignal = br_stall;
+		O_DepStallSignal = dep_stall;
+   end else begin 
+		O_BranchStallSignal = 0;
+		O_DepStallSignal = 0;
+	end
+
 end
 
    
@@ -358,10 +390,10 @@ always @(posedge I_CLOCK) begin
 	if (I_LOCK == 1'b1) begin
 		// Register write should come here 
 		if (I_RegWEn == 1) begin
-			RF[I_WriteBackRegIdx] <= I_WriteBackData;
-		end  
+			RF[I_WriteBackRegIdx] = I_WriteBackData;
+		end
 		if (I_CCWEn == 1) begin
-			ConditionalCode <= I_CCValue;
+			ConditionalCode = I_CCValue;
 		end
 	end // if (I_LOCK == 1'b1)
 end // always @(posedge I_CLOCK)
@@ -373,8 +405,11 @@ end // always @(posedge I_CLOCK)
 // 2. To update valid bit for the corresponding register (for both writeback instruction and current instruction) 
 /////////////////////////////////////////
 always @(negedge I_CLOCK) begin
-	O_LOCK <= decode_lock;
-	
+  O_LOCK <= I_LOCK;
+
+
+
+
 	if (I_LOCK == 1'b1) begin
 		O_PC <= I_PC;
 		O_IR <= I_IR;
@@ -385,9 +420,19 @@ always @(negedge I_CLOCK) begin
 		O_Src1Value <= Src1Value;
 		O_Src2Value <= Src2Value;
 		O_DestRegIdx <= DestRegIdx;
-		O_Imm <= Imm;
-		O_CCValue <= ConditionalCode;
-		O_DE_Valid <= (dep_stall == 1 || br_stall == 1) ? 0 : 1;
+		O_Imm <= Imm32;
+		//O_DE_Valid <= I_FE_Valid
+		//O_DE_Valid <= (dep_stall == 1) ? 0 : 1;
+		if (dep_stall == 0 && br_stall == 0) begin
+			O_DE_Valid <= 1;
+		end else if (dep_stall == 1 && br_stall == 0) begin 
+			O_DE_Valid <= 0;
+		end else if (dep_stall == 1 && br_stall == 1) begin
+			O_DE_Valid <= 0;
+		end else if (dep_stall == 0 && br_stall == 1) begin
+			O_DE_Valid <= 1;
+		end
+		O_CCValue <= I_CCValue;
 	end // if (I_LOCK == 1'b1)
 	else begin 
 	end 

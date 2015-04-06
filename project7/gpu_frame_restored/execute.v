@@ -79,7 +79,6 @@ output reg [`VREG_ID_WIDTH-1:0] O_DestVRegIdx;
 output reg [`REG_WIDTH-1:0] O_DestValue;
 reg signed [`REG_WIDTH-1:0] ALU_O_DestValue;
 output reg [2:0] O_CCValue;   
-reg [2:0] CCValue;
 output reg [`VREG_WIDTH-1:0] O_VecSrc1Value; 
 output reg [`VREG_WIDTH-1:0] O_VecDestValue;
 output reg O_EX_Valid;
@@ -90,56 +89,55 @@ output reg[`REG_WIDTH-1:0] O_MDRValue;
 output reg O_RegWEn;
 output reg O_VRegWEn;
 output reg O_CCWEn;
-reg RegWEn, CCWEn;
+reg RegWEn;
+reg CCWEn;
+reg [2:0] CCValue;
  		    
 // Signals to the front-end  (Note: suffix Signal means the output signal is not from reg) 
-output reg [`PC_WIDTH-1:0] O_BranchPC_Signal;
-output reg O_BranchAddrSelect_Signal;
-
-reg [`PC_WIDTH-1:0] BranchPCAddress;
-reg Branch_Signal_EF;
-reg Branch_Was_Taken = 0;
+output [`PC_WIDTH-1:0] O_BranchPC_Signal;
+output O_BranchAddrSelect_Signal;
+reg [`PC_WIDTH-1:0] My_O_BranchPC_Signal;
+reg My_O_BranchAddrSelect_Signal;
+reg [0:0] Branch_Was_Taken = 0;
 
 // Signals to the DE stage for dependency checking    
-output O_RegWEn_Signal;
-output O_VRegWEn_Signal;
-output O_CCWEn_Signal;    
+output  O_RegWEn_Signal;
+output  O_VRegWEn_Signal;
+output  O_CCWEn_Signal;    
 
 /////////////////////////////////////////
 // WIRE/REGISTER DECLARATION GOES HERE
 /////////////////////////////////////////
+wire [`REG_WIDTH-1:0] Imm32;
 //assign O_RegWEn_Signal = (I_DE_Valid == 1) ? 1 : 0;
+
+   
 
 /////////////////////////////////////////
 // ALWAYS STATEMENT GOES HERE
 /////////////////////////////////////////
 always @(*) begin
-	Branch_Signal_EF = 0;
-	BranchPCAddress = 0;
-
 	case (I_Opcode)
 		`OP_ADD_D: begin 
 			ALU_O_DestValue = I_Src1Value + I_Src2Value;
 			ALU_O_DestRegIdx = I_DestRegIdx; 
-			CCValue = (ALU_O_DestValue < 0) ? 0 : (ALU_O_DestValue == 0) ? 1 : 2;
-			RegWEn = 1; 
+			RegWEn = 1;
 			CCWEn = 1;
 		end
 
 		`OP_ADD_F: begin 
 			ALU_O_DestValue = I_Src1Value + I_Src2Value;
 			ALU_O_DestRegIdx = I_DestRegIdx; 
-			CCValue = (ALU_O_DestValue < 0) ? 0 : (ALU_O_DestValue == 0) ? 1 : 2;
-			RegWEn = 1; 
 			CCWEn = 1;
+			RegWEn = 1;
+
 		end
 		  
 		`OP_ADDI_D: begin
 			ALU_O_DestValue = I_Src1Value + I_Imm;
 			ALU_O_DestRegIdx = I_DestRegIdx; 
-			CCValue = (ALU_O_DestValue < 0) ? 0 : (ALU_O_DestValue == 0) ? 1 : 2;
-			RegWEn = 1; 
 			CCWEn = 1;
+			RegWEn = 1;
 		end
 
 		`OP_ADDI_F: begin
@@ -147,6 +145,7 @@ always @(*) begin
 		end
 
 		`OP_VADD: begin 
+
 		end
 
 		`OP_AND_D: begin
@@ -197,34 +196,80 @@ always @(*) begin
 		end
 
 		`OP_BRP: begin
-			if (I_CCValue == 2) begin
-				BranchPCAddress = I_PC + (I_Imm * 4);
-				Branch_Was_Taken = 1;
+			if (I_CCValue == 3'b001 && I_DE_Valid == 1) begin
+				 My_O_BranchPC_Signal = I_PC + (Imm32 * 4); // Change by Felipe -- Multiplied by 4
+				 My_O_BranchAddrSelect_Signal = 1;
+				 Branch_Was_Taken = 1; // Change by Felipe
 			end else begin
-				BranchPCAddress = I_PC;
-				Branch_Was_Taken = 0;
+				 My_O_BranchAddrSelect_Signal = 0;
+				 Branch_Was_Taken = 0; // Change by Felipe
 			end
-			Branch_Signal_EF = 1;
-			CCValue = I_CCValue;
-			CCWEn = 0;
 		end
 
 		`OP_BRN: begin
+			if (I_CCValue == 3'b100 && I_DE_Valid == 1) begin
+				My_O_BranchPC_Signal = I_PC + (Imm32 * 4);
+				My_O_BranchAddrSelect_Signal = 1;
+				Branch_Was_Taken = 1;
+			end else begin
+				My_O_BranchAddrSelect_Signal = 0;
+				Branch_Was_Taken = 0;
+			end
 		end 
 
 		`OP_BRZ: begin
+			if (I_CCValue == 3'b010 && I_DE_Valid == 1) begin
+				My_O_BranchPC_Signal = I_PC + (Imm32 * 4);
+				My_O_BranchAddrSelect_Signal = 1;
+				Branch_Was_Taken = 1;
+			end else begin
+				My_O_BranchAddrSelect_Signal = 0;
+				Branch_Was_Taken = 0;
+			end
 		end
 
 		`OP_BRNP: begin
+			if (((I_CCValue == 3'b100) || (I_CCValue == 3'b001)) && I_DE_Valid == 1) begin
+				My_O_BranchPC_Signal = I_PC + (Imm32 * 4);
+				My_O_BranchAddrSelect_Signal = 1;
+				Branch_Was_Taken = 1;
+			end else begin
+				My_O_BranchAddrSelect_Signal = 0;
+				Branch_Was_Taken = 0;
+			end
 		end
 
 		`OP_BRZP: begin
+			if (((I_CCValue == 3'b010) || (I_CCValue == 3'b001)) && I_DE_Valid == 1) begin
+				My_O_BranchPC_Signal = I_PC + (Imm32 * 4);
+				My_O_BranchAddrSelect_Signal = 1;
+				Branch_Was_Taken = 1;
+			end else begin
+				My_O_BranchAddrSelect_Signal = 0;
+				Branch_Was_Taken = 0;
+			end
 		end 
 
 		`OP_BRNZ: begin
+			if (((I_CCValue == 3'b100) || (I_CCValue == 3'b010)) && I_DE_Valid == 1) begin
+				My_O_BranchPC_Signal = I_PC + (Imm32 * 4);
+				My_O_BranchAddrSelect_Signal = 1;
+				Branch_Was_Taken = 1;
+			end else begin
+				My_O_BranchAddrSelect_Signal = 0;
+				Branch_Was_Taken = 0;
+			end
 		end 
 
 		`OP_BRNZP: begin
+			if (((I_CCValue == 3'b100) || (I_CCValue == 3'b010) || (I_CCValue == 3'b001)) && I_DE_Valid == 1) begin
+				My_O_BranchPC_Signal = I_PC + (Imm32 * 4);
+				My_O_BranchAddrSelect_Signal = 1;
+				Branch_Was_Taken = 1;
+			end else begin
+				My_O_BranchAddrSelect_Signal = 0;
+				Branch_Was_Taken = 0;
+			end
 		end 
 
 		`OP_JMP: begin
@@ -238,10 +283,20 @@ always @(*) begin
 		  
 		default: begin
 		end 
-		
 	endcase
+	
+	if (ALU_O_DestValue > 0)
+		CCValue = 3'b001;
+	else if (ALU_O_DestValue < 0)
+		CCValue = 3'b100;
+	else if (ALU_O_DestValue == 0)
+		CCValue = 3'b010;
 end // always @ begin
-   
+
+assign O_BranchPC_Signal = My_O_BranchPC_Signal;
+//assign O_BranchAddrSelect_Signal = My_O_BranchAddrSelect_Signal;
+assign O_BranchAddrSelect_Signal = (I_IR[31:27] == 5'b11011) ? My_O_BranchAddrSelect_Signal : 0;
+	
 assign O_RegWEn_Signal = (I_DE_Valid) ? RegWEn : 0;
 assign O_CCWEn_Signal = (I_DE_Valid) ? CCWEn : 0;
 
@@ -255,32 +310,38 @@ always @(negedge I_CLOCK) begin
 	O_Opcode <= I_Opcode;
 
 	if (I_LOCK == 1'b1) begin
-		// "Cheating": checking if last instruction was a branch instruction
+		O_PC <= I_PC;
+		O_IR <= I_IR;
+		
+		// Change by Felipe -- "Cheating": checking if last instruction was a branch instruction &
+		// if it was taken, then clearly the instruction right after the branch instruction is invalid
 		if (O_IR[31:27] == 5'b11011 && Branch_Was_Taken == 1) begin 
 			O_EX_Valid <= 0;
 		end else begin
 			O_EX_Valid <= I_DE_Valid;
 		end
-	
-		O_PC <= I_PC;
-		O_IR <= I_IR;
-		
+
 		O_DestRegIdx <= ALU_O_DestRegIdx;
 		O_DestValue <= ALU_O_DestValue;
-		O_RegWEn <= O_RegWEn_Signal;  
+		O_RegWEn <= O_RegWEn_Signal; 
 		O_CCWEn <= O_CCWEn_Signal;
-		
-		O_BranchPC_Signal <= BranchPCAddress;
-		O_BranchAddrSelect_Signal <= Branch_Signal_EF;
-		O_CCValue <= CCValue;
+		if (O_CCWEn_Signal == 1) begin
+			O_CCValue <= CCValue;
+		end else begin
+			O_CCValue <= I_CCValue;
+		end
+		 
 	end
 	else begin // I_LOCK = 1'b0  
-		O_EX_Valid <=1'b0;
+		O_EX_Valid <= 1'b0;
 		O_RegWEn <= 1'b0;
 		O_VRegWEn <= 1'b0; 
 		O_CCWEn <= 1'b0; 
 	end 
 end
+
+SignExtension SE0(.In(I_IR[15:0]), .Out(Imm32));
+
 
 endmodule // module Execute
 
