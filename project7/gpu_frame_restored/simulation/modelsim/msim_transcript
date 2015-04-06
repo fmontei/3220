@@ -148,67 +148,12 @@
 #     while executing
 # "do D:/CPSC/3220/project7/gpu_frame_restored/simulation/modelsim/my_custom_view.do"
 do D:/CPSC/3220/project7/gpu_frame_restored/simulation/modelsim/wave_felipe.do
-# ** Error: (vish-4014) No objects found matching '/lg_highlevel/Execute0/BranchPCAddress'.
-# Executing ONERROR command at macro D:\CPSC\3220\project7\gpu_frame_restored\simulation\modelsim\wave_felipe.do line 9
 force -freeze sim:/lg_highlevel/Fetch0/I_CLOCK 1 0, 0 {50 ps} -r 100
 force -freeze sim:/lg_highlevel/Fetch0/I_LOCK 0 0
 run
 #  Note : Cyclone II PLL is enabled
 # Time: 0  Instance: lg_highlevel.pll0.altpll_component.stratixii_pll.pll1
 force -freeze sim:/lg_highlevel/Fetch0/I_LOCK 1 0
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
 run
 run
 run

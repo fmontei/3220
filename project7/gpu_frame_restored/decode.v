@@ -368,11 +368,11 @@ always @(*) begin
 	endcase // case (IR[31:24])
 	
  
-	if ((I_IR[31:27] == 5'b11011)  ||
+	if ((I_IR[31:27] == 5'b11011) ||
 		 (I_IR[31:24] == `OP_JMP) ||
 		 (I_IR[31:24] == `OP_JSR) ||
 		 (I_IR[31:24] == `OP_JSRR))
-		 br_stall = 1;
+		br_stall = 1;
 	else
 		br_stall = 0;
 		
