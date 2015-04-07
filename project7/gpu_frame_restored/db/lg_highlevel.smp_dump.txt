@@ -1,5 +1,0 @@
-
-State Machine - |lg_highlevel|Fetch:Fetch0|branch_detected
-Name branch_detected.1 
-branch_detected.0 0 
-branch_detected.1 1 
