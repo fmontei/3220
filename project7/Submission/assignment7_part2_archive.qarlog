@@ -1,0 +1,36 @@
+Quartus II Archive log --	D:/CPSC/3220/project7/Submission/assignment7_part2_archive.qarlog
+
+Archive:	D:/CPSC/3220/project7/Submission/assignment7_part2_archive.qar
+Date:		Mon Apr 06 20:40:06 2015
+Quartus II 64-Bit		13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
+
+	=========== Files Selected: ===========
+D:/CPSC/3220/project7/gpu_frame_restored/assignment_defaults.qdf
+D:/CPSC/3220/project7/gpu_frame_restored/data.hex
+D:/CPSC/3220/project7/gpu_frame_restored/db/lg_highlevel.cmp.rdb
+D:/CPSC/3220/project7/gpu_frame_restored/decode.v
+D:/CPSC/3220/project7/gpu_frame_restored/execute.v
+D:/CPSC/3220/project7/gpu_frame_restored/fetch.v
+D:/CPSC/3220/project7/gpu_frame_restored/global_def.h
+D:/CPSC/3220/project7/gpu_frame_restored/gpu.v
+D:/CPSC/3220/project7/gpu_frame_restored/incremental_db/compiled_partitions/lg_highlevel.db_info
+D:/CPSC/3220/project7/gpu_frame_restored/lg_highlevel.qpf
+D:/CPSC/3220/project7/gpu_frame_restored/lg_highlevel.qsf
+D:/CPSC/3220/project7/gpu_frame_restored/lg_highlevel.v
+D:/CPSC/3220/project7/gpu_frame_restored/lg_highlevel_assignment_defaults.qdf
+D:/CPSC/3220/project7/gpu_frame_restored/memory.v
+D:/CPSC/3220/project7/gpu_frame_restored/multi_sram.v
+D:/CPSC/3220/project7/gpu_frame_restored/pixel_gen.v
+D:/CPSC/3220/project7/gpu_frame_restored/pll.ppf
+D:/CPSC/3220/project7/gpu_frame_restored/pll.qip
+D:/CPSC/3220/project7/gpu_frame_restored/pll.v
+D:/CPSC/3220/project7/gpu_frame_restored/pll_bb.v
+D:/CPSC/3220/project7/gpu_frame_restored/seven_segment.v
+D:/CPSC/3220/project7/gpu_frame_restored/sign_extension.v
+D:/CPSC/3220/project7/gpu_frame_restored/sum.hex
+D:/CPSC/3220/project7/gpu_frame_restored/vga_controller.v
+D:/CPSC/3220/project7/gpu_frame_restored/writeback.v
+	======= Total: 25 files to archive =======
+
+	================ Status: ===============
+All files archived successfully.
