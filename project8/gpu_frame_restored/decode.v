@@ -162,7 +162,7 @@ initial begin
 	end 
 
 	ConditionalCode = 0;
-	RF[0] = 16'b0000000000000010;
+	//RF[0] = 16'b0000000000000010;
 
 	O_PC = 0;
 	O_Opcode = 0;

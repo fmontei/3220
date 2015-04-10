@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="lg_highlevel">
+		<CBX_INST_ENTRY INSTANCE_NAME="|lg_highlevel|Memory:Memory0|altsyncram:DataMem_rtl_0" CBX_FILE_NAME="altsyncram_1cn1.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

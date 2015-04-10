@@ -1,0 +1,276 @@
+m255
+K3
+13
+cModel Technology
+Z0 dE:\CPSC\3220\git\3220\project8\gpu_frame_restored\simulation\modelsim
+vDecode
+ILYYMSlAE78T<;3zjS28H@2
+V[VHNh1_X>XD<zo[M8YH6:0
+Z1 dE:\CPSC\3220\git\3220\project8\gpu_frame_restored\simulation\modelsim
+w1428695670
+8E:/CPSC/3220/git/3220/project8/gpu_frame_restored/decode.v
+FE:/CPSC/3220/git/3220/project8/gpu_frame_restored/decode.v
+L0 3
+Z2 OV;L;10.1d;51
+r1
+31
+Z3 o-vlog01compat -work work -O0
+Z4 !s92 -vlog01compat -work work +incdir+E:/CPSC/3220/git/3220/project8/gpu_frame_restored -O0
+n@decode
+!i10b 1
+!s100 cL[8VnBhmagzhe^`<^UDk2
+!s85 0
+!s108 1428695733.167000
+!s107 E:/CPSC/3220/git/3220/project8/gpu_frame_restored/global_def.h|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/decode.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/CPSC/3220/git/3220/project8/gpu_frame_restored|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/decode.v|
+!s101 -O0
+vExecute
+IS6J7^^j@H2Xf0D;WFC]6]2
+VRSig42VQzZEI^g0EeLzj53
+R1
+w1428694015
+8E:/CPSC/3220/git/3220/project8/gpu_frame_restored/execute.v
+FE:/CPSC/3220/git/3220/project8/gpu_frame_restored/execute.v
+L0 3
+R2
+r1
+31
+R3
+R4
+n@execute
+!i10b 1
+!s100 >Ya]`Sa=4hZ[:[TQPN_X^1
+!s85 0
+!s108 1428695732.855000
+!s107 E:/CPSC/3220/git/3220/project8/gpu_frame_restored/global_def.h|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/execute.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/CPSC/3220/git/3220/project8/gpu_frame_restored|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/execute.v|
+!s101 -O0
+vFetch
+I8;0fiKVX2A;D?I[]Hbak_1
+V[>`AYb?0aNEPb8SAIS`QD2
+R1
+w1428693127
+8E:/CPSC/3220/git/3220/project8/gpu_frame_restored/fetch.v
+FE:/CPSC/3220/git/3220/project8/gpu_frame_restored/fetch.v
+L0 3
+R2
+r1
+31
+R3
+R4
+n@fetch
+!i10b 1
+!s100 j]WRz1FTonCMEWlo4V7]a2
+!s85 0
+!s108 1428695733.791000
+!s107 E:/CPSC/3220/git/3220/project8/gpu_frame_restored/global_def.h|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/fetch.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/CPSC/3220/git/3220/project8/gpu_frame_restored|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/fetch.v|
+!s101 -O0
+vGpu
+I?_SQ_<4glBiB09g<<jPNc2
+Vc71z?J2cLO;n>QTcz=fiW3
+R1
+Z5 w1428692014
+8E:/CPSC/3220/git/3220/project8/gpu_frame_restored/gpu.v
+FE:/CPSC/3220/git/3220/project8/gpu_frame_restored/gpu.v
+L0 3
+R2
+r1
+31
+R3
+R4
+n@gpu
+!i10b 1
+!s100 <ajhPoO;;2>gFPl9;XYF;2
+!s85 0
+!s108 1428695731.620000
+!s107 E:/CPSC/3220/git/3220/project8/gpu_frame_restored/global_def.h|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/gpu.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/CPSC/3220/git/3220/project8/gpu_frame_restored|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/gpu.v|
+!s101 -O0
+vlg_highlevel
+!i10b 1
+!s100 k;CVlnnV;P6TW2<VS7bgV2
+If03O9@F_YbT;:kPHhSM?E3
+VfAjAf@JG_B?@k;^IY[70@1
+R1
+R5
+8E:/CPSC/3220/git/3220/project8/gpu_frame_restored/lg_highlevel.v
+FE:/CPSC/3220/git/3220/project8/gpu_frame_restored/lg_highlevel.v
+L0 5
+R2
+r1
+!s85 0
+31
+!s108 1428695734.061000
+!s107 E:/CPSC/3220/git/3220/project8/gpu_frame_restored/global_def.h|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/lg_highlevel.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/CPSC/3220/git/3220/project8/gpu_frame_restored|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/lg_highlevel.v|
+!s101 -O0
+R3
+R4
+vMemory
+I9n0W[6eCV>_QOPm@^JMBX0
+Vf_H>;3b3;?C6^I2O26^^J1
+R1
+R5
+8E:/CPSC/3220/git/3220/project8/gpu_frame_restored/memory.v
+FE:/CPSC/3220/git/3220/project8/gpu_frame_restored/memory.v
+L0 3
+R2
+r1
+31
+R3
+R4
+n@memory
+!i10b 1
+!s100 KiE;g9c:Hb`^jMCCN:0e<0
+!s85 0
+!s108 1428695732.543000
+!s107 E:/CPSC/3220/git/3220/project8/gpu_frame_restored/global_def.h|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/memory.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/CPSC/3220/git/3220/project8/gpu_frame_restored|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/memory.v|
+!s101 -O0
+vMultiSram
+IJdIk]c4dK2BAO;0gbh=C82
+V=Cg:XJ00[M@Tc]jGY[eAJ3
+R1
+R5
+8E:/CPSC/3220/git/3220/project8/gpu_frame_restored/multi_sram.v
+FE:/CPSC/3220/git/3220/project8/gpu_frame_restored/multi_sram.v
+L0 1
+R2
+r1
+31
+R3
+R4
+n@multi@sram
+!i10b 1
+!s100 ;IiDkLoGP@[^OLO<>31OZ0
+!s85 0
+!s108 1428695730.638000
+!s107 E:/CPSC/3220/git/3220/project8/gpu_frame_restored/multi_sram.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/CPSC/3220/git/3220/project8/gpu_frame_restored|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/multi_sram.v|
+!s101 -O0
+vPixelGen
+I3_IM<gb4Dd`;8l;bJR_0V0
+VX=@Z;MCiaZeD:bjJJGWVz1
+R1
+R5
+8E:/CPSC/3220/git/3220/project8/gpu_frame_restored/pixel_gen.v
+FE:/CPSC/3220/git/3220/project8/gpu_frame_restored/pixel_gen.v
+L0 1
+R2
+r1
+31
+R3
+n@pixel@gen
+R4
+!i10b 1
+!s100 W6jEm9c^8MnN4kV9NmgoV0
+!s85 0
+!s108 1428695730.404000
+!s107 E:/CPSC/3220/git/3220/project8/gpu_frame_restored/pixel_gen.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/CPSC/3220/git/3220/project8/gpu_frame_restored|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/pixel_gen.v|
+!s101 -O0
+vpll
+IAfDb^h7P>bJ2FgIFeh20N3
+V[PnaR_FLzVi3KU;W^`bE_1
+R1
+R5
+8E:/CPSC/3220/git/3220/project8/gpu_frame_restored/pll.v
+FE:/CPSC/3220/git/3220/project8/gpu_frame_restored/pll.v
+L0 39
+R2
+r1
+31
+R3
+R4
+!i10b 1
+!s100 nDl;e;6k<8?IhcMf?Qo]K1
+!s85 0
+!s108 1428695731.355000
+!s107 E:/CPSC/3220/git/3220/project8/gpu_frame_restored/pll.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/CPSC/3220/git/3220/project8/gpu_frame_restored|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/pll.v|
+!s101 -O0
+vSevenSeg
+In@SUJ8a=@NY12;KeBZD=l1
+VE>VAWodAcA0XbzQM`Nba60
+R1
+R5
+8E:/CPSC/3220/git/3220/project8/gpu_frame_restored/seven_segment.v
+FE:/CPSC/3220/git/3220/project8/gpu_frame_restored/seven_segment.v
+L0 1
+R2
+r1
+31
+R3
+R4
+n@seven@seg
+!i10b 1
+!s100 aM4g90`YnVeXf]P7fzDZ01
+!s85 0
+!s108 1428695730.856000
+!s107 E:/CPSC/3220/git/3220/project8/gpu_frame_restored/seven_segment.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/CPSC/3220/git/3220/project8/gpu_frame_restored|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/seven_segment.v|
+!s101 -O0
+vSignExtension
+Ij6d4D^2olj>2dABY=8bJ52
+Vl2bD2B8b=WZP:Ln<Y3WeY3
+R1
+R5
+8E:/CPSC/3220/git/3220/project8/gpu_frame_restored/sign_extension.v
+FE:/CPSC/3220/git/3220/project8/gpu_frame_restored/sign_extension.v
+L0 1
+R2
+r1
+31
+R3
+R4
+n@sign@extension
+!i10b 1
+!s100 36gG>b>>jn]268eV_8KzQ2
+!s85 0
+!s108 1428695731.106000
+!s107 E:/CPSC/3220/git/3220/project8/gpu_frame_restored/sign_extension.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/CPSC/3220/git/3220/project8/gpu_frame_restored|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/sign_extension.v|
+!s101 -O0
+vVgaController
+Ilomo1cYYTckVP=@KUmLD40
+VeN?HZzcJ^^nIkgoLoBRT`3
+R1
+R5
+8E:/CPSC/3220/git/3220/project8/gpu_frame_restored/vga_controller.v
+FE:/CPSC/3220/git/3220/project8/gpu_frame_restored/vga_controller.v
+L0 3
+R2
+r1
+31
+R3
+R4
+n@vga@controller
+!i10b 1
+!s100 1VT2nnef>Z<Fd:Rl3=gb73
+!s85 0
+!s108 1428695731.854000
+!s107 E:/CPSC/3220/git/3220/project8/gpu_frame_restored/global_def.h|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/vga_controller.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/CPSC/3220/git/3220/project8/gpu_frame_restored|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/vga_controller.v|
+!s101 -O0
+vWriteback
+I@BBYc7X>B]>i:g5YeXzCk2
+VWWoz5FV623^^J86U4`;gh2
+R1
+w1428692946
+8E:/CPSC/3220/git/3220/project8/gpu_frame_restored/writeback.v
+FE:/CPSC/3220/git/3220/project8/gpu_frame_restored/writeback.v
+L0 3
+R2
+r1
+31
+R3
+R4
+n@writeback
+!i10b 1
+!s100 [DT:<gWIdYLgJbO3kcUPi2
+!s85 0
+!s108 1428695732.122000
+!s107 E:/CPSC/3220/git/3220/project8/gpu_frame_restored/global_def.h|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/writeback.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/CPSC/3220/git/3220/project8/gpu_frame_restored|E:/CPSC/3220/git/3220/project8/gpu_frame_restored/writeback.v|
+!s101 -O0

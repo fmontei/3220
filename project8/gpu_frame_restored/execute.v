@@ -141,7 +141,10 @@ always @(*) begin
 		end
 
 		`OP_ADDI_F: begin
-
+			ALU_O_DestValue = I_Src1Value + I_Imm;
+			ALU_O_DestRegIdx = I_DestRegIdx; 
+			CCWEn = 1;
+			RegWEn = 1;
 		end
 
 		`OP_VADD: begin 
