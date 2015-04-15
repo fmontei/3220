@@ -32,7 +32,8 @@ module Writeback(
   O_VertexV3,
   O_RegWEn, 
   O_VRegWEn, 	 
-  O_CCWEn     	       
+  O_CCWEn,
+  O_VIdxIdx
 );
 
 /////////////////////////////////////////
@@ -73,6 +74,7 @@ output reg  O_RegWEn;
 output reg  O_VRegWEn; 	 
 output reg  O_CCWEn; 
 output reg [`PC_WIDTH-1:0] O_PC;
+output reg [2:0] O_VIdxIdx;
 
 // Output to the GPU stage 
 output reg [`GSR_WIDTH-1:0] O_GSRValue; 
@@ -134,6 +136,42 @@ always @(*) begin
 			end 
 		end
 		
+		`OP_AND_D: begin
+			if (I_MEM_Valid == 1) begin 
+				O_RegWEn = 1'b1;
+				O_WriteBackRegIdx = I_DestRegIdx;
+				O_WriteBackData = I_DestValue;
+				O_CCWEn = 1'b1;
+				O_CCValue = I_CCValue;
+			end 
+		end
+
+		`OP_ANDI_D: begin
+			if (I_MEM_Valid == 1) begin 
+				O_RegWEn = 1'b1;
+				O_WriteBackRegIdx = I_DestRegIdx;
+				O_WriteBackData = I_DestValue;
+				O_CCWEn = 1'b1;
+				O_CCValue = I_CCValue;
+			end 
+		end
+		
+		`OP_VMOV: begin 
+			if (I_MEM_Valid == 1) begin
+				O_VRegWEn = I_VRegWEn;
+				O_WriteBackVRegIdx = I_DestVRegIdx;
+				O_VecDestValue = I_VecDestValue;
+			end
+		end
+		
+		`OP_VMOVI: begin
+			if (I_MEM_Valid == 1) begin
+				O_VRegWEn = I_VRegWEn;
+				O_WriteBackVRegIdx = I_DestVRegIdx;
+				O_VecDestValue = I_VecDestValue;
+			end
+		end
+		
 		`OP_MOV: begin
 			if (I_MEM_Valid == 1) begin 
 				O_RegWEn = 1'b1;
@@ -189,6 +227,47 @@ always @(*) begin
 				O_CCValue = I_CCValue;
 			end 
 		end
+		
+		`OP_JSR: begin
+			if (I_MEM_Valid == 1) begin
+				O_RegWEn = I_RegWEn;
+				O_WriteBackRegIdx = I_DestRegIdx;
+				O_WriteBackData = I_DestValue;
+			end
+		end
+		
+		`OP_JSRR: begin
+			if (I_MEM_Valid == 1) begin
+				O_RegWEn = I_RegWEn;
+				O_WriteBackRegIdx = I_DestRegIdx;
+				O_WriteBackData = I_DestValue;
+			end
+		end
+		
+		`OP_VCOMPMOV: begin
+			if (I_MEM_Valid == 1) begin
+				O_VRegWEn = I_VRegWEn;
+				O_WriteBackVRegIdx = I_DestVRegIdx;
+				O_VecDestValue = I_VecDestValue;
+			end
+		end
+		
+		`OP_VCOMPMOVI: begin
+			if (I_MEM_Valid == 1) begin
+				O_VRegWEn = I_VRegWEn;
+				O_WriteBackVRegIdx = I_DestVRegIdx;
+				O_VecDestValue = I_VecDestValue;
+			end
+		end
+		
+		`OP_VADD: begin
+			if (I_MEM_Valid == 1) begin
+				O_VRegWEn = I_VRegWEn;
+				O_WriteBackVRegIdx = I_DestVRegIdx;
+				O_VecDestValue = I_VecDestValue;
+			end
+		end
+		
 	endcase
 end
 

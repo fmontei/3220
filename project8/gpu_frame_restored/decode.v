@@ -28,6 +28,7 @@ module Decode(
   I_MDDestVWrite,
   I_EDCCWEn,
   I_MDCCWEn,
+  I_VIdxIdx,
   I_GPUStallSignal, 
   O_LOCK,
   O_PC,
@@ -75,7 +76,7 @@ input I_WriteBackPCEn;
 input [`VREG_WIDTH-1:0] I_VecSrc1Value; 
 input [`VREG_WIDTH-1:0] I_VecSrc2Value; 
 input [`VREG_WIDTH-1:0] I_VecDestValue; 
-
+input [2:0] I_VIdxIdx;
 /* input from EX and Mem stage for dependency checking */ 
 
 input I_RegWEn;
@@ -240,15 +241,41 @@ always @(*) begin
 		end
 
 		`OP_VADD: begin 
-
+			VecSrc1Value = VRF[I_IR[13:8]];
+			VecSrc2Value = VRF[I_IR[5:0]];
+			DestVRegIdx = I_IR[21:16];
+			if (((I_IR[13:8] == I_EDDestVRegIdx)  && I_EDDestVWrite) || 
+				((I_IR[13:8] == I_MDDestVRegIdx)  && I_MDDestVWrite) ||
+				((I_IR[5:0] == I_MDDestVRegIdx)  && I_MDDestVWrite) ||
+				((I_IR[5:0] == I_MDDestVRegIdx)  && I_MDDestVWrite))
+				dep_stall = 1;
+			else 
+				dep_stall = 0;
 		end
 
 		`OP_AND_D: begin
-
+			Src1Value = RF[I_IR[19:16]];
+			Src2Value = RF[I_IR[11:8]];
+			DestRegIdx = I_IR[23:20];
+			/* Check both source registers for a RAW data dependency */
+			if (((I_IR[19:16] == I_EDDestRegIdx) && I_EDDestWrite)  || 
+				((I_IR[19:16] == I_MDDestRegIdx) && I_MDDestWrite) ||
+				((I_IR[11:8] == I_EDDestRegIdx)  && I_EDDestWrite) || 
+				((I_IR[11:8] == I_MDDestRegIdx)  && I_MDDestWrite))
+				dep_stall = 1;
+			else 
+				dep_stall = 0;
 		end
 
 		`OP_ANDI_D: begin
-
+			Src1Value = RF[I_IR[19:16]];
+			DestRegIdx = I_IR[23:20];
+			/* Only one source register exists for this instruction */
+			if (((I_IR[19:16] == I_EDDestRegIdx) && I_EDDestWrite) || 
+				((I_IR[19:16] == I_MDDestRegIdx) && I_MDDestWrite))
+				dep_stall = 1;
+			else 
+				dep_stall = 0;
 		end
 		
 		`OP_MOV: begin 
@@ -279,10 +306,18 @@ always @(*) begin
 				dep_stall = 0;
 		end
 
-		`OP_VMOV: begin 
+		`OP_VMOV: begin
+			VecSrc1Value = VRF[I_IR[13:8]];
+			DestVRegIdx = I_IR[21:16];
+			if (((I_IR[13:8] == I_EDDestVRegIdx)  && I_EDDestVWrite) || 
+				((I_IR[13:8] == I_MDDestVRegIdx)  && I_MDDestVWrite))
+				dep_stall = 1;
+			else 
+				dep_stall = 0;
 		end
 		  
-		`OP_VMOVI: begin 
+		`OP_VMOVI: begin
+			DestVRegIdx = I_IR[21:16];
 		end
 		 
 		`OP_CMP: begin
@@ -306,10 +341,27 @@ always @(*) begin
 				dep_stall = 0;
 		end
 		 
-		`OP_VCOMPMOV: begin  
+		`OP_VCOMPMOV: begin
+			Src1Value = RF[I_IR[11:8]];
+			VecSrc1Value = VRF[I_IR[21:16]];
+			DestVRegIdx = I_IR[21:16];
+			if (((I_IR[11:8] == I_EDDestRegIdx)  && I_EDDestWrite) || 
+				((I_IR[11:8] == I_MDDestRegIdx)  && I_MDDestWrite) ||
+				((I_IR[21:16] == I_EDDestVRegIdx) && I_EDDestVWrite) ||
+				((I_IR[21:16] == I_MDDestVRegIdx) && I_MDDestVWrite))
+				dep_stall = 1;
+			else 
+				dep_stall = 0;
 		end 
 
-		`OP_VCOMPMOVI: begin  
+		`OP_VCOMPMOVI: begin
+			VecSrc1Value = VRF[I_IR[21:16]];
+			DestVRegIdx = I_IR[21:16];
+			if (((I_IR[21:16] == I_EDDestVRegIdx) && I_EDDestVWrite) ||
+				((I_IR[21:16] == I_MDDestVRegIdx) && I_MDDestVWrite))
+				dep_stall = 1;
+			else 
+				dep_stall = 0;
 		end 
 
 		`OP_LDB: begin
@@ -397,12 +449,26 @@ always @(*) begin
 		end 
 
 		`OP_JMP: begin
+			Src1Value = RF[I_IR[19:16]];
+			if (((I_IR[19:16] == I_EDDestRegIdx) && I_EDDestWrite)  || 
+				((I_IR[19:16] == I_MDDestRegIdx) && I_MDDestWrite))
+				dep_stall = 1;
+			else
+				dep_stall = 0;
 		end
 
 		`OP_JSR: begin
+			DestRegIdx = 7;
 		end
 
 		`OP_JSRR: begin
+			Src1Value = RF[I_IR[19:16]];
+			DestRegIdx = 7;
+			if (((I_IR[19:16] == I_EDDestRegIdx) && I_EDDestWrite)  || 
+				((I_IR[19:16] == I_MDDestRegIdx) && I_MDDestWrite))
+				dep_stall = 1;
+			else
+				dep_stall = 0;
 		end
 		  
 		default: begin
@@ -449,6 +515,9 @@ always @(posedge I_CLOCK) begin
 		if (I_CCWEn == 1) begin
 			ConditionalCode = I_CCValue;
 		end
+		if (I_VRegWEn == 1) begin
+			VRF[I_WriteBackVRegIdx] = I_VecDestValue;
+		end
 	end // if (I_LOCK == 1'b1)
 end // always @(posedge I_CLOCK)
 
@@ -472,16 +541,19 @@ always @(negedge I_CLOCK) begin
 		O_Src2Value <= Src2Value;
 		O_DestRegIdx <= DestRegIdx;
 		O_Imm <= Imm32;
+		O_VecSrc1Value <= VecSrc1Value;
+		O_VecSrc2Value <= VecSrc2Value;
+		O_DestVRegIdx <= DestVRegIdx;
 		//O_DE_Valid <= I_FE_Valid
 		//O_DE_Valid <= (dep_stall == 1) ? 0 : 1;
 		if (dep_stall == 0 && br_stall == 0) begin
-			O_DE_Valid <= 1;
+			O_DE_Valid <= I_FE_Valid;
 		end else if (dep_stall == 1 && br_stall == 0) begin 
 			O_DE_Valid <= 0;
 		end else if (dep_stall == 1 && br_stall == 1) begin
 			O_DE_Valid <= 0;
 		end else if (dep_stall == 0 && br_stall == 1) begin
-			O_DE_Valid <= 1;
+			O_DE_Valid <= I_FE_Valid;
 		end
 		O_CCValue <= I_CCValue;
 	end // if (I_LOCK == 1'b1)

@@ -33,6 +33,7 @@ entity Writeback is
         O_VertexV3      : out    vl_logic_vector(63 downto 0);
         O_RegWEn        : out    vl_logic;
         O_VRegWEn       : out    vl_logic;
-        O_CCWEn         : out    vl_logic
+        O_CCWEn         : out    vl_logic;
+        O_VIdxIdx       : out    vl_logic_vector(2 downto 0)
     );
 end Writeback;

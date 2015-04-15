@@ -29,6 +29,7 @@ entity Decode is
         I_MDDestVWrite  : in     vl_logic;
         I_EDCCWEn       : in     vl_logic;
         I_MDCCWEn       : in     vl_logic;
+        I_VIdxIdx       : in     vl_logic_vector(2 downto 0);
         I_GPUStallSignal: in     vl_logic;
         O_LOCK          : out    vl_logic;
         O_PC            : out    vl_logic_vector(15 downto 0);

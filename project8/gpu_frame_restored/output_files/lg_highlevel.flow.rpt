@@ -1,6 +1,6 @@
 Flow report for lg_highlevel
-Fri Apr 10 15:57:26 2015
-Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+Wed Apr 15 15:06:06 2015
+Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
 ---------------------
@@ -40,17 +40,17 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Fri Apr 10 15:57:26 2015           ;
-; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Flow Status                        ; Successful - Wed Apr 15 15:06:06 2015           ;
+; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; lg_highlevel                                    ;
 ; Top-level Entity Name              ; lg_highlevel                                    ;
 ; Family                             ; Cyclone II                                      ;
 ; Device                             ; EP2C20F484C7                                    ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 1,128 / 18,752 ( 6 % )                          ;
-;     Total combinational functions  ; 1,007 / 18,752 ( 5 % )                          ;
-;     Dedicated logic registers      ; 526 / 18,752 ( 3 % )                            ;
-; Total registers                    ; 526                                             ;
+; Total logic elements               ; 1,498 / 18,752 ( 8 % )                          ;
+;     Total combinational functions  ; 1,343 / 18,752 ( 7 % )                          ;
+;     Dedicated logic registers      ; 691 / 18,752 ( 4 % )                            ;
+; Total registers                    ; 691                                             ;
 ; Total pins                         ; 116 / 315 ( 37 % )                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 1,024 / 239,616 ( < 1 % )                       ;
@@ -64,7 +64,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/10/2015 15:57:00 ;
+; Start date & time ; 04/15/2015 15:05:23 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; lg_highlevel        ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ applicable agreement for further details.
 +----------------------------------------+---------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                        ; Value                                 ; Default Value ; Entity Name ; Section Id     ;
 +----------------------------------------+---------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID                  ; 171859733332017.142869582007752       ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                  ; 121369298120.142912472203460          ; --            ; --          ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME               ; NA                                    ; --            ; --          ; my_testbench   ;
 ; EDA_NATIVELINK_SIMULATION_SETUP_SCRIPT ; simulation/modelsim/my_custom_view.do ; --            ; --          ; eda_simulation ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH   ; my_testbench                          ; --            ; --          ; eda_simulation ;
@@ -108,12 +108,12 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:06     ; 1.0                     ; 479 MB              ; 00:00:05                           ;
-; Fitter                    ; 00:00:13     ; 1.0                     ; 649 MB              ; 00:00:13                           ;
-; Assembler                 ; 00:00:02     ; 1.0                     ; 431 MB              ; 00:00:01                           ;
-; TimeQuest Timing Analyzer ; 00:00:02     ; 1.0                     ; 421 MB              ; 00:00:01                           ;
-; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 401 MB              ; 00:00:01                           ;
-; Total                     ; 00:00:24     ; --                      ; --                  ; 00:00:21                           ;
+; Analysis & Synthesis      ; 00:00:10     ; 1.0                     ; 353 MB              ; 00:00:10                           ;
+; Fitter                    ; 00:00:22     ; 1.0                     ; 457 MB              ; 00:00:21                           ;
+; Assembler                 ; 00:00:02     ; 1.0                     ; 352 MB              ; 00:00:02                           ;
+; TimeQuest Timing Analyzer ; 00:00:02     ; 1.0                     ; 325 MB              ; 00:00:02                           ;
+; EDA Netlist Writer        ; 00:00:02     ; 1.0                     ; 323 MB              ; 00:00:02                           ;
+; Total                     ; 00:00:38     ; --                      ; --                  ; 00:00:37                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -122,11 +122,11 @@ applicable agreement for further details.
 +---------------------------+------------------+-----------+------------+----------------+
 ; Module Name               ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
 +---------------------------+------------------+-----------+------------+----------------+
-; Analysis & Synthesis      ; fmonteiro-LAP    ; Windows 7 ; 6.1        ; x86_64         ;
-; Fitter                    ; fmonteiro-LAP    ; Windows 7 ; 6.1        ; x86_64         ;
-; Assembler                 ; fmonteiro-LAP    ; Windows 7 ; 6.1        ; x86_64         ;
-; TimeQuest Timing Analyzer ; fmonteiro-LAP    ; Windows 7 ; 6.1        ; x86_64         ;
-; EDA Netlist Writer        ; fmonteiro-LAP    ; Windows 7 ; 6.1        ; x86_64         ;
+; Analysis & Synthesis      ; PARTHSEHGAL80C6  ; Windows 7 ; 6.1        ; i686           ;
+; Fitter                    ; PARTHSEHGAL80C6  ; Windows 7 ; 6.1        ; i686           ;
+; Assembler                 ; PARTHSEHGAL80C6  ; Windows 7 ; 6.1        ; i686           ;
+; TimeQuest Timing Analyzer ; PARTHSEHGAL80C6  ; Windows 7 ; 6.1        ; i686           ;
+; EDA Netlist Writer        ; PARTHSEHGAL80C6  ; Windows 7 ; 6.1        ; i686           ;
 +---------------------------+------------------+-----------+------------+----------------+
 
 

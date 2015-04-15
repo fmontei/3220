@@ -75,9 +75,11 @@ output reg [`PC_WIDTH-1:0] O_R15PC;
 output reg [`IR_WIDTH-1:0] O_IR;      
 output reg [3:0] O_DestRegIdx;
 reg [3:0] ALU_O_DestRegIdx;
+reg [5:0] ALU_O_DestVRegIdx;
 output reg [`VREG_ID_WIDTH-1:0] O_DestVRegIdx;
 output reg [`REG_WIDTH-1:0] O_DestValue;
 reg signed [`REG_WIDTH-1:0] ALU_O_DestValue;
+reg signed [`VREG_WIDTH-1:0] ALU_O_DestVValue;
 output reg [2:0] O_CCValue;   
 output reg [`VREG_WIDTH-1:0] O_VecSrc1Value; 
 output reg [`VREG_WIDTH-1:0] O_VecDestValue;
@@ -90,6 +92,7 @@ output reg O_RegWEn;
 output reg O_VRegWEn;
 output reg O_CCWEn;
 reg RegWEn;
+reg VRegWEn;
 reg CCWEn;
 reg [2:0] CCValue;
  		    
@@ -141,22 +144,30 @@ always @(*) begin
 		end
 
 		`OP_ADDI_F: begin
-			ALU_O_DestValue = I_Src1Value + I_Imm;
+			ALU_O_DestValue = I_Src1Value + I_IR[15:0];
 			ALU_O_DestRegIdx = I_DestRegIdx; 
 			CCWEn = 1;
 			RegWEn = 1;
 		end
 
-		`OP_VADD: begin 
-
+		`OP_VADD: begin
+			ALU_O_DestVValue = I_VecSrc1Value + I_VecSrc2Value;
+			ALU_O_DestVRegIdx = I_DestVRegIdx;
+			VRegWEn = 1;
 		end
 
 		`OP_AND_D: begin
-
+			ALU_O_DestValue = I_Src1Value & I_Src2Value;
+			ALU_O_DestRegIdx = I_DestRegIdx;
+			CCWEn = 1;
+			RegWEn = 1;
 		end
 
 		`OP_ANDI_D: begin
-
+			ALU_O_DestValue = I_Src1Value & I_Imm;
+			ALU_O_DestRegIdx = I_DestRegIdx;
+			CCWEn = 1;
+			RegWEn = 1;
 		end
 		
 		`OP_MOV: begin 
@@ -181,9 +192,16 @@ always @(*) begin
 		end
 
 		`OP_VMOV: begin 
+			ALU_O_DestVValue = I_VecSrc1Value;
+			ALU_O_DestVRegIdx = I_DestVRegIdx;
+			VRegWEn = 1;
+			
 		end
 		  
-		`OP_VMOVI: begin 
+		`OP_VMOVI: begin
+			ALU_O_DestVValue = {{I_IR[15:0]}, {I_IR[15:0]}, {I_IR[15:0]}, {I_IR[15:0]}};
+			ALU_O_DestVRegIdx = I_DestVRegIdx;
+			VRegWEn = 1;
 		end
 		 
 		`OP_CMP: begin
@@ -198,10 +216,32 @@ always @(*) begin
 			RegWEn = 0;
 		end
 		 
-		`OP_VCOMPMOV: begin  
+		`OP_VCOMPMOV: begin
+			if (I_IR[23:22] == 2'b00) begin
+				ALU_O_DestVValue = {{I_VecSrc1Value[63:48]}, {I_VecSrc1Value[47:32]}, {I_VecSrc1Value[31:16]}, {I_Src1Value[15:0]}};
+			end else if (I_IR[23:22] == 2'b01) begin
+				ALU_O_DestVValue = {{I_VecSrc1Value[63:48]}, {I_VecSrc1Value[47:32]}, {I_Src1Value[15:0]}, {I_VecSrc1Value[15:0]}};
+			end else if (I_IR[23:22] == 2'b10) begin
+				ALU_O_DestVValue = {{I_VecSrc1Value[63:48]}, {I_Src1Value[15:0]}, {I_VecSrc1Value[31:16]}, {I_VecSrc1Value[15:0]}};
+			end else begin
+				ALU_O_DestVValue = {{I_Src1Value[15:0]}, {I_VecSrc1Value[47:32]}, {I_VecSrc1Value[31:16]}, {I_VecSrc1Value[15:0]}};
+			end
+			ALU_O_DestVRegIdx <= I_DestVRegIdx;
+			VRegWEn = 1;
 		end 
 
-		`OP_VCOMPMOVI: begin  
+		`OP_VCOMPMOVI: begin
+			if (I_IR[23:22] == 2'b00) begin
+				ALU_O_DestVValue = {{I_VecSrc1Value[63:48]}, {I_VecSrc1Value[47:32]}, {I_VecSrc1Value[31:16]}, {I_IR[15:0]}};
+			end else if (I_IR[23:22] == 2'b01) begin
+				ALU_O_DestVValue = {{I_VecSrc1Value[63:48]}, {I_VecSrc1Value[47:32]}, {I_IR[15:0]}, {I_VecSrc1Value[15:0]}};
+			end else if (I_IR[23:22] == 2'b10) begin
+				ALU_O_DestVValue = {{I_VecSrc1Value[63:48]}, {I_IR[15:0]}, {I_VecSrc1Value[31:16]}, {I_VecSrc1Value[15:0]}};
+			end else begin
+				ALU_O_DestVValue = {{I_IR[15:0]}, {I_VecSrc1Value[47:32]}, {I_VecSrc1Value[31:16]}, {I_VecSrc1Value[15:0]}};
+			end
+			ALU_O_DestVRegIdx <= I_DestVRegIdx;
+			VRegWEn = 1;		
 		end 
 
 		`OP_LDB: begin
@@ -302,12 +342,33 @@ always @(*) begin
 		end 
 
 		`OP_JMP: begin
+			if (I_DE_Valid) begin
+				My_O_BranchPC_Signal = I_Src1Value;
+				My_O_BranchAddrSelect_Signal = 1;
+				Branch_Was_Taken = 1;
+			end
 		end
 
 		`OP_JSR: begin
+			if (I_DE_Valid) begin
+				ALU_O_DestRegIdx = I_DestRegIdx;
+				ALU_O_DestValue = I_PC;
+				RegWEn = 1;
+				My_O_BranchPC_Signal = (I_PC + (Imm32 * 4));
+				My_O_BranchAddrSelect_Signal = 1;
+				Branch_Was_Taken = 1;
+			end
 		end
 
 		`OP_JSRR: begin
+			if (I_DE_Valid) begin
+				ALU_O_DestRegIdx = I_DestRegIdx;
+				ALU_O_DestValue = I_PC;
+				RegWEn = 1;
+				My_O_BranchPC_Signal = I_Src1Value;
+				My_O_BranchAddrSelect_Signal = 1;
+				Branch_Was_Taken = 1;
+			end
 		end
 		
 		`OP_HALT: begin
@@ -328,10 +389,11 @@ always @(*) begin
 end // always @ begin
 
 assign O_BranchPC_Signal = My_O_BranchPC_Signal;
-assign O_BranchAddrSelect_Signal = (I_IR[31:27] == 5'b11011 || I_Opcode == `OP_HALT) 
+assign O_BranchAddrSelect_Signal = (I_IR[31:27] == 5'b11011 || I_Opcode == `OP_HALT || I_Opcode == `OP_JMP || I_Opcode == `OP_JSR || I_Opcode == `OP_JSRR) 
 											? My_O_BranchAddrSelect_Signal : 0;
 	
 assign O_RegWEn_Signal = (I_DE_Valid) ? RegWEn : 0;
+assign O_VRegWEn_Signal = (I_DE_Valid) ? VRegWEn : 0;
 assign O_CCWEn_Signal = (I_DE_Valid) ? CCWEn : 0;
 
 /////////////////////////////////////////
@@ -349,7 +411,10 @@ always @(negedge I_CLOCK) begin
 		
 		// Checking if last instruction was a branch instruction &
 		// if it was taken, then clearly the instruction right after the branch instruction is invalid
-		if (O_IR[31:27] == 5'b11011 && Branch_Was_Taken == 1) begin 
+		
+		if (((I_IR[31:27] == 5'b11011) ||
+			(I_IR[31:24] == `OP_JMP)) && 
+			Branch_Was_Taken == 1) begin
 			O_EX_Valid <= 0;
 		end else begin
 			O_EX_Valid <= I_DE_Valid;
@@ -357,7 +422,10 @@ always @(negedge I_CLOCK) begin
 
 		O_DestRegIdx <= ALU_O_DestRegIdx;
 		O_DestValue <= ALU_O_DestValue;
+		O_VecDestValue <= ALU_O_DestVValue;
+		O_DestVRegIdx <= ALU_O_DestVRegIdx;
 		O_RegWEn <= O_RegWEn_Signal; 
+		O_VRegWEn <= O_VRegWEn_Signal;
 		O_CCWEn <= O_CCWEn_Signal;
 		O_MARValue <= MARValue;
 		O_MDRValue <= MDRValue;

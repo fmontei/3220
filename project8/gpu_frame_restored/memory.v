@@ -146,6 +146,31 @@ always @(negedge I_CLOCK) begin
 			O_DestRegIdx <= I_DestRegIdx;
 		end
 		
+		`OP_AND_D: begin
+			O_DestValue <= I_DestValue;
+			O_DestRegIdx <= I_DestRegIdx;
+		end
+		
+		`OP_ANDI_D: begin
+			O_DestValue <= I_DestValue;
+			O_DestRegIdx <= I_DestRegIdx;
+		end
+		
+		`OP_VADD: begin
+			O_DestVRegIdx <= I_DestVRegIdx;
+			O_VecDestValue <= I_VecDestValue;
+		end
+		
+		`OP_VMOV: begin
+			O_DestVRegIdx <= I_DestVRegIdx;
+			O_VecDestValue <= I_VecDestValue;
+		end
+		
+		`OP_VMOVI: begin
+			O_VecDestValue <= I_VecDestValue;
+			O_DestVRegIdx <= I_DestVRegIdx;
+		end
+		
 		`OP_MOV: begin
 			O_DestValue <= I_DestValue;
 			O_DestRegIdx <= I_DestRegIdx;
@@ -168,6 +193,26 @@ always @(negedge I_CLOCK) begin
 		`OP_LDW: begin 
 			O_DestValue <= DataMem[mar_line_addr];
 			O_DestRegIdx <= I_DestRegIdx;
+		end
+		
+		`OP_JSR: begin 
+			O_DestValue <= I_DestValue;
+			O_DestRegIdx <= I_DestRegIdx;	
+		end
+		
+		`OP_JSRR: begin
+			O_DestValue <= I_DestValue;
+			O_DestRegIdx <= I_DestRegIdx;
+		end
+		
+		`OP_VCOMPMOV: begin
+			O_DestVRegIdx <= I_DestVRegIdx;
+			O_VecDestValue <= I_VecDestValue;
+		end
+		
+		`OP_VCOMPMOVI: begin
+			O_DestVRegIdx <= I_DestVRegIdx;
+			O_VecDestValue <= I_VecDestValue;		
 		end
 	endcase
 end
@@ -218,6 +263,9 @@ always @(negedge I_CLOCK) begin
 		O_MEM_Valid <= I_EX_Valid;
 		O_RegWEn <= I_RegWEn;
 		//O_CCRegWen <= I_CCRegWen
+		O_VRegWEn <= I_VRegWEn;
+		//O_VecDestValue <= I_VecDestValue;
+		//O_DestVRegIdx <= I_DestVRegIdx;
 		O_CCWEn <= I_CCWEn;
 		O_CCValue <= I_CCValue;
 

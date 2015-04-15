@@ -194,6 +194,7 @@ wire [`VERTEX_REG_WIDTH-1:0] VertexV3_WG;
 wire GSRValue_Valid_WG; 
 
 
+
 wire [2:0] 		     CCValue_DE;
 wire [2:0] 		     CCValue_EM;
 wire [2:0] 		     CCValue_MW;
@@ -201,7 +202,7 @@ wire [2:0] 		     CCValue_WD;
    
 
 wire 	GPUStallSignal_G; 
-
+wire [3:0] WBVIdxIdx;
 /////////////////////////////////////////
 // PLL MODULE GOES HERE 
 /////////////////////////////////////////
@@ -259,6 +260,7 @@ Decode Decode0 (
   .I_EDCCWEn(CCWEn_ED),
   .I_MDCCWEn(CCWEn_EM),
   .I_GPUStallSignal(GPUStallSignal),
+  .I_VIdxIdx(WBVIdxIdx),
   .O_LOCK(LOCK_DE),
   .O_PC(PC_DE),
   .O_Opcode(Opcode_DE),
@@ -394,7 +396,8 @@ Writeback Writeback0 (
   .O_VertexV3(VertexV3_WG),
   .O_RegWEn(RegWEn_WD), 
   .O_VRegWEn(VRegWEn_WD),
-  .O_CCWEn(CCWEn_WD)       	 		      
+  .O_CCWEn(CCWEn_WD),
+  .O_VIdxIdx(WBVIdxIdx)
 );
 
 /////////////////////////////////////////
