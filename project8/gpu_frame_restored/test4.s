@@ -6,9 +6,9 @@ cmp r1 r2
 brz 6 
 brp 5
 and.d r3 r0 r1
-movi.f r8 -222.7f
-addi.f r8 r8 57.4f
-movi.f r9 359.9f
+movi.f r8 -222.70
+addi.f r8 r8 57.40
+movi.f r9 359.90
 add.f r10 r8 r9 
 mov r4 r3
 movi.d r5 11

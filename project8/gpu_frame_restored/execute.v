@@ -185,7 +185,7 @@ always @(*) begin
 		end
 
 		`OP_MOVI_F: begin 
-			ALU_O_DestValue = I_Imm;
+			ALU_O_DestValue = I_IR[15:0];
 			ALU_O_DestRegIdx = I_DestRegIdx; 
 			CCWEn = 1;
 			RegWEn = 1;

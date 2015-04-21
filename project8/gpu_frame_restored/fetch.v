@@ -47,7 +47,7 @@ reg[`INST_WIDTH-1:0] InstMem[0:`INST_MEM_SIZE-1];
 // INITIAL/ASSIGN STATEMENT GOES HERE
 /////////////////////////////////////////
 initial begin
-	$readmemh("sum.hex", InstMem);
+	$readmemh("test12.hex", InstMem);
 
 	O_LOCK = 1'b0;
 	O_PC = 16'h0;
