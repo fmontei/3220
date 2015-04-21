@@ -47,7 +47,7 @@ reg[`INST_WIDTH-1:0] InstMem[0:`INST_MEM_SIZE-1];
 // INITIAL/ASSIGN STATEMENT GOES HERE
 /////////////////////////////////////////
 initial begin
-	$readmemh("test12.hex", InstMem);
+	$readmemh("sum.hex", InstMem);
 
 	O_LOCK = 1'b0;
 	O_PC = 16'h0;
@@ -78,7 +78,7 @@ always @(*) begin
 		latch_keep <= 1;
 	end else if (I_BranchStallSignal == 1 && I_DepStallSignal == 0) begin
 		fe_valid <= 0;
-		latch_keep <= 0;
+		latch_keep <= 1;
 	end else if (I_BranchStallSignal == 1 && I_DepStallSignal == 1) begin
 		fe_valid <= 1;
 		latch_keep <= 1;
