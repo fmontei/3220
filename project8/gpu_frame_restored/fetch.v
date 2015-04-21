@@ -47,7 +47,7 @@ reg[`INST_WIDTH-1:0] InstMem[0:`INST_MEM_SIZE-1];
 // INITIAL/ASSIGN STATEMENT GOES HERE
 /////////////////////////////////////////
 initial begin
-	$readmemh("test3.hex", InstMem);
+	$readmemh("test12.hex", InstMem);
 
 	O_LOCK = 1'b0;
 	O_PC = 16'h0;
@@ -105,7 +105,7 @@ always @(negedge I_CLOCK) begin
 		
 		/* This code memorizes a read-in branch instruction. Then, it introduces 
 		 * 2 bubbles into the pipeline (O_IR <= 32'hFF000000: this opcode does
-		 * not exist, so does nothing. 
+		 * not exist, so does nothing). 
 		 *
 		 * Blocking and non-blocking assignments are "mixed together" but this
 		 * is just to make the code more readable. The assignments should
@@ -124,7 +124,7 @@ always @(negedge I_CLOCK) begin
 		
 		if (I_BranchAddrSelect == 1) begin
 			O_PC <= I_BranchPC;
-			O_IR <= IR_out;
+			O_IR <= InstMem[I_BranchPC[`INST_MEM_ADDR_SIZE-1:2]];
 		end else begin
 			if (I_BranchStallSignal == 0 && branch_detected == 1) begin
 				O_PC <= O_PC;

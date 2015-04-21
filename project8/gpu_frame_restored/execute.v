@@ -354,7 +354,7 @@ always @(*) begin
 				ALU_O_DestRegIdx = I_DestRegIdx;
 				ALU_O_DestValue = I_PC;
 				RegWEn = 1;
-				My_O_BranchPC_Signal = (I_PC + (Imm32 * 4));
+				My_O_BranchPC_Signal = I_PC + (Imm32 * 4);
 				My_O_BranchAddrSelect_Signal = 1;
 				Branch_Was_Taken = 1;
 			end
@@ -372,8 +372,14 @@ always @(*) begin
 		end
 		
 		`OP_HALT: begin
-			My_O_BranchPC_Signal = I_PC - 4; // Re-execute the halt instruction ad infinitum
-			My_O_BranchAddrSelect_Signal = 1;
+			/* Check if the instruction before the halt instruction was a return/jump/branch
+			 * instruction and the branch was taken, then ignore the follow-up halt
+			 * instruction, since it is premature: the program has not yet terminated. 
+			 */
+			if (Branch_Was_Taken != 1) begin 
+				My_O_BranchPC_Signal = I_PC - 4; // Re-execute the halt instruction ad infinitum
+				My_O_BranchAddrSelect_Signal = 1;
+			end
 		end
 		  
 		default: begin
@@ -389,7 +395,11 @@ always @(*) begin
 end // always @ begin
 
 assign O_BranchPC_Signal = My_O_BranchPC_Signal;
-assign O_BranchAddrSelect_Signal = (I_IR[31:27] == 5'b11011 || I_Opcode == `OP_HALT || I_Opcode == `OP_JMP || I_Opcode == `OP_JSR || I_Opcode == `OP_JSRR) 
+assign O_BranchAddrSelect_Signal = (I_IR[31:27] == 5'b11011 || 
+												I_Opcode == `OP_HALT || 
+												I_Opcode == `OP_JMP || 
+												I_Opcode == `OP_JSR || 
+												I_Opcode == `OP_JSRR) 
 											? My_O_BranchAddrSelect_Signal : 0;
 	
 assign O_RegWEn_Signal = (I_DE_Valid) ? RegWEn : 0;
@@ -409,12 +419,9 @@ always @(negedge I_CLOCK) begin
 		O_PC <= I_PC;
 		O_IR <= I_IR;
 		
-		// Checking if last instruction was a branch instruction &
-		// if it was taken, then clearly the instruction right after the branch instruction is invalid
-		
-		if (((I_IR[31:27] == 5'b11011) ||
-			(I_IR[31:24] == `OP_JMP)) && 
-			Branch_Was_Taken == 1) begin
+		// Checking if last instruction was a branch or jump instruction & if it was taken, 
+		// then clearly the instruction right after the branch instruction is invalid		
+		if (((I_IR[31:27] == 5'b11011) || (I_IR[31:24] == `OP_JMP)) && Branch_Was_Taken == 1) begin
 			O_EX_Valid <= 0;
 		end else begin
 			O_EX_Valid <= I_DE_Valid;
