@@ -373,7 +373,7 @@ always @(*) begin
 		
 		`OP_HALT: begin
 			/* Check if the instruction before the halt instruction was a return/jump/branch
-			 * instruction and the branch was taken, then ignore the follow-up halt
+			 * instruction and if the branch was taken, then ignore the follow-up halt
 			 * instruction, since it is premature: the program has not yet terminated. 
 			 */
 			if (Branch_Was_Taken != 1) begin 

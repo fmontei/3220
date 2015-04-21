@@ -52,7 +52,6 @@ reg dep_stall;
 reg de_valid;
 reg br_stall; 
 
-
 /////////////////////////////////////////
 // IN/OUT DEFINITION GOES HERE
 /////////////////////////////////////////
@@ -64,7 +63,6 @@ input [`PC_WIDTH-1:0] I_PC;
 input [`IR_WIDTH-1:0] I_IR;
 input I_FE_Valid;
     
-
 // Inputs from the writeback stage
 input [3:0] I_WriteBackRegIdx;
 input [`VREG_ID_WIDTH-1:0] I_WriteBackVRegIdx;
@@ -116,7 +114,6 @@ output reg [2:0] O_CCValue; // current CC value (source operand)
     
 output reg [`VREG_WIDTH-1:0] O_VecSrc1Value; 
 output reg [`VREG_WIDTH-1:0] O_VecSrc2Value; 
-
 output reg O_DE_Valid;
    
 /////////////////////////////////////////
@@ -163,7 +160,6 @@ initial begin
 	end 
 
 	ConditionalCode = 0;
-	//RF[0] = 16'b0000000000000010;
 
 	O_PC = 0;
 	O_Opcode = 0;
@@ -190,7 +186,6 @@ assign Opcode = I_IR[31:24];
 // ALWAYS STATEMENT GOES HERE
 /////////////////////////////////////////
 always @(*) begin
-	//O_DE_Valid <= I_FE_Valid;
 	case (Opcode)
 		`OP_ADD_D: begin 
 			Src1Value = RF[I_IR[19:16]];
@@ -496,7 +491,6 @@ always @(*) begin
 
 end
 
-   
 /////////////////////////////////////////
 // ## Note ##
 // First half clock cycle to write data back into the register file 
@@ -544,8 +538,6 @@ always @(negedge I_CLOCK) begin
 		O_VecSrc1Value <= VecSrc1Value;
 		O_VecSrc2Value <= VecSrc2Value;
 		O_DestVRegIdx <= DestVRegIdx;
-		//O_DE_Valid <= I_FE_Valid
-		//O_DE_Valid <= (dep_stall == 1) ? 0 : 1;
 		if (dep_stall == 0 && br_stall == 0) begin
 			O_DE_Valid <= I_FE_Valid;
 		end else if (dep_stall == 1 && br_stall == 0) begin 

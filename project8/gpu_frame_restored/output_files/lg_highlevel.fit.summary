@@ -1,14 +1,14 @@
-Fitter Status : Successful - Wed Apr 15 15:05:56 2015
-Quartus II 32-bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
+Fitter Status : Successful - Tue Apr 21 13:47:29 2015
+Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
 Revision Name : lg_highlevel
 Top-level Entity Name : lg_highlevel
 Family : Cyclone II
 Device : EP2C20F484C7
 Timing Models : Final
-Total logic elements : 1,498 / 18,752 ( 8 % )
-    Total combinational functions : 1,343 / 18,752 ( 7 % )
-    Dedicated logic registers : 691 / 18,752 ( 4 % )
-Total registers : 691
+Total logic elements : 1,206 / 18,752 ( 6 % )
+    Total combinational functions : 1,143 / 18,752 ( 6 % )
+    Dedicated logic registers : 479 / 18,752 ( 3 % )
+Total registers : 479
 Total pins : 116 / 315 ( 37 % )
 Total virtual pins : 0
 Total memory bits : 1,024 / 239,616 ( < 1 % )
